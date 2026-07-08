@@ -37,7 +37,7 @@ const COPY = {
 
     // Contact Section
     "contact-title": "Επικοινωνία",
-    "contact-subtitle": "Για τεχνική, θεσμική ή σχετική με το API επικοινωνία:",
+    "contact-subtitle": "Για περισσότερες πληροφορίες σχετικά με το FastRx:",
     "copy-btn-text": "Αντιγραφή",
     "copy-btn-success": "Αντιγράφηκε!",
 
@@ -87,7 +87,7 @@ const COPY = {
 
     // Contact Section
     "contact-title": "Contact Us",
-    "contact-subtitle": "For technical, institutional, or API-related communication:",
+    "contact-subtitle": "For more information regarding FastRx:",
     "copy-btn-text": "Copy",
     "copy-btn-success": "Copied!",
 
