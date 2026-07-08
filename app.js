@@ -55,16 +55,16 @@ const COPY = {
   en: {
     // Meta / SEO
     "meta-title": "FastRx | Electronic Prescribing Workflow",
-    "meta-description": "FastRx is a focused clinical workflow application for doctors, currently in development.",
+    "meta-description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
     "og:title": "FastRx | Electronic Prescribing Workflow",
-    "og:description": "FastRx is a focused clinical workflow application for doctors, currently in development.",
+    "og:description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
     "twitter:title": "FastRx | Electronic Prescribing Workflow",
-    "twitter:description": "FastRx is a focused clinical workflow application for doctors, currently in development.",
+    "twitter:description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
 
     // Hero Section
     "hero-badge": "Coming soon",
     "hero-title": "Fast electronic prescribing workflow for doctors.",
-    "hero-subtitle": "A focused clinical workflow application currently in development.",
+    "hero-subtitle": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
     "hero-cta": "Contact Us",
 
     // Workflow Section
