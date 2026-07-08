@@ -442,6 +442,10 @@ p {
   color: var(--slate-700);
 }
 
+.status-main-text p:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
 .status-divider {
   height: 1px;
   background-color: var(--slate-200);

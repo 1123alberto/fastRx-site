@@ -31,8 +31,8 @@ const COPY = {
     "step5-text": "Τελική ιατρική επικύρωση της συνταγής.",
 
     // Status Section
-    "status-card-title": "Κατάσταση Ανάπτυξης",
-    "status-main-text": "Η εφαρμογή βρίσκεται σε στάδιο ανάπτυξης. Η μελλοντική διασυνδεσιμότητα και η σύνδεση με API θα υλοποιηθούν μόνο μετά τη λήψη των απαιτούμενων επίσημων εγκρίσεων, διαπιστευτηρίων και τεχνικών προδιαγραφών.",
+    "status-card-title": "Κατάσταση",
+    "status-main-text": "<p>Το FastRx βρίσκεται υπό ανάπτυξη και δεν είναι ακόμη διαθέσιμο στο κοινό.</p><p>Η εφαρμογή σχεδιάζεται ως εργαλείο υποστήριξης της ροής ηλεκτρονικής συνταγογράφησης για ιατρούς, με έμφαση στην ταχύτητα, την καθαρότητα και τον τελικό έλεγχο από τον ίδιο τον ιατρό.</p>",
     "status-disclaimer-text": "Το FastRx δεν αντικαθιστά την ιατρική κρίση ούτε παρέχει θεραπευτικές συστάσεις. Αποτελεί αποκλειστικά εργαλείο βελτιστοποίησης της ροής εργασίας.",
 
     // Contact Section
@@ -81,8 +81,8 @@ const COPY = {
     "step5-text": "Final clinical sign-off of the prescription.",
 
     // Status Section
-    "status-card-title": "Development Status",
-    "status-main-text": "Currently in development. Future interoperability and API connectivity will only be implemented after the required official approval, credentials, and technical specifications.",
+    "status-card-title": "Status",
+    "status-main-text": "<p>FastRx is currently under development and is not yet available to the public.</p><p>The application is designed as a tool to support the electronic prescribing workflow for doctors, emphasizing speed, clarity, and final control by the doctor themselves.</p>",
     "status-disclaimer-text": "FastRx does not replace medical judgment nor does it provide treatment recommendations. It functions solely as a workflow optimization tool.",
 
     // Contact Section
