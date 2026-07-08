@@ -70,15 +70,15 @@ const COPY = {
     // Workflow Section
     "workflow-title": "Clinical Workflow",
     "step1-title": "Patient Identification",
-    "step1-text": "Quick lookup of patient demographic profiles.",
+    "step1-text": "Patient identification through the required search workflow.",
     "step2-title": "ICD-10 Diagnosis Selection",
-    "step2-text": "Smart search and filtering of clinical codes.",
+    "step2-text": "Search and selection of ICD-10 diagnosis codes.",
     "step3-title": "Medication Template Selection",
-    "step3-text": "Load customizable favorite templates.",
+    "step3-text": "Selection of predefined or custom medication templates.",
     "step4-title": "Doctor Review",
-    "step4-text": "Double-check details on a single screen.",
-    "step5-title": "Approval and Submission",
-    "step5-text": "Final clinical sign-off of the prescription.",
+    "step4-text": "Review prescription details clearly on a single screen.",
+    "step5-title": "Ready for Submission",
+    "step5-text": "Final clinical review and confirmation by the prescribing doctor.",
 
     // Status Section
     "status-card-title": "Status",
