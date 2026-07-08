@@ -1,3 +1,8 @@
+import { inject } from '@vercel/analytics';
+
+// Initialize Vercel Analytics
+inject();
+
 /* ==========================================================================
    Centralized Copy/Bilingual Translation Object
    ========================================================================== */
