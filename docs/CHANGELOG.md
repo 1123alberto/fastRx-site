@@ -20,3 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Refined English status main text to prioritize speed, clarity, and ultimate physician control.
   - Updated Greek clinical workflow step titles and descriptions (e.g., "Πρότυπο Συνταγής", "Έτοιμη για Υποβολή").
 - Removed accents from Greek uppercase status badge to match standard typography rules.
+
+## [Unreleased]
+
+### Added
+- Registered and launched the official FastRx domain: https://fastrx.gr.
+- Added a basic public landing page for FastRx.
+- Established fastrx.gr as the canonical public domain for project communication.

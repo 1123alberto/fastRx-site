@@ -5,16 +5,16 @@ const COPY = {
   gr: {
     // Meta / SEO
     "meta-title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "meta-description": "Το FastRx είναι μια εξειδικευμένη εφαρμογή κλινικής ροής εργασιών για ιατρούς, υπό ανάπτυξη.",
+    "meta-description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
     "og:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "og:description": "Το FastRx είναι μια εξειδικευμένη εφαρμογή κλινικής ροής εργασιών για ιατρούς, υπό ανάπτυξη.",
+    "og:description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
     "twitter:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "twitter:description": "Το FastRx είναι μια εξειδικευμένη εφαρμογή κλινικής ροής εργασιών για ιατρούς, υπό ανάπτυξη.",
+    "twitter:description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
 
     // Hero Section
-    "hero-badge": "ΥΠΟ ΑΝΑΠΤΥΞΗ",
+    "hero-badge": "ΕΠΙΣΗΜΗ ΙΣΤΟΣΕΛΙΔΑ",
     "hero-title": "Ταχύτερη ηλεκτρονική συνταγογράφηση για ιατρούς.",
-    "hero-subtitle": "Το μέλλον της κλινικής ροής εργασιών. Έρχεται σύντομα για τον ιατρικό κλάδο.",
+    "hero-subtitle": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία.",
     "hero-cta": "Επικοινωνία",
 
     // Workflow Section
@@ -46,8 +46,8 @@ const COPY = {
     "footer-privacy": "Πολιτική Απορρήτου",
 
     // Privacy Modal
-    "modal-title": "Πολιτική Απορρήτου (Προεπισκόπηση)",
-    "modal-p1": "Αυτός ο ιστότοπος αποτελεί μια ενημερωτική σελίδα προ-κυκλοφορίας για το FastRx (fastrx.gr).",
+    "modal-title": "Πολιτική Απορρήτου",
+    "modal-p1": "Ο ιστότοπος FastRx (fastrx.gr) αποτελεί την επίσημη δημόσια σελίδα ενημέρωσης και επικοινωνίας της υπηρεσίας.",
     "modal-p2": "Δεν συλλέγουμε, αποθηκεύουμε ή επεξεργαζόμαστε προσωπικά δεδομένα επισκεπτών σε αυτή τη σελίδα. Δεν χρησιμοποιούνται cookies παρακολούθησης ή διαφημιστικά scripts.",
     "modal-p3": "Εάν επιλέξετε να επικοινωνήσετε μαζί μας μέσω ηλεκτρονικού ταχυδρομείου, η διεύθυνσή σας και το περιεχόμενο του μηνύματός σας θα χρησιμοποιηθούν αποκλειστικά για την απάντηση στο ερώτημά σας.",
     "modal-close": "Κλείσιμο"
@@ -55,16 +55,16 @@ const COPY = {
   en: {
     // Meta / SEO
     "meta-title": "FastRx | Electronic Prescribing Workflow",
-    "meta-description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
+    "meta-description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
     "og:title": "FastRx | Electronic Prescribing Workflow",
-    "og:description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
+    "og:description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
     "twitter:title": "FastRx | Electronic Prescribing Workflow",
-    "twitter:description": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
+    "twitter:description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
 
     // Hero Section
-    "hero-badge": "Coming soon",
+    "hero-badge": "Official website",
     "hero-title": "Fast electronic prescribing workflow for doctors.",
-    "hero-subtitle": "Next-generation clinical workflow software for doctors. Under construction.",
+    "hero-subtitle": "The official FastRx website for product information, updates, and contact.",
     "hero-cta": "Contact Us",
 
     // Workflow Section
@@ -96,8 +96,8 @@ const COPY = {
     "footer-privacy": "Privacy Policy",
 
     // Privacy Modal
-    "modal-title": "Privacy Policy (Preview)",
-    "modal-p1": "This website is an informational pre-launch page for FastRx (fastrx.gr).",
+    "modal-title": "Privacy Policy",
+    "modal-p1": "The FastRx website (fastrx.gr) is the official public page for service information and contact.",
     "modal-p2": "We do not collect, store, or process personal data of visitors on this page. No tracking cookies or advertising scripts are deployed.",
     "modal-p3": "If you choose to contact us via email, your address and message content will be used solely for responding to your inquiry.",
     "modal-close": "Close"

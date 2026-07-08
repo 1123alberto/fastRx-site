@@ -1,8 +1,8 @@
-# FastRx Pre-Launch Landing Page
+# FastRx Public Landing Page
 
-Bilingual pre-launch landing page for FastRx hosted at [fastrx.gr](https://fastrx.gr).
+Bilingual public landing page for FastRx hosted at [fastrx.gr](https://fastrx.gr).
 
-FastRx is a clinical workflow application for doctors, currently in development to streamline the electronic prescribing process (patient lookup, ICD-10 diagnosis selection, medication template selection, doctor review, approval, and submission).
+FastRx is a clinical workflow application for doctors, currently in development to streamline the electronic prescribing process (patient lookup, ICD-10 diagnosis selection, medication template selection, doctor review, approval, and submission). This repository powers the live public website and contact entry point for the service.
 
 ## Features
 
