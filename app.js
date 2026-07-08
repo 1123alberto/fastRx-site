@@ -83,7 +83,7 @@ const COPY = {
     // Status Section
     "status-card-title": "Status",
     "status-main-text": "<p>FastRx is currently under development and is not yet available to the public.</p><p>The application is designed as a tool to support the electronic prescribing workflow for doctors, emphasizing speed, clarity, and final control by the doctor themselves.</p>",
-    "status-disclaimer-text": "FastRx does not replace medical judgment nor does it provide treatment recommendations. It functions solely as a workflow optimization tool.",
+    "status-disclaimer-text": "FastRx does not replace medical judgment or provide treatment recommendations. The prescribing doctor remains responsible for all final clinical decisions.",
 
     // Contact Section
     "contact-title": "Contact Us",
