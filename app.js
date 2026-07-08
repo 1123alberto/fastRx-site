@@ -14,7 +14,7 @@ const COPY = {
     // Hero Section
     "hero-badge": "ΥΠΟ ΑΝΑΠΤΥΞΗ",
     "hero-title": "Ταχύτερη ηλεκτρονική συνταγογράφηση για ιατρούς.",
-    "hero-subtitle": "Μια εξειδικευμένη εφαρμογή κλινικής ροής εργασιών για ιατρούς, υπό ανάπτυξη.",
+    "hero-subtitle": "Το μέλλον της κλινικής ροής εργασιών. Έρχεται σύντομα για τον ιατρικό κλάδο.",
     "hero-cta": "Επικοινωνία",
 
     // Workflow Section
@@ -64,7 +64,7 @@ const COPY = {
     // Hero Section
     "hero-badge": "Coming soon",
     "hero-title": "Fast electronic prescribing workflow for doctors.",
-    "hero-subtitle": "Designed for doctors, this application streamlines the electronic prescribing workflow by prioritizing speed, clarity, and ultimate physician control.",
+    "hero-subtitle": "Next-generation clinical workflow software for doctors. Under construction.",
     "hero-cta": "Contact Us",
 
     // Workflow Section
