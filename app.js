@@ -199,17 +199,14 @@ function setLanguage(lang) {
 }
 
 /**
- * Detect default language from localstorage, browser settings, or system settings
+ * Restore an explicit saved preference; otherwise default to Greek.
  */
 function initLanguage() {
   const savedLang = localStorage.getItem('fastrx_lang');
   if (savedLang && (savedLang === 'gr' || savedLang === 'en')) {
     currentLang = savedLang;
   } else {
-    // Detect Greek from browser languages
-    const browserLanguages = navigator.languages || [navigator.language || navigator.userLanguage];
-    const prefersGreek = browserLanguages.some(l => l.toLowerCase().startsWith('el'));
-    currentLang = prefersGreek ? 'gr' : 'en';
+    currentLang = 'gr';
   }
   updateDOM();
 }

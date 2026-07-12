@@ -37,3 +37,9 @@ test('client prevents duplicate submissions and handles success and failure', ()
   assert.match(js, /form-success/);
   assert.match(js, /form-error/);
 });
+
+test('Greek is the default language when no preference is saved', () => {
+  assert.match(js, /let currentLang = 'gr'/);
+  assert.match(js, /else \{\s*currentLang = 'gr';\s*\}/);
+  assert.doesNotMatch(js, /navigator\.languages/);
+});

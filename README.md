@@ -6,7 +6,7 @@ FastRx is a clinical workflow application for doctors, currently in development 
 
 ## Features
 
-- **Bilingual Content Support**: Seamless localization for Greek (GR) and English (EN) with toggle state remembered in `localStorage` and automatic browser language detection.
+- **Bilingual Content Support**: Seamless localization for Greek (GR) and English (EN), defaulting to Greek while remembering an explicit language selection in `localStorage`.
 - **Premium Aesthetics**: Styled with a minimal, modern medical SaaS theme leveraging the FastRx cerulean/teal color tokens (`--theme-50` to `--theme-900`) and custom vector-based illustrations.
 - **Zero Heavy Runtime Dependencies**: Vanilla HTML, CSS, and JS ensuring near-instantaneous page loads, optimal 100/100 Lighthouse performance scores, and excellent mobile-first responsiveness.
 - **Bilingual SEO/Open Graph Setup**: Pre-configured meta tags for Search Engine Optimization and rich snippet preview support.
