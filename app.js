@@ -1,8 +1,3 @@
-import { inject } from '@vercel/analytics';
-
-// Initialize Vercel Analytics
-inject();
-
 /* ==========================================================================
    Centralized Copy/Bilingual Translation Object
    ========================================================================== */
@@ -41,10 +36,22 @@ const COPY = {
     "status-disclaimer-text": "Το FastRx δεν αντικαθιστά την ιατρική κρίση ούτε παρέχει θεραπευτικές συστάσεις. Ο συνταγογραφών ιατρός παραμένει υπεύθυνος για όλες τις τελικές κλινικές αποφάσεις.",
 
     // Contact Section
-    "contact-title": "Επικοινωνία",
-    "contact-subtitle": "Για περισσότερες πληροφορίες σχετικά με το FastRx:",
-    "copy-btn-text": "Αντιγραφή",
-    "copy-btn-success": "Αντιγράφηκε!",
+    "contact-eyebrow": "Συμμετοχή",
+    "contact-title": "Γίνετε μέρος της εξέλιξης του FastRx",
+    "contact-subtitle": "Δηλώστε ενδιαφέρον για πρώιμη πρόσβαση, συμμετοχή σε δοκιμές ή στείλτε μας τις παρατηρήσεις σας από την καθημερινή κλινική πράξη.",
+    "contact-secondary": "Η εμπειρία των επαγγελματιών υγείας μάς βοηθά να σχεδιάσουμε μια ταχύτερη, καθαρότερη και πιο πρακτική ροή ηλεκτρονικής συνταγογράφησης.",
+    "contact-benefits-label": "Οφέλη συμμετοχής",
+    "benefit-early": "Ενημέρωση για πρώιμη πρόσβαση",
+    "benefit-testing": "Συμμετοχή σε μελλοντικές δοκιμές",
+    "benefit-feedback": "Κλινική ανατροφοδότηση και συνεργασία",
+    "contact-privacy": "Μην συμπεριλάβετε στοιχεία ασθενών, ΑΜΚΑ ή άλλες πληροφορίες υγείας στο μήνυμά σας.",
+    "contact-email": "Προτιμάτε email; <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
+    "form-name": "Ονοματεπώνυμο", "form-email": "Email", "form-specialty": "Ιατρική ειδικότητα", "form-reason": "Λόγος επικοινωνίας", "form-message": "Μήνυμα",
+    "form-select-placeholder": "Επιλέξτε", "specialty-dentistry": "Οδοντιατρική", "specialty-ent": "Ωτορινολαρυγγολογία", "specialty-general": "Γενική Ιατρική", "specialty-internal": "Παθολογία", "specialty-paediatrics": "Παιδιατρική", "specialty-other": "Άλλη ειδικότητα",
+    "reason-early": "Ενδιαφέρομαι για πρώιμη πρόσβαση", "reason-testing": "Θα ήθελα να συμμετάσχω σε δοκιμή", "reason-feedback": "Έχω πρόταση ή σχόλιο", "reason-collaboration": "Επαγγελματική συνεργασία", "reason-other": "Άλλο",
+    "form-message-help": "20–4.000 χαρακτήρες", "form-consent": "Με την αποστολή της φόρμας αποδέχεστε την επεξεργασία των στοιχείων σας αποκλειστικά για την απάντηση στο αίτημά σας.",
+    "form-submit": "Αποστολή μηνύματος", "form-sending": "Αποστολή...", "form-success": "Το μήνυμά σας στάλθηκε. Θα επικοινωνήσουμε μαζί σας σύντομα.", "form-error": "Δεν ήταν δυνατή η αποστολή του μηνύματος. Παρακαλούμε δοκιμάστε ξανά.",
+    "validation-required": "Το πεδίο είναι υποχρεωτικό.", "validation-email": "Εισαγάγετε μια έγκυρη διεύθυνση email.", "validation-message": "Το μήνυμα πρέπει να έχει από 20 έως 4.000 χαρακτήρες.",
 
     // Footer
     "footer-copyright": "© 2026 FastRx. Με την επιφύλαξη παντός δικαιώματος.",
@@ -53,8 +60,8 @@ const COPY = {
     // Privacy Modal
     "modal-title": "Πολιτική Απορρήτου",
     "modal-p1": "Ο ιστότοπος FastRx (fastrx.gr) αποτελεί την επίσημη δημόσια σελίδα ενημέρωσης και επικοινωνίας της υπηρεσίας.",
-    "modal-p2": "Δεν συλλέγουμε, αποθηκεύουμε ή επεξεργαζόμαστε προσωπικά δεδομένα επισκεπτών σε αυτή τη σελίδα. Δεν χρησιμοποιούνται cookies παρακολούθησης ή διαφημιστικά scripts.",
-    "modal-p3": "Εάν επιλέξετε να επικοινωνήσετε μαζί μας μέσω ηλεκτρονικού ταχυδρομείου, η διεύθυνσή σας και το περιεχόμενο του μηνύματός σας θα χρησιμοποιηθούν αποκλειστικά για την απάντηση στο ερώτημά σας.",
+    "modal-p2": "Δεν χρησιμοποιούμε cookies παρακολούθησης ή διαφημιστικά scripts. Συλλέγουμε μόνο τα στοιχεία που υποβάλλετε εθελοντικά μέσω της φόρμας.",
+    "modal-p3": "Η διεύθυνση email και το περιεχόμενο του μηνύματός σας χρησιμοποιούνται αποκλειστικά για την απάντηση στο αίτημά σας.",
     "modal-close": "Κλείσιμο"
   },
   en: {
@@ -91,10 +98,16 @@ const COPY = {
     "status-disclaimer-text": "FastRx does not replace medical judgment or provide treatment recommendations. The prescribing doctor remains responsible for all final clinical decisions.",
 
     // Contact Section
-    "contact-title": "Contact Us",
-    "contact-subtitle": "For more information regarding FastRx:",
-    "copy-btn-text": "Copy",
-    "copy-btn-success": "Copied!",
+    "contact-eyebrow": "Get involved", "contact-title": "Help shape the future of FastRx", "contact-subtitle": "Register your interest in early access, take part in future testing, or share feedback from your everyday clinical practice.",
+    "contact-secondary": "Insights from healthcare professionals help us design a faster, clearer, and more practical electronic prescribing workflow.", "contact-benefits-label": "Participation benefits",
+    "benefit-early": "Updates about early access", "benefit-testing": "Participation in future testing", "benefit-feedback": "Clinical feedback and collaboration",
+    "contact-privacy": "Do not include patient details, AMKA numbers, or any other health information in your message.", "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
+    "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
+    "specialty-dentistry": "Dentistry", "specialty-ent": "ENT", "specialty-general": "General Practice", "specialty-internal": "Internal Medicine", "specialty-paediatrics": "Paediatrics", "specialty-other": "Other specialty",
+    "reason-early": "I am interested in early access", "reason-testing": "I would like to take part in testing", "reason-feedback": "I have feedback or a suggestion", "reason-collaboration": "Professional collaboration", "reason-other": "Other",
+    "form-message-help": "20–4,000 characters", "form-consent": "By submitting this form, you agree that your details may be processed solely for the purpose of responding to your enquiry.",
+    "form-submit": "Send message", "form-sending": "Sending...", "form-success": "Your message has been sent. We will contact you shortly.", "form-error": "Your message could not be sent. Please try again.",
+    "validation-required": "This field is required.", "validation-email": "Enter a valid email address.", "validation-message": "Your message must be between 20 and 4,000 characters.",
 
     // Footer
     "footer-copyright": "© 2026 FastRx. All rights reserved.",
@@ -103,8 +116,8 @@ const COPY = {
     // Privacy Modal
     "modal-title": "Privacy Policy",
     "modal-p1": "The FastRx website (fastrx.gr) is the official public page for service information and contact.",
-    "modal-p2": "We do not collect, store, or process personal data of visitors on this page. No tracking cookies or advertising scripts are deployed.",
-    "modal-p3": "If you choose to contact us via email, your address and message content will be used solely for responding to your inquiry.",
+    "modal-p2": "We do not use tracking cookies or advertising scripts. We collect only the details you voluntarily submit through the contact form.",
+    "modal-p3": "Your email address and message content are used solely for responding to your enquiry.",
     "modal-close": "Close"
   }
 };
@@ -130,6 +143,13 @@ function updateDOM() {
       element.innerHTML = COPY[currentLang][key];
     }
   });
+
+  document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+    const key = element.getAttribute('data-i18n-aria');
+    if (COPY[currentLang]?.[key]) element.setAttribute('aria-label', COPY[currentLang][key]);
+  });
+  const languageInput = document.getElementById('form-language');
+  if (languageInput) languageInput.value = currentLang;
 
   // Translate document metadata/title tags
   const titleElement = document.querySelector('title');
@@ -211,30 +231,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Email Copy-to-Clipboard Handler
-  const copyBtn = document.getElementById('copy-email-btn');
-  const copyFeedback = document.getElementById('copy-feedback');
-  const emailText = 'info@fastrx.gr';
+  // 2. Contact form
+  const contactForm = document.getElementById('contact-form');
+  const submitButton = document.getElementById('contact-submit');
+  const formStatus = document.getElementById('form-status');
+  let submitting = false;
 
-  if (copyBtn && copyFeedback) {
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(emailText)
-        .then(() => {
-          // Success Feedback
-          copyFeedback.textContent = COPY[currentLang]['copy-btn-success'];
-          copyBtn.classList.add('btn-primary');
-          copyBtn.classList.remove('btn-secondary');
+  const clearErrors = () => {
+    contactForm?.querySelectorAll('[data-error-for]').forEach(error => { error.textContent = ''; });
+    contactForm?.querySelectorAll('[aria-invalid="true"]').forEach(field => field.removeAttribute('aria-invalid'));
+  };
 
-          // Reset button after 2 seconds
-          setTimeout(() => {
-            copyFeedback.textContent = COPY[currentLang]['copy-btn-text'];
-            copyBtn.classList.remove('btn-primary');
-            copyBtn.classList.add('btn-secondary');
-          }, 2000);
-        })
-        .catch(err => {
-          console.error('Failed to copy email to clipboard: ', err);
+  const validateForm = () => {
+    clearErrors();
+    const data = new FormData(contactForm);
+    const errors = {};
+    for (const field of ['name', 'email', 'specialty', 'reason', 'message']) {
+      if (!String(data.get(field) || '').trim()) errors[field] = COPY[currentLang]['validation-required'];
+    }
+    const email = String(data.get('email') || '').trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = COPY[currentLang]['validation-email'];
+    const messageLength = String(data.get('message') || '').trim().length;
+    if (messageLength && (messageLength < 20 || messageLength > 4000)) errors.message = COPY[currentLang]['validation-message'];
+
+    Object.entries(errors).forEach(([name, message]) => {
+      const field = contactForm.elements.namedItem(name);
+      const error = contactForm.querySelector(`[data-error-for="${name}"]`);
+      field?.setAttribute('aria-invalid', 'true');
+      if (error) error.textContent = message;
+    });
+    if (Object.keys(errors).length) contactForm.elements.namedItem(Object.keys(errors)[0])?.focus();
+    return Object.keys(errors).length === 0;
+  };
+
+  if (contactForm && submitButton && formStatus) {
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (submitting || !validateForm()) return;
+      submitting = true;
+      submitButton.disabled = true;
+      submitButton.textContent = COPY[currentLang]['form-sending'];
+      formStatus.textContent = '';
+      formStatus.className = 'form-status form-field-wide';
+
+      try {
+        const payload = Object.fromEntries(new FormData(contactForm).entries());
+        const response = await fetch(contactForm.action, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
         });
+        if (!response.ok) throw new Error('Delivery failed');
+        contactForm.reset();
+        document.getElementById('form-language').value = currentLang;
+        clearErrors();
+        formStatus.textContent = COPY[currentLang]['form-success'];
+        formStatus.classList.add('is-success');
+      } catch {
+        formStatus.textContent = COPY[currentLang]['form-error'];
+        formStatus.classList.add('is-error');
+      } finally {
+        submitting = false;
+        submitButton.disabled = false;
+        submitButton.textContent = COPY[currentLang]['form-submit'];
+        formStatus.focus();
+      }
     });
   }
 

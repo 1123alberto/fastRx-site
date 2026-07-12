@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test",
+    "lint": "node --check app.js && node --check api/contact.js"
   },
   "devDependencies": {
     "vite": "^8.1.0"

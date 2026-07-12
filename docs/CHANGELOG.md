@@ -27,4 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Registered and launched the official FastRx domain: https://fastrx.gr.
 - Added a basic public landing page for FastRx.
 - Established fastrx.gr as the canonical public domain for project communication.
-- Installed and integrated `@vercel/analytics` to track website traffic and user engagement.
+- Added a responsive bilingual direct enquiry and early-interest form, with accessible validation, a honeypot, request throttling, and server-side email delivery.
+
+### Changed
+- Replaced the passive contact email card with an invitation for healthcare professionals to request early access, volunteer for testing, share feedback, or enquire about collaboration.
