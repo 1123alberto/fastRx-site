@@ -1,4 +1,4 @@
-const SPECIALTIES = new Set(['dentistry', 'ent', 'general-practice', 'internal-medicine', 'paediatrics', 'other']);
+const SPECIALTIES = new Set(['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']);
 const REASONS = new Set(['early-access', 'testing', 'feedback', 'collaboration', 'other']);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const rateLimits = new Map();

@@ -25,6 +25,11 @@ test('reason options and bilingual contact content are available', () => {
   assert.match(js, /Το μήνυμά σας στάλθηκε/);
 });
 
+test('specialty selector contains the approved options', () => {
+  for (const value of ['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+  for (const removed of ['general-practice', 'internal-medicine', 'paediatrics']) assert.doesNotMatch(html, new RegExp(`value="${removed}"`));
+});
+
 test('client prevents duplicate submissions and handles success and failure', () => {
   assert.match(js, /if \(submitting \|\| !validateForm\(\)\) return/);
   assert.match(js, /contactForm\.reset\(\)/);
