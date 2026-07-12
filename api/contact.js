@@ -1,5 +1,5 @@
 const SPECIALTIES = new Set(['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']);
-const REASONS = new Set(['early-access', 'testing', 'feedback', 'collaboration', 'other']);
+const REASONS = new Set(['early-access', 'testing', 'feedback', 'other']);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const rateLimits = new Map();
 const WINDOW_MS = 10 * 60 * 1000;

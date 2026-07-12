@@ -19,7 +19,8 @@ test('required fields, email type, message limits and honeypot are present', () 
 });
 
 test('reason options and bilingual contact content are available', () => {
-  for (const value of ['early-access', 'testing', 'feedback', 'collaboration', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+  for (const value of ['early-access', 'testing', 'feedback', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+  assert.doesNotMatch(html, /value="collaboration"/);
   assert.match(js, /Help shape the future of FastRx/);
   assert.match(js, /Your message has been sent/);
   assert.match(js, /Το μήνυμά σας στάλθηκε/);
