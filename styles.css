@@ -268,6 +268,11 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
+}
+
+.hero-content {
+  min-width: 0;
 }
 
 .status-badge {
@@ -305,6 +310,69 @@ p {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+.app-preview {
+  width: min(100%, 340px);
+  flex: 0 0 auto;
+}
+
+.app-preview-label {
+  margin-bottom: 0.65rem;
+  color: var(--theme-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.phone-frame {
+  width: 100%;
+  padding: 7px;
+  background: var(--white);
+  border: 1px solid var(--slate-300);
+  border-radius: 26px;
+  box-shadow: 0 18px 40px -20px rgba(18, 66, 84, 0.35);
+}
+
+.phone-screen {
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  border: 1px solid var(--slate-200);
+  border-radius: 19px;
+  background: var(--white);
+  scrollbar-width: none;
+}
+
+.phone-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.phone-screen:focus-visible {
+  outline: 3px solid rgba(46, 166, 209, 0.45);
+  outline-offset: 4px;
+}
+
+.app-preview-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.app-preview-cue {
+  margin-top: 0.7rem;
+  color: var(--slate-500, #64748b);
+  font-size: 0.78rem;
+  text-align: center;
+  transition: opacity 0.25s ease;
+}
+
+.app-preview.has-scrolled .app-preview-cue {
+  opacity: 0.35;
 }
 
 /* Workflow Section */
@@ -676,6 +744,37 @@ p {
 }
 
 @media (min-width: 1024px) {
+  .hero-section {
+    min-height: 690px;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: clamp(3rem, 7vw, 6rem);
+    text-align: left;
+  }
+
+  .hero-content {
+    flex: 1 1 640px;
+  }
+
+  .hero-title,
+  .hero-subtitle {
+    margin-left: 0;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .app-preview {
+    width: 350px;
+  }
+
+  .phone-screen {
+    height: 560px;
+  }
+
   .contact-card { grid-template-columns: minmax(0, .9fr) minmax(480px, 1.1fr); gap: 3rem; padding: 3rem; }
   .contact-intro { padding-top: .5rem; }
   .workflow-grid {
@@ -695,5 +794,23 @@ p {
   
   .card-text {
     font-size: 0.925rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .phone-screen {
+    height: 460px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

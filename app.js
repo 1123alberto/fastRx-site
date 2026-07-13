@@ -16,6 +16,9 @@ const COPY = {
     "hero-title": "Ταχύτερη ηλεκτρονική συνταγογράφηση για ιατρούς.",
     "hero-subtitle": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία.",
     "hero-cta": "Επικοινωνία",
+    "preview-label": "Προεπισκόπηση εφαρμογής",
+    "preview-cue": "Σύρετε για να δείτε περισσότερα",
+    "preview-aria": "Κυλιόμενη προεπισκόπηση της εφαρμογής FastRx",
 
     // Workflow Section
     "workflow-title": "Κλινική Ροή Εργασιών",
@@ -78,6 +81,9 @@ const COPY = {
     "hero-title": "Fast electronic prescribing workflow for doctors.",
     "hero-subtitle": "The official FastRx website for product information, updates, and contact.",
     "hero-cta": "Contact Us",
+    "preview-label": "Application preview",
+    "preview-cue": "Scroll to see more",
+    "preview-aria": "Scrollable preview of the FastRx application",
 
     // Workflow Section
     "workflow-title": "Clinical Workflow",
@@ -218,6 +224,14 @@ function initLanguage() {
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize translations
   initLanguage();
+
+  const previewScreen = document.querySelector('.phone-screen');
+  const dimPreviewCue = () => {
+    if (previewScreen.scrollTop <= 8) return;
+    previewScreen.closest('.app-preview')?.classList.add('has-scrolled');
+    previewScreen.removeEventListener('scroll', dimPreviewCue);
+  };
+  previewScreen?.addEventListener('scroll', dimPreviewCue, { passive: true });
 
   // 1. Language Toggle Button Event
   const langBtn = document.getElementById('lang-btn');
