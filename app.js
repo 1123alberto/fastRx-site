@@ -5,46 +5,48 @@ const COPY = {
   gr: {
     // Meta / SEO
     "meta-title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "meta-description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
+    "meta-description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
     "og:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "og:description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
+    "og:description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
     "twitter:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "twitter:description": "Η επίσημη ιστοσελίδα του FastRx για πληροφορίες, ενημερώσεις και επικοινωνία σχετικά με την πλατφόρμα ηλεκτρονικής συνταγογράφησης.",
+    "twitter:description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
 
     // Hero Section
     "hero-badge": "ΕΠΙΣΗΜΗ ΙΣΤΟΣΕΛΙΔΑ",
-    "hero-title": "Μία οθόνη. Έξυπνα Πρότυπα. Η συνταγογράφηση σε δευτερόλεπτα.",
-    "hero-subtitle": "Ξεχάστε την πληκτρολόγηση. Επιλέξτε διάγνωση και εφαρμόστε έτοιμα θεραπευτικά πρότυπα με ένα μόνο κλικ, σε μία συνεχή οθόνη.",
-    "hero-cta": "Ζητήστε Πρώιμη Πρόσβαση",
+    "hero-title": "Η συνταγογράφηση όπως θα έπρεπε να ήταν από την αρχή.",
+    "hero-subtitle": "Το FastRx οργανώνει ολόκληρη τη διαδικασία σε μία καθαρή ροή, ώστε να αφιερώνετε λιγότερο χρόνο στην οθόνη και περισσότερο στον ασθενή.",
+    "hero-cta": "Αίτηση Πρώιμης Πρόσβασης",
+    "problem-title": "Γιατί δημιουργήθηκε το FastRx;",
+    "problem-text": "Η καθημερινή ηλεκτρονική συνταγογράφηση απαιτεί περισσότερα βήματα από όσα θα έπρεπε. Το FastRx δημιουργήθηκε για να απλοποιήσει τη διαδικασία, διατηρώντας τον ιατρό στον έλεγχο και μειώνοντας τον χρόνο στην οθόνη.",
 
     // Workflow Section
-    "workflow-title": "Κλινική Ροή Εργασιών",
-    "step1-title": "Ταυτοποίηση Ασθενούς",
-    "step1-text": "Αναζήτηση και επιβεβαίωση βασικών στοιχείων ασθενούς.",
-    "step2-title": "Επιλογή Διάγνωσης ICD-10",
-    "step2-text": "Αναζήτηση και επιλογή κωδικού διάγνωσης ICD-10.",
-    "step3-title": "Πρότυπο Συνταγής",
-    "step3-text": "Επιλογή προκαθορισμένου ή προσαρμοσμένου προτύπου αγωγής.",
-    "step4-title": "Έλεγχος Ιατρού",
-    "step4-text": "Συγκεντρωτικός έλεγχος της συνταγής σε μία οθόνη. Συγκεντρωτικός έλεγχος σε μία οθόνη. Καμία αλλαγή σελίδας, καμία αναμονή φόρτωσης.",
-    "step5-title": "Έτοιμη για Υποβολή",
-    "step5-text": "Τελική επιβεβαίωση από τον θεράποντα ιατρό.",
+    "workflow-title": "Από τον ασθενή έως την τελική συνταγή σε πέντε βήματα.",
+    "step1-title": "Εντοπισμός Ασθενούς",
+    "step1-text": "Άμεση ανάκτηση των βασικών στοιχείων του ασθενούς.",
+    "step2-title": "Επιλογή ICD-10",
+    "step2-text": "Γρήγορος εντοπισμός της σωστής διάγνωσης.",
+    "step3-title": "Εφαρμογή Σχήματος",
+    "step3-text": "Άμεση φόρτωση του κατάλληλου προτύπου συνταγής.",
+    "step4-title": "Τελικός Έλεγχος",
+    "step4-text": "Όλα τα στοιχεία σε μία οθόνη, χωρίς περιττές εναλλαγές.",
+    "step5-title": "Υποβολή",
+    "step5-text": "Ολοκλήρωση της συνταγής με μία τελική επιβεβαίωση.",
 
     // Status Section
     "status-card-title": "Περιορισμένη Πρώιμη Πρόσβαση",
-    "status-main-text": "<p>Το FastRx βρίσκεται στα τελικά στάδια ανάπτυξης. Προσφέρουμε αποκλειστική πρώιμη πρόσβαση σε έναν περιορισμένο αριθμό ιατρών όλων των ειδικοτήτων, με στόχο τη δοκιμή της πλατφόρμας και τη συλλογή πολύτιμης κλινικής ανατροφοδότησης πριν την επίσημη κυκλοφορία.</p>",
-    "status-disclaimer-text": "Το FastRx δεν αντικαθιστά την ιατρική κρίση ούτε παρέχει θεραπευτικές συστάσεις. Ο συνταγογραφών ιατρός παραμένει υπεύθυνος για όλες τις τελικές κλινικές αποφάσεις.",
+    "status-main-text": "<p>Το FastRx βρίσκεται στα τελικά στάδια ανάπτυξης.</p><p>Αναζητούμε περιορισμένο αριθμό ιατρών που θέλουν να το δοκιμάσουν πριν από την κυκλοφορία και να συμβάλουν στη διαμόρφωσή του.</p>",
+    "status-disclaimer-text": "Το FastRx δεν αντικαθιστά την ιατρική κρίση. Οι τελικές κλινικές αποφάσεις παραμένουν πάντα στον συνταγογράφοντα ιατρό.",
 
     // Contact Section
-    "contact-eyebrow": "Συμμετοχή",
-    "contact-title": "Γίνετε μέρος της εξέλιξης του FastRx",
-    "contact-subtitle": "Δηλώστε ενδιαφέρον για πρώιμη πρόσβαση, συμμετοχή σε δοκιμές ή στείλτε μας τις παρατηρήσεις σας από την καθημερινή κλινική πράξη.",
-    "contact-secondary": "Η εμπειρία των επαγγελματιών υγείας μάς βοηθά να σχεδιάσουμε μια ταχύτερη, καθαρότερη και πιο πρακτική ροή ηλεκτρονικής συνταγογράφησης.",
+    "contact-eyebrow": "Πρόσκληση",
+    "contact-title": "Δοκιμάστε το πριν από όλους.",
+    "contact-subtitle": "Υποβάλετε αίτηση πρώιμης πρόσβασης και γνωρίστε το FastRx πριν από την επίσημη κυκλοφορία.",
+    "contact-secondary": "Οι ιατροί που θα επιλεγούν θα έχουν άμεση επικοινωνία με την ομάδα μας και ουσιαστική επιρροή στο τελικό προϊόν.",
     "contact-benefits-label": "Οφέλη συμμετοχής",
-    "benefit-early": "Ενημέρωση για πρώιμη πρόσβαση",
-    "benefit-testing": "Συμμετοχή σε μελλοντικές δοκιμές",
-    "benefit-feedback": "Κλινική ανατροφοδότηση και συνεργασία",
-    "contact-privacy": "Μην συμπεριλάβετε στοιχεία ασθενών, ΑΜΚΑ ή άλλες πληροφορίες υγείας στο μήνυμά σας.",
+    "benefit-early": "Πρώιμη πρόσβαση πριν από την κυκλοφορία",
+    "benefit-testing": "Άμεση επικοινωνία με την ομάδα ανάπτυξης",
+    "benefit-feedback": "Δυνατότητα να επηρεάσετε το τελικό προϊόν",
+    "contact-privacy": "Μην αποστείλετε στοιχεία ασθενών ή άλλα προσωπικά δεδομένα υγείας.",
     "contact-email": "Προτιμάτε email; <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
     "form-name": "Ονοματεπώνυμο", "form-email": "Email", "form-specialty": "Ιατρική ειδικότητα", "form-reason": "Λόγος επικοινωνίας", "form-message": "Μήνυμα",
     "form-select-placeholder": "Επιλέξτε", "specialty-dentistry": "Οδοντιατρική", "specialty-cardiology": "Καρδιολογία", "specialty-orthopaedics": "Ορθοπαιδική", "specialty-ent": "Ωτορινολαρυγγολογία", "specialty-dermatology": "Δερματολογία", "specialty-other": "Άλλη Ειδικότητα",
@@ -56,6 +58,7 @@ const COPY = {
     // Footer
     "footer-copyright": "© 2026 FastRx. Με την επιφύλαξη παντός δικαιώματος.",
     "footer-privacy": "Πολιτική Απορρήτου",
+    "trust-statement": "Το FastRx αναπτύσσεται στην Ελλάδα για επαγγελματίες υγείας στην Ελλάδα.",
 
     // Privacy Modal
     "modal-title": "Πολιτική Απορρήτου",
@@ -67,41 +70,49 @@ const COPY = {
   en: {
     // Meta / SEO
     "meta-title": "FastRx | Electronic Prescribing Workflow",
-    "meta-description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
+    "meta-description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
     "og:title": "FastRx | Electronic Prescribing Workflow",
-    "og:description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
+    "og:description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
     "twitter:title": "FastRx | Electronic Prescribing Workflow",
-    "twitter:description": "The official FastRx website for product information, updates, and contact regarding the electronic prescribing platform.",
+    "twitter:description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
 
     // Hero Section
     "hero-badge": "Official website",
-    "hero-title": "One screen. Smart templates. Prescribing in seconds.",
-    "hero-subtitle": "Forget typing. Select a diagnosis and apply ready-made templates with a single click, all on a continuous screen.",
-    "hero-cta": "Request Early Access",
+    "hero-title": "Prescribing, the way it should have been from the start.",
+    "hero-subtitle": "FastRx brings the prescribing process into one clear workflow, so you spend less time on the screen and more time with the patient.",
+    "hero-cta": "Apply for Early Access",
+    "problem-title": "Why was FastRx created?",
+    "problem-text": "Everyday electronic prescribing takes more steps than it should. FastRx was built to simplify that process, keep doctors in control, and reduce the time spent at the screen.",
 
     // Workflow Section
-    "workflow-title": "Clinical Workflow",
-    "step1-title": "Patient Identification",
-    "step1-text": "Patient identification through the required search workflow.",
-    "step2-title": "ICD-10 Diagnosis Selection",
-    "step2-text": "Search and selection of ICD-10 diagnosis codes.",
-    "step3-title": "Medication Template Selection",
-    "step3-text": "Selection of predefined or custom medication templates.",
-    "step4-title": "Doctor Review",
-    "step4-text": "Review prescription details clearly on a single screen. Consolidated review on a single screen. No page changes, no loading wait.",
-    "step5-title": "Ready for Submission",
-    "step5-text": "Final clinical review and confirmation by the prescribing doctor.",
+    "workflow-title": "From patient search to final prescription in five steps.",
+    "step1-title": "Find the Patient",
+    "step1-text": "Retrieve the key patient details immediately.",
+    "step2-title": "Choose ICD-10",
+    "step2-text": "Find the right diagnosis without slowing down.",
+    "step3-title": "Apply the Plan",
+    "step3-text": "Load the appropriate treatment template instantly.",
+    "step4-title": "Final Review",
+    "step4-text": "Everything stays on one screen, without unnecessary back-and-forth.",
+    "step5-title": "Submit",
+    "step5-text": "Complete the prescription with one final confirmation.",
 
     // Status Section
     "status-card-title": "Limited Early Access",
-    "status-main-text": "<p>FastRx is in the final stages of development. We are offering exclusive early access to a limited number of doctors across all specialties, aiming to test the platform and gather valuable clinical feedback before the official launch.</p>",
-    "status-disclaimer-text": "FastRx does not replace medical judgment or provide treatment recommendations. The prescribing doctor remains responsible for all final clinical decisions.",
+    "status-main-text": "<p>FastRx is in the final stages of development.</p><p>We are inviting a limited number of doctors to try it before launch and help shape the final product.</p>",
+    "status-disclaimer-text": "FastRx does not replace medical judgment. Final clinical decisions always remain with the prescribing doctor.",
 
     // Contact Section
-    "contact-eyebrow": "Get involved", "contact-title": "Help shape the future of FastRx", "contact-subtitle": "Register your interest in early access, take part in future testing, or share feedback from your everyday clinical practice.",
-    "contact-secondary": "Insights from healthcare professionals help us design a faster, clearer, and more practical electronic prescribing workflow.", "contact-benefits-label": "Participation benefits",
-    "benefit-early": "Updates about early access", "benefit-testing": "Participation in future testing", "benefit-feedback": "Clinical feedback and collaboration",
-    "contact-privacy": "Do not include patient details, AMKA numbers, or any other health information in your message.", "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
+    "contact-eyebrow": "Invitation",
+    "contact-title": "Try it before everyone else.",
+    "contact-subtitle": "Apply for early access and see FastRx before the official launch.",
+    "contact-secondary": "Selected doctors will have direct contact with our team and a real influence on the final product.",
+    "contact-benefits-label": "Participation benefits",
+    "benefit-early": "Early access before public launch",
+    "benefit-testing": "Direct contact with the product team",
+    "benefit-feedback": "A chance to influence the final product",
+    "contact-privacy": "Do not send patient details or other personal health data.",
+    "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
     "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
     "specialty-dentistry": "Dentistry", "specialty-cardiology": "Cardiology", "specialty-orthopaedics": "Orthopaedics", "specialty-ent": "ENT", "specialty-dermatology": "Dermatology", "specialty-other": "Other specialty",
     "reason-early": "I am interested in early access", "reason-testing": "I would like to take part in testing", "reason-feedback": "I have feedback or a suggestion", "reason-other": "Other",
@@ -112,6 +123,7 @@ const COPY = {
     // Footer
     "footer-copyright": "© 2026 FastRx. All rights reserved.",
     "footer-privacy": "Privacy Policy",
+    "trust-statement": "FastRx is being built in Greece for healthcare professionals in Greece.",
 
     // Privacy Modal
     "modal-title": "Privacy Policy",
@@ -133,7 +145,7 @@ let currentLang = 'gr';
  */
 function updateDOM() {
   // Update document language tag
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = currentLang === 'gr' ? 'el' : 'en';
 
   // Translate standard text nodes
   const translatableElements = document.querySelectorAll('[data-i18n]');
@@ -177,6 +189,14 @@ function updateDOM() {
       labelGR.classList.remove('active');
       labelEN.classList.add('active');
     }
+  }
+
+  const languageButton = document.getElementById('lang-btn');
+  if (languageButton) {
+    languageButton.setAttribute(
+      'aria-label',
+      currentLang === 'gr' ? 'Switch language to English' : 'Αλλαγή γλώσσας στα Ελληνικά'
+    );
   }
 
   // Handle unique status badge padding tweak based on language if needed
@@ -344,24 +364,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Video playback helper (ensures muted autoplay doesn't get blocked by browser policies)
-  const video = document.querySelector('.hero-video');
-  if (video) {
-    const playVideo = () => {
-      video.play().catch(err => {
-        console.warn('Playback prevented or codec unsupported:', err);
-      });
-    };
-    
-    // Attempt play immediately
-    playVideo();
-
-    // Fallback: play on first interaction
-    const triggerEvents = ['click', 'touchstart', 'scroll'];
-    const runTrigger = () => {
-      playVideo();
-      triggerEvents.forEach(evt => document.removeEventListener(evt, runTrigger));
-    };
-    triggerEvents.forEach(evt => document.addEventListener(evt, runTrigger));
-  }
 });
