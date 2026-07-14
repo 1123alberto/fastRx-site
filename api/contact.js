@@ -26,13 +26,31 @@ export function validateContactPayload(body) {
 }
 
 export function buildEmail(data, timestamp = new Date().toISOString()) {
-  const fields = [['Full name', data.name], ['Email', data.email], ['Specialty', data.specialty], ['Reason', data.reason], ['Language', data.language], ['Submitted', timestamp]];
-  const htmlFields = fields.map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`).join('');
-  const textFields = fields.map(([label, value]) => `${label}: ${value}`).join('\n');
+  const specialtyLabels = {
+    dentistry: 'Dentistry',
+    cardiology: 'Cardiology',
+    orthopaedics: 'Orthopaedics',
+    ent: 'ENT',
+    dermatology: 'Dermatology',
+    other: 'Other'
+  };
+  const specialty = specialtyLabels[data.specialty] || data.specialty;
+
+  const html = `
+<p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+<p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+<p><strong>Specialty:</strong> ${escapeHtml(specialty)}</p>
+<p><strong>Submitted:</strong> ${escapeHtml(timestamp)}</p>
+<p><strong>Message:</strong></p>
+<p>${escapeHtml(data.message).replace(/\n/g, '<br>')}</p>
+  `.trim();
+
+  const text = `Name: ${data.name}\nEmail: ${data.email}\nSpecialty: ${specialty}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
+
   return {
-    subject: `FastRx website enquiry — ${data.reason}`,
-    html: `${htmlFields}<p><strong>Message:</strong></p><p>${escapeHtml(data.message).replace(/\n/g, '<br>')}</p>`,
-    text: `${textFields}\n\nMessage:\n${data.message}`
+    subject: 'Νέο Αίτημα Πρώιμης Πρόσβασης - FastRx',
+    html,
+    text
   };
 }
 
