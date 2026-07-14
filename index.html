@@ -7,14 +7,24 @@
   <!-- Primary SEO Metadata -->
   <title data-i18n="meta-title">FastRx | Ηλεκτρονική Συνταγογράφηση</title>
   <meta name="description" content="Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή." data-i18n-meta="description">
-  <link rel="canonical" href="https://fastrx.gr">
-  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://fastrx.gr/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#2ea6d1">
+  <meta name="application-name" content="FastRx">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fastrx.gr">
+  <meta property="og:site_name" content="FastRx">
+  <meta property="og:url" content="https://fastrx.gr/">
   <meta property="og:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση" data-i18n-meta="og:title">
   <meta property="og:description" content="Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή." data-i18n-meta="og:description">
+  <meta property="og:image" content="https://fastrx.gr/og-image.png">
+  <meta property="og:image:secure_url" content="https://fastrx.gr/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για ιατρούς">
   <meta property="og:locale" content="el_GR">
   <meta property="og:locale:alternate" content="en_US">
   
@@ -22,6 +32,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση" data-i18n-meta="twitter:title">
   <meta name="twitter:description" content="Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή." data-i18n-meta="twitter:description">
+  <meta name="twitter:image" content="https://fastrx.gr/og-image.png">
+  <meta name="twitter:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για ιατρούς">
+
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,8 +46,31 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./styles.css">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1024' height='1024' rx='220' fill='%232ea6d1'/%3E%3Cpath d='M 497 536 C 494 531 490 525 488 521 C 486 518 483 514 482 512 C 469 491 443 464 422 449 C 405 437 384 425 368 419 C 357 415 339 411 330 410 C 325 410 321 409 321 408 L 332 392 C 339 383 357 360 362 354 C 365 350 369 345 370 344 C 371 341 380 329 382 327 C 384 326 403 301 409 293 C 411 289 415 284 418 281 C 420 278 424 272 427 268 C 429 265 436 257 443 251 C 454 240 464 233 472 230 C 474 229 477 228 478 227 L 480 226 C 480 226 481 226 483 225 C 495 220 513 217 529 217 C 545 217 564 219 567 221 C 567 222 570 223 572 223 C 578 225 594 233 598 236 C 614 248 626 261 635 276 C 657 315 656 363 631 401 C 629 405 620 417 611 429 C 602 440 593 453 590 457 C 588 457 568 468 562 472 C 538 489 520 510 507 535 L 501 545 L 497 536 Z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <!-- Favicon and structured data -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://fastrx.gr/#organization",
+          "name": "FastRx",
+          "url": "https://fastrx.gr/",
+          "logo": "https://fastrx.gr/favicon.svg",
+          "email": "info@fastrx.gr"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://fastrx.gr/#website",
+          "url": "https://fastrx.gr/",
+          "name": "FastRx",
+          "inLanguage": ["el", "en"],
+          "publisher": { "@id": "https://fastrx.gr/#organization" }
+        }
+      ]
+    }
+  </script>
 </head>
 <body>
 

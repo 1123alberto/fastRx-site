@@ -10,6 +10,7 @@ FastRx is a clinical workflow application for doctors, currently in development 
 - **Premium Aesthetics**: Styled with a minimal, modern medical SaaS theme leveraging the FastRx cerulean/teal color tokens (`--theme-50` to `--theme-900`) and custom vector-based illustrations.
 - **Zero Heavy Runtime Dependencies**: Vanilla HTML, CSS, and JS ensuring near-instantaneous page loads, optimal 100/100 Lighthouse performance scores, and excellent mobile-first responsiveness.
 - **Bilingual SEO/Open Graph Setup**: Pre-configured meta tags for Search Engine Optimization and rich snippet preview support.
+- **Technical SEO Foundation**: Canonical URL, crawl directives, XML sitemap, structured data, web manifest, favicon, and 1200×630 social preview assets ready for production indexing.
 - **Direct Contact Form**: Bilingual early-access, testing, feedback, and professional-enquiry form with accessible validation and server-side email delivery.
 - **Compliant Disclaimers**: Clear indicators showing application development status and necessary institutional API approval restrictions.
 
@@ -21,7 +22,9 @@ FastRx is a clinical workflow application for doctors, currently in development 
 ├── index.html          # Semantic HTML markup, SEO tags, and SVG assets
 ├── styles.css          # Vanilla CSS layout, styles, variables, and animations
 ├── app.js              # Localization, language toggle, form, and modal handlers
+├── public/             # robots.txt, sitemap, manifest, favicon, and social preview assets
 ├── api/contact.js      # Vercel serverless contact validation and email delivery
+├── vercel.json         # Canonical redirect, cache policy, and response headers
 ├── .env.example       # Contact delivery configuration template
 ├── test/              # UI contract and server endpoint tests
 ├── package.json        # Node script dependencies (Vite compiler)
@@ -85,6 +88,8 @@ npm test
 npm run lint
 npm run build
 ```
+
+After the production domain is live, verify `https://fastrx.gr/robots.txt` and `https://fastrx.gr/sitemap.xml`, then submit the sitemap in Google Search Console and Bing Webmaster Tools. The sitemap intentionally contains only the canonical homepage; the in-page language toggle does not create a second crawlable URL.
 
 ---
 

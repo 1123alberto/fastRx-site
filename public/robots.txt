@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://fastrx.gr/sitemap.xml
+Host: fastrx.gr

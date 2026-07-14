@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#f5fbfd"/>
+      <stop offset="1" stop-color="#dff4fa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1085" cy="60" r="270" fill="#2ea6d1" opacity=".10"/>
+  <circle cx="100" cy="620" r="230" fill="#14b8a6" opacity=".08"/>
+  <g transform="translate(92 90)">
+    <rect width="112" height="112" rx="27" fill="#2ea6d1"/>
+    <path fill="#fff" d="M31 63c7-9 13-18 20-27 6-7 17-7 23 0 4 6 4 14 0 19l-6 8c-6 0-12 4-15 9-5-5-11-8-18-8l-4-1Zm23 11c4-6 11-10 18-9 9 1 15 7 16 15 1 9-6 17-15 18-8 1-16-5-17-13-1-4-2-8-2-11Z"/>
+  </g>
+  <text x="232" y="172" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#102a3a">FastRx</text>
+  <text x="92" y="330" font-family="Arial, sans-serif" font-size="55" font-weight="700" fill="#102a3a">Ηλεκτρονική συνταγογράφηση</text>
+  <text x="92" y="400" font-family="Arial, sans-serif" font-size="55" font-weight="700" fill="#102a3a">για ιατρούς.</text>
+  <text x="92" y="500" font-family="Arial, sans-serif" font-size="29" fill="#486473">Ταχύτητα · Σαφήνεια · Έλεγχος</text>
+</svg>

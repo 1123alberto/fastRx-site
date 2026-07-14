@@ -146,6 +146,8 @@ let currentLang = 'gr';
 function updateDOM() {
   // Update document language tag
   document.documentElement.lang = currentLang === 'gr' ? 'el' : 'en';
+  const ogLocale = document.querySelector('meta[property="og:locale"]');
+  if (ogLocale) ogLocale.content = currentLang === 'gr' ? 'el_GR' : 'en_US';
 
   // Translate standard text nodes
   const translatableElements = document.querySelectorAll('[data-i18n]');

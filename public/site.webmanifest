@@ -1,0 +1,17 @@
+{
+  "name": "FastRx",
+  "short_name": "FastRx",
+  "description": "Ηλεκτρονική συνταγογράφηση για ιατρούς.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7fbfd",
+  "theme_color": "#2ea6d1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
