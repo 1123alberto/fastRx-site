@@ -1,5 +1,5 @@
 const SPECIALTIES = new Set(['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']);
-const REASONS = new Set(['early-access', 'testing', 'feedback', 'other']);
+const REASONS = new Set(['access', 'issue', 'feedback', 'other']);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const rateLimits = new Map();
 const WINDOW_MS = 10 * 60 * 1000;
@@ -27,18 +27,10 @@ export function validateContactPayload(body) {
 
 export function buildEmail(data, timestamp = new Date().toISOString()) {
   const specialtyLabels = {
-    dentistry: 'Dentistry',
-    cardiology: 'Cardiology',
-    orthopaedics: 'Orthopaedics',
-    ent: 'ENT',
-    dermatology: 'Dermatology',
-    other: 'Other'
+    dentistry: 'Dentistry', cardiology: 'Cardiology', orthopaedics: 'Orthopaedics', ent: 'ENT', dermatology: 'Dermatology', other: 'Other'
   };
   const reasonLabels = {
-    'early-access': 'Access or usage question',
-    testing: 'Problem or technical issue',
-    feedback: 'Feedback or suggestion',
-    other: 'Other'
+    access: 'Access or usage question', issue: 'Problem or technical issue', feedback: 'Feedback or suggestion', other: 'Other'
   };
   const specialty = specialtyLabels[data.specialty] || data.specialty;
   const reason = reasonLabels[data.reason] || data.reason;
@@ -54,12 +46,7 @@ export function buildEmail(data, timestamp = new Date().toISOString()) {
   `.trim();
 
   const text = `Name: ${data.name}\nEmail: ${data.email}\nSpecialty: ${specialty}\nReason: ${reason}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
-
-  return {
-    subject: 'Νέο μήνυμα επικοινωνίας - FastRx',
-    html,
-    text
-  };
+  return { subject: 'Νέο μήνυμα επικοινωνίας - FastRx', html, text };
 }
 
 export async function deliverContactEmail(data, env = process.env, fetchImpl = fetch) {
