@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import handler, { buildEmail, deliverContactEmail, resetRateLimits, validateContactPayload } from '../api/contact.js';
 
-const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'Cardiology and Sleep Medicine', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'en', company: '' };
+const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'Cardiology and Sleep Medicine', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'gr', company: '' };
 
 function response() {
   return { statusCode: 200, body: null, headers: {}, setHeader(k, v) { this.headers[k] = v; }, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } };
@@ -26,6 +26,7 @@ test('accepts optional and free-text specialty values and rejects overlong or no
 test('accepts only current contact reasons', () => {
   for (const reason of ['access', 'issue', 'feedback', 'other']) assert.equal(validateContactPayload({ ...valid, reason }).ok, true);
   for (const reason of ['early-access', 'testing', 'unknown']) assert.equal(validateContactPayload({ ...valid, reason }).ok, false);
+  assert.equal(validateContactPayload({ ...valid, language: 'en' }).ok, false);
 });
 
 test('rejects malformed, incomplete, invalid email, and honeypot payloads', () => {

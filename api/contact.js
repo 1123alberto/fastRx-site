@@ -21,7 +21,7 @@ export function validateContactPayload(body) {
   if (data.specialty.length > 120) return { ok: false, error: 'Invalid specialty.' };
   if (!REASONS.has(data.reason)) return { ok: false, error: 'Invalid reason.' };
   if (data.message.length < 20 || data.message.length > 4000) return { ok: false, error: 'Invalid message.' };
-  if (!['gr', 'en'].includes(data.language)) return { ok: false, error: 'Invalid language.' };
+  if (data.language !== 'gr') return { ok: false, error: 'Invalid language.' };
   return { ok: true, data };
 }
 

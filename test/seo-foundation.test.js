@@ -14,8 +14,8 @@ const ogImage = await readFile(new URL('public/og-image.png', root));
 test('homepage exposes canonical indexation and social metadata', () => {
   assert.match(html, /<title[^>]*>FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς<\/title>/);
   assert.match(html, /name="description" content="FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ/);
-  assert.match(app, /"meta-title": "FastRx \| Electronic Prescribing for Physicians"/);
-  assert.match(app, /"meta-description": "FastRx for physicians: electronic prescribing through IDIKA/);
+  assert.match(app, /"meta-title": "FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς"/);
+  assert.match(app, /"meta-description": "FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ/);
   assert.match(html, /rel="canonical" href="https:\/\/fastrx\.gr\/"/);
   assert.match(html, /name="robots" content="index, follow/);
   assert.doesNotMatch(html, /noindex|nofollow/i);
@@ -41,7 +41,9 @@ test('homepage includes valid JSON-LD entities', () => {
   assert.equal(application.name, 'FastRx');
   assert.equal(application.applicationCategory, 'HealthApplication');
   assert.equal(application.operatingSystem, 'Web');
+  assert.equal(application.inLanguage, 'el');
   assert.deepEqual(application.publisher, { '@id': 'https://fastrx.gr/#organization' });
+  assert.equal(data['@graph'].find(item => item['@type'] === 'WebSite').inLanguage, 'el');
 });
 
 test('robots policy advertises the canonical sitemap', () => {
@@ -61,6 +63,7 @@ test('homepage has a single meaningful H1 and logical section headings', () => {
   assert.doesNotMatch(html, /<a href="#"/);
   assert.match(html, /<html lang="el">/);
   assert.doesNotMatch(html, /hreflang/i);
+  assert.doesNotMatch(html, /og:locale:alternate|en_US/);
   assert.doesNotMatch(html, /early.access|pre-launch|prelaunch|beta application|before launch/i);
 });
 

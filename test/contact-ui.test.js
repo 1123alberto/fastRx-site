@@ -10,13 +10,12 @@ test('homepage presents the current FastRx product and controlled access paths',
   assert.match(html, /https:\/\/app\.fastrx\.gr\//);
   assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
   assert.match(html, /Είσοδος στο FastRx/);
-  assert.match(js, /Sign in to FastRx/);
   assert.match(html, /href="#contact"[^>]*data-i18n="hero-secondary-cta"/);
   assert.match(html, /Ζητήστε πρόσβαση/);
-  assert.match(js, /Request access/);
   assert.match(js, /Η αυθεντικοποίηση μέσω ΗΔΙΚΑ είναι απαραίτητη, αλλά δεν παρέχει από μόνη της πρόσβαση/);
-  assert.match(js, /IDIKA authentication is required, but does not by itself grant access/);
   assert.match(html, /data-i18n="hero-access-note"/);
+  assert.doesNotMatch(html, /id="lang-btn"|class="lang-selector"/);
+  assert.doesNotMatch(js, /currentLang|setLanguage|localStorage|Sign in to FastRx|Request access|Electronic Prescribing/);
   assert.doesNotMatch(html, /Δοκιμάστε το πριν από όλους/);
   assert.doesNotMatch(html, /τελικά στάδια ανάπτυξης/);
 });
@@ -30,22 +29,21 @@ test('required fields, optional specialty, email type, message limits and honeyp
   assert.match(html, /class="honeypot"/);
 });
 
-test('reason options use current semantics and bilingual contact content is available', () => {
+test('reason options use current semantics and Greek contact content is available', () => {
   for (const value of ['access', 'issue', 'feedback', 'other']) assert.match(html, new RegExp(`value="${value}"`));
   for (const removed of ['early-access', 'testing']) assert.doesNotMatch(html, new RegExp(`value="${removed}"`));
-  assert.match(js, /Contact FastRx/);
   assert.match(js, /Επικοινωνήστε με το FastRx/);
-  assert.match(js, /I have feedback or a suggestion/);
+  assert.doesNotMatch(js, /Contact FastRx/);
   assert.match(js, /Έχω πρόταση ή σχόλιο/);
   assert.match(html, /Θέλω να ζητήσω πρόσβαση στο FastRx/);
-  assert.match(js, /I would like to request FastRx access/);
+  assert.doesNotMatch(js, /I would like to request FastRx access/);
 });
 
 test('privacy copy accurately acknowledges contact-form data processing', () => {
   assert.match(html, /Η φόρμα επικοινωνίας συλλέγει τα στοιχεία/);
   assert.match(html, /Μην υποβάλλετε μέσω της δημόσιας φόρμας/);
   assert.doesNotMatch(html, /Δεν συλλέγουμε, αποθηκεύουμε ή επεξεργαζόμαστε προσωπικά δεδομένα/);
-  assert.match(js, /The contact form collects the information you choose to submit/);
+  assert.match(js, /Η φόρμα επικοινωνίας συλλέγει τα στοιχεία/);
 });
 
 test('current product capabilities and Sync boundaries are described', () => {
@@ -58,7 +56,7 @@ test('current product capabilities and Sync boundaries are described', () => {
 test('clinical responsibility and IDIKA relationship are stated', () => {
   assert.match(html, /επίσημες υπηρεσίες ΗΔΙΚΑ/);
   assert.match(html, /Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις/);
-  assert.match(js, /does not make independent clinical decisions/);
+  assert.match(js, /Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις/);
 });
 
 test('specialty is optional free text without the old fixed options', () => {
@@ -74,29 +72,19 @@ test('client prevents duplicate submissions and handles success and failure', ()
   assert.match(js, /form-error/);
 });
 
-test('Greek is the default language when no preference is saved', () => {
-  assert.match(js, /let currentLang = 'gr'/);
-  assert.match(js, /else currentLang = 'gr'/);
-  assert.doesNotMatch(js, /navigator\.languages/);
-});
-
 test('translation script works without module loading', () => {
   assert.match(html, /<script defer src="\.\/app\.js"><\/script>/);
   assert.doesNotMatch(html, /type="module" src="\.\/app\.js"/);
 });
 
-test('every translated element has one entry in each language', () => {
+test('every translated element has one Greek copy entry', () => {
   const contentKeys = [...html.matchAll(/data-i18n(?:-aria)?="([^"]+)"/g)].map(match => match[1]);
   const metaKeys = [...html.matchAll(/data-i18n-meta="([^"]+)"/g)].map(match => match[1] === 'description' ? 'meta-description' : match[1]);
   const requiredKeys = new Set([...contentKeys, ...metaKeys]);
-  const greekStart = js.indexOf('  gr: {');
-  const englishStart = js.indexOf('  en: {');
-  const dictionaryEnd = js.indexOf('\n  }\n};', englishStart);
-  const blocks = { gr: js.slice(greekStart, englishStart), en: js.slice(englishStart, dictionaryEnd) };
-  for (const [language, block] of Object.entries(blocks)) {
-    const keys = [...block.matchAll(/"([^"]+)":/g)].map(match => match[1]);
-    const duplicates = keys.filter((key, index) => keys.indexOf(key) !== index);
-    assert.deepEqual(duplicates, [], `${language} contains duplicate translation keys`);
-    for (const key of requiredKeys) assert.ok(keys.includes(key), `${language} is missing translation key: ${key}`);
-  }
+  const dictionaryEnd = js.indexOf('\n};');
+  const keys = [...js.slice(js.indexOf('const COPY = {'), dictionaryEnd).matchAll(/"([^"]+)":/g)].map(match => match[1]);
+  const duplicates = keys.filter((key, index) => keys.indexOf(key) !== index);
+  assert.deepEqual(duplicates, [], 'Greek copy contains duplicate translation keys');
+  for (const key of requiredKeys) assert.ok(keys.includes(key), `Greek copy is missing translation key: ${key}`);
+  assert.doesNotMatch(js, /Electronic Prescribing|Contact FastRx|Request access|Privacy Policy/);
 });

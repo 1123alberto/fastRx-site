@@ -1,8 +1,7 @@
 /* ========================================================================== 
-   Centralized Copy/Bilingual Translation Object
+   Centralized Greek public-site copy
    ========================================================================== */
 const COPY = {
-  gr: {
     "meta-title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς",
     "meta-description": "FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ, με αναζήτηση ασθενούς, ICD-10 και αναζήτηση φαρμάκων.",
     "og:title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς",
@@ -10,7 +9,7 @@ const COPY = {
     "twitter:title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς",
     "twitter:description": "Ηλεκτρονική συνταγογράφηση για ιατρούς: αναζήτηση ασθενούς, ICD-10, φάρμακα και υποστηριζόμενη ροή μέσω ΗΔΙΚΑ.",
     "hero-badge": "ΕΠΙΣΗΜΗ ΙΣΤΟΣΕΛΙΔΑ",
-    "hero-title": "Η ηλεκτρονική συνταγογράφηση σε μία καθαρή, συνεχή ροή.",
+    "hero-title": "Η ηλεκτρονική συνταγογράφηση στο κινητό, σε μια καθαρή και γρήγορη ροή.",
     "hero-subtitle": "Το FastRx είναι εργαλείο κλινικής ροής για ιατρούς. Συνδέει τα βασικά βήματα της ηλεκτρονικής συνταγογράφησης και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ.",
     "hero-cta": "Είσοδος στο FastRx",
     "hero-secondary-cta": "Ζητήστε πρόσβαση",
@@ -64,93 +63,24 @@ const COPY = {
     "modal-p2": "Δεν χρησιμοποιούμε cookies παρακολούθησης ή διαφημιστικά scripts. Τα στοιχεία της φόρμας χρησιμοποιούνται για τη διαχείριση και την απάντηση στο αίτημά σας.",
     "modal-p3": "Μην υποβάλλετε μέσω της δημόσιας φόρμας στοιχεία ταυτοποίησης ασθενών, δεδομένα υγείας, πληροφορίες συνταγών ή παραπεμπτικών ή άλλο ευαίσθητο κλινικό περιεχόμενο.",
     "modal-close": "Κλείσιμο"
-  },
-  en: {
-    "meta-title": "FastRx | Electronic Prescribing for Physicians",
-    "meta-description": "FastRx for physicians: electronic prescribing through IDIKA with patient lookup, ICD-10 and medicine search.",
-    "og:title": "FastRx | Electronic Prescribing for Physicians",
-    "og:description": "Electronic prescribing for physicians: patient lookup, ICD-10, medicine search and supported workflow through IDIKA.",
-    "twitter:title": "FastRx | Electronic Prescribing for Physicians",
-    "twitter:description": "Electronic prescribing for physicians: patient lookup, ICD-10, medicine search and supported workflow through IDIKA.",
-    "hero-badge": "Official website",
-    "hero-title": "Electronic prescribing in one clear, continuous workflow.",
-    "hero-subtitle": "FastRx is a clinical workflow tool for physicians. It connects the core electronic prescribing steps and supports selected operations through official IDIKA services.",
-    "hero-cta": "Sign in to FastRx",
-    "hero-secondary-cta": "Request access",
-    "hero-access-note": "FastRx is currently available to physicians with active FastRx access. IDIKA authentication is required, but does not by itself grant access. If you are interested in using FastRx, you can request access through the contact form.",
-    "problem-title": "What does FastRx do?",
-    "problem-text": "FastRx organizes everyday electronic prescribing into one continuous workflow: IDIKA authentication, patient lookup, prescribing-unit selection where required, active encounters, ICD-10, medicine search, preparation, final review and supported submission. The clinician remains in full control of clinical choices.",
-    "workflow-title": "From identification to final submission.",
-    "step1-title": "Patient & Encounter",
-    "step1-text": "Patient lookup, prescribing-unit handling and active-encounter recovery where supported.",
-    "step2-title": "ICD-10 Diagnosis",
-    "step2-text": "Search and select a diagnosis from the available ICD-10 catalogue.",
-    "step3-title": "Medicines & Tools",
-    "step3-text": "Medicine search supported by templates, favorites and recent medicines.",
-    "step4-title": "Final Review",
-    "step4-text": "Review the relevant information together before any final action.",
-    "step5-title": "Submit through IDIKA",
-    "step5-text": "Supported prescription completion through official IDIKA services after clinician confirmation.",
-    "capabilities-title": "Electronic prescribing tools for physicians",
-    "capabilities-label": "Current FastRx capabilities",
-    "capability-referrals": "Referral workflow where applicable and supported.",
-    "capability-productivity": "Structured templates, favorites and recent medicines for faster repetition of common actions.",
-    "capability-appearance": "Light, dark or system appearance according to user preference.",
-    "capability-pwa": "Installable as a PWA on supported devices, with application update behavior.",
-    "sync-card-title": "Optional FastRx Sync",
-    "sync-main-text": "<p>FastRx Sync is optional and separate from clinical submission through IDIKA.</p><p>It can synchronize supported account-level data such as favorites, preferences and structured templates between supported installations.</p>",
-    "sync-disclaimer-text": "FastRx Sync is not used to store or synchronize patient data, prescriptions, or other patient clinical information.",
-    "status-card-title": "FastRx, IDIKA and clinical responsibility",
-    "status-main-text": "<p>FastRx supports the workflow and uses official IDIKA services for supported operations.</p><p>It does not make independent clinical decisions or choose a diagnosis, medicine or examination on behalf of the clinician.</p>",
-    "status-disclaimer-text": "Diagnosis, medicine or examination choice, dosage, duration, exceptions or copayment choices, and final submission remain the responsibility of the authorized healthcare professional.",
-    "contact-eyebrow": "Contact",
-    "contact-title": "Contact FastRx.",
-    "contact-subtitle": "Use the form for a question, suggestion, feedback or an issue related to using FastRx.",
-    "contact-secondary": "For product feedback, choose “I have feedback or a suggestion”. This form is for FastRx communication only and is not a channel for patient clinical management.",
-    "contact-benefits-label": "Ways to contact us",
-    "benefit-access": "I would like to request FastRx access",
-    "benefit-issue": "Report a problem or technical issue",
-    "benefit-feedback": "Product feedback or suggestions",
-    "contact-privacy": "Do not submit patient names, AMKA or other identifiers, health data, prescription or referral information, or any other sensitive clinical information.",
-    "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
-    "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty (optional)", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
-    "reason-access": "I would like to request FastRx access", "reason-issue": "I am reporting a problem or technical issue", "reason-feedback": "I have feedback or a suggestion", "reason-other": "Other",
-    "form-message-help": "20–4,000 characters", "form-consent": "By submitting this form, you agree that the details you provide may be processed solely to handle and respond to your enquiry.",
-    "form-submit": "Send message", "form-sending": "Sending...", "form-success": "Your message has been sent. We will contact you shortly.", "form-error": "Your message could not be sent. Please try again.",
-    "validation-required": "This field is required.", "validation-email": "Enter a valid email address.", "validation-message": "Your message must be between 20 and 4,000 characters.",
-    "footer-copyright": "© 2026 FastRx. All rights reserved.",
-    "footer-privacy": "Privacy Policy",
-    "trust-statement": "FastRx is a clinical workflow tool for authorized healthcare professionals in Greece.",
-    "modal-title": "Privacy Policy",
-    "modal-p1": "The FastRx website (fastrx.gr) is the public information and contact site for FastRx. The contact form collects the information you choose to submit, such as your name, email address, specialty, contact reason and message content.",
-    "modal-p2": "We do not use tracking cookies or advertising scripts. Contact-form information is used to handle and respond to your enquiry.",
-    "modal-p3": "Do not submit patient identifiers, health data, prescription or referral information, or other sensitive clinical content through the public contact form.",
-    "modal-close": "Close"
-  }
 };
 
-let currentLang = 'gr';
-
 function updateDOM() {
-  document.documentElement.lang = currentLang === 'gr' ? 'el' : 'en';
-  const ogLocale = document.querySelector('meta[property="og:locale"]');
-  if (ogLocale) ogLocale.content = currentLang === 'gr' ? 'el_GR' : 'en_US';
+  document.documentElement.lang = 'el';
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (COPY[currentLang] && COPY[currentLang][key]) element.innerHTML = COPY[currentLang][key];
+    if (COPY[key]) element.innerHTML = COPY[key];
   });
   document.querySelectorAll('[data-i18n-aria]').forEach(element => {
     const key = element.getAttribute('data-i18n-aria');
-    if (COPY[currentLang]?.[key]) element.setAttribute('aria-label', COPY[currentLang][key]);
+    if (COPY[key]) element.setAttribute('aria-label', COPY[key]);
   });
-  const languageInput = document.getElementById('form-language');
-  if (languageInput) languageInput.value = currentLang;
   const titleElement = document.querySelector('title');
-  if (titleElement && COPY[currentLang]['meta-title']) titleElement.textContent = COPY[currentLang]['meta-title'];
+  if (titleElement && COPY['meta-title']) titleElement.textContent = COPY['meta-title'];
   document.querySelectorAll('[data-i18n-meta]').forEach(element => {
     const attrName = element.getAttribute('data-i18n-meta');
     const key = attrName === 'description' ? 'meta-description' : attrName;
-    if (COPY[currentLang] && COPY[currentLang][key]) element.setAttribute('content', COPY[currentLang][key]);
+    if (COPY[key]) element.setAttribute('content', COPY[key]);
   });
   const heroCta = document.querySelector('[data-i18n="hero-cta"]');
   if (heroCta) {
@@ -158,37 +88,12 @@ function updateDOM() {
     heroCta.setAttribute('target', '_blank');
     heroCta.setAttribute('rel', 'noopener noreferrer');
   }
-  const labelGR = document.getElementById('label-gr');
-  const labelEN = document.getElementById('label-en');
-  if (labelGR && labelEN) {
-    labelGR.classList.toggle('active', currentLang === 'gr');
-    labelEN.classList.toggle('active', currentLang === 'en');
-  }
-  const languageButton = document.getElementById('lang-btn');
-  if (languageButton) languageButton.setAttribute('aria-label', currentLang === 'gr' ? 'Switch language to English' : 'Αλλαγή γλώσσας στα Ελληνικά');
   const badge = document.querySelector('.status-badge');
-  if (badge) badge.style.letterSpacing = currentLang === 'gr' ? '0.02em' : '0.05em';
-}
-
-function setLanguage(lang) {
-  if (lang === 'gr' || lang === 'en') {
-    currentLang = lang;
-    localStorage.setItem('fastrx_lang', lang);
-    updateDOM();
-  }
-}
-
-function initLanguage() {
-  const savedLang = localStorage.getItem('fastrx_lang');
-  if (savedLang && (savedLang === 'gr' || savedLang === 'en')) currentLang = savedLang;
-  else currentLang = 'gr';
-  updateDOM();
+  if (badge) badge.style.letterSpacing = '0.02em';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initLanguage();
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) langBtn.addEventListener('click', () => setLanguage(currentLang === 'gr' ? 'en' : 'gr'));
+  updateDOM();
 
   const contactForm = document.getElementById('contact-form');
   const submitButton = document.getElementById('contact-submit');
@@ -205,12 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = new FormData(contactForm);
     const errors = {};
     for (const field of ['name', 'email', 'reason', 'message']) {
-      if (!String(data.get(field) || '').trim()) errors[field] = COPY[currentLang]['validation-required'];
+      if (!String(data.get(field) || '').trim()) errors[field] = COPY['validation-required'];
     }
     const email = String(data.get('email') || '').trim();
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = COPY[currentLang]['validation-email'];
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = COPY['validation-email'];
     const messageLength = String(data.get('message') || '').trim().length;
-    if (messageLength && (messageLength < 20 || messageLength > 4000)) errors.message = COPY[currentLang]['validation-message'];
+    if (messageLength && (messageLength < 20 || messageLength > 4000)) errors.message = COPY['validation-message'];
     Object.entries(errors).forEach(([name, message]) => {
       const field = contactForm.elements.namedItem(name);
       const error = contactForm.querySelector(`[data-error-for="${name}"]`);
@@ -227,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitting || !validateForm()) return;
       submitting = true;
       submitButton.disabled = true;
-      submitButton.textContent = COPY[currentLang]['form-sending'];
+      submitButton.textContent = COPY['form-sending'];
       formStatus.textContent = '';
       formStatus.className = 'form-status form-field-wide';
       try {
@@ -235,17 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(contactForm.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
         if (!response.ok) throw new Error('Delivery failed');
         contactForm.reset();
-        document.getElementById('form-language').value = currentLang;
         clearErrors();
-        formStatus.textContent = COPY[currentLang]['form-success'];
+        formStatus.textContent = COPY['form-success'];
         formStatus.classList.add('is-success');
       } catch {
-        formStatus.textContent = COPY[currentLang]['form-error'];
+        formStatus.textContent = COPY['form-error'];
         formStatus.classList.add('is-error');
       } finally {
         submitting = false;
         submitButton.disabled = false;
-        submitButton.textContent = COPY[currentLang]['form-submit'];
+        submitButton.textContent = COPY['form-submit'];
         formStatus.focus();
       }
     });
