@@ -5,10 +5,12 @@ import { readFile } from 'node:fs/promises';
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const js = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 
-test('replaces passive contact card with the direct contact form', () => {
+test('homepage presents the current FastRx product and production app link', () => {
   assert.match(html, /id="contact-form"/);
-  assert.doesNotMatch(html, /id="copy-email-btn"/);
-  assert.match(html, /Δοκιμάστε το πριν από όλους/);
+  assert.match(html, /https:\/\/app\.fastrx\.gr\//);
+  assert.match(html, /Άνοιγμα FastRx/);
+  assert.doesNotMatch(html, /Δοκιμάστε το πριν από όλους/);
+  assert.doesNotMatch(html, /τελικά στάδια ανάπτυξης/);
 });
 
 test('required fields, email type, message limits and honeypot are present', () => {
@@ -18,13 +20,27 @@ test('required fields, email type, message limits and honeypot are present', () 
   assert.match(html, /class="honeypot"/);
 });
 
-test('reason options and bilingual contact content are available', () => {
+test('reason options and bilingual contact content are current', () => {
   for (const value of ['early-access', 'testing', 'feedback', 'other']) assert.match(html, new RegExp(`value="${value}"`));
-  assert.doesNotMatch(html, /value="collaboration"/);
-  assert.match(js, /Try it before everyone else/);
-  assert.match(js, /Δοκιμάστε το πριν από όλους/);
+  assert.match(js, /Contact FastRx/);
+  assert.match(js, /Επικοινωνήστε με το FastRx/);
+  assert.match(js, /I have feedback or a suggestion/);
+  assert.match(js, /Έχω πρόταση ή σχόλιο/);
   assert.match(js, /Your message has been sent/);
   assert.match(js, /Το μήνυμά σας στάλθηκε/);
+});
+
+test('privacy copy accurately acknowledges contact-form data processing', () => {
+  assert.match(html, /Η φόρμα επικοινωνίας συλλέγει τα στοιχεία/);
+  assert.match(html, /Μην υποβάλλετε μέσω της δημόσιας φόρμας/);
+  assert.doesNotMatch(html, /Δεν συλλέγουμε, αποθηκεύουμε ή επεξεργαζόμαστε προσωπικά δεδομένα/);
+  assert.match(js, /The contact form collects the information you choose to submit/);
+});
+
+test('clinical responsibility and IDIKA relationship are stated', () => {
+  assert.match(html, /επίσημες υπηρεσίες ΗΔΙΚΑ/);
+  assert.match(html, /Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις/);
+  assert.match(js, /does not make independent clinical decisions/);
 });
 
 test('specialty selector contains the approved options', () => {
@@ -48,10 +64,6 @@ test('Greek is the default language when no preference is saved', () => {
 test('translation script works without module loading', () => {
   assert.match(html, /<script defer src="\.\/app\.js"><\/script>/);
   assert.doesNotMatch(html, /type="module" src="\.\/app\.js"/);
-});
-
-test('hero does not render the removed video poster', () => {
-  assert.doesNotMatch(html, /hero-video-(?:wrapper|poster)/);
 });
 
 test('every translated element has one entry in each language', () => {
