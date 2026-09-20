@@ -1,140 +1,140 @@
-/* ==========================================================================
+/* ========================================================================== 
    Centralized Copy/Bilingual Translation Object
    ========================================================================== */
 const COPY = {
   gr: {
     // Meta / SEO
-    "meta-title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "meta-description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
-    "og:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "og:description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
-    "twitter:title": "FastRx | Ηλεκτρονική Συνταγογράφηση",
-    "twitter:description": "Το FastRx απλοποιεί τη συνταγογράφηση με λιγότερα επαναλαμβανόμενα βήματα, ταχύτερη ροή και περισσότερο χρόνο για τον ασθενή.",
+    "meta-title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας",
+    "meta-description": "Το FastRx οργανώνει τη ροή ηλεκτρονικής συνταγογράφησης για εξουσιοδοτημένους επαγγελματίες υγείας και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ.",
+    "og:title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας",
+    "og:description": "Κλινική ροή εργασίας για αναζήτηση ασθενούς, ICD-10, φάρμακα, έλεγχο και υποστηριζόμενη υποβολή μέσω ΗΔΙΚΑ.",
+    "twitter:title": "FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας",
+    "twitter:description": "Κλινική ροή εργασίας για αναζήτηση ασθενούς, ICD-10, φάρμακα, έλεγχο και υποστηριζόμενη υποβολή μέσω ΗΔΙΚΑ.",
 
     // Hero Section
     "hero-badge": "ΕΠΙΣΗΜΗ ΙΣΤΟΣΕΛΙΔΑ",
-    "hero-title": "Η συνταγογράφηση όπως θα έπρεπε να ήταν από την αρχή.",
-    "hero-subtitle": "Το FastRx οργανώνει ολόκληρη τη διαδικασία σε μία καθαρή ροή, ώστε να αφιερώνετε λιγότερο χρόνο στην οθόνη και περισσότερο στον ασθενή.",
-    "hero-cta": "Αίτηση Πρώιμης Πρόσβασης",
-    "problem-title": "Γιατί δημιουργήθηκε το FastRx;",
-    "problem-text": "Η καθημερινή ηλεκτρονική συνταγογράφηση απαιτεί περισσότερα βήματα από όσα θα έπρεπε. Το FastRx δημιουργήθηκε για να απλοποιήσει τη διαδικασία, διατηρώντας τον ιατρό στον έλεγχο και μειώνοντας τον χρόνο στην οθόνη.",
+    "hero-title": "Η ηλεκτρονική συνταγογράφηση σε μία καθαρή, συνεχή ροή.",
+    "hero-subtitle": "Το FastRx είναι εργαλείο κλινικής ροής για εξουσιοδοτημένους επαγγελματίες υγείας. Συνδέει τα βασικά βήματα της συνταγογράφησης και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ.",
+    "hero-cta": "Άνοιγμα FastRx",
+    "problem-title": "Τι κάνει το FastRx;",
+    "problem-text": "Το FastRx οργανώνει την καθημερινή ηλεκτρονική συνταγογράφηση σε μία συνεχή ροή: αυθεντικοποίηση ΗΔΙΚΑ, αναζήτηση ασθενούς, επιλογή μονάδας συνταγογράφησης όπου απαιτείται, ενεργή επίσκεψη, ICD-10, αναζήτηση φαρμάκων, προετοιμασία, τελικό έλεγχο και υποστηριζόμενη υποβολή. Ο ιατρός διατηρεί τον πλήρη έλεγχο των κλινικών επιλογών.",
 
     // Workflow Section
-    "workflow-title": "Από τον ασθενή έως την τελική συνταγή σε πέντε βήματα.",
-    "step1-title": "Εντοπισμός Ασθενούς",
-    "step1-text": "Άμεση ανάκτηση των βασικών στοιχείων του ασθενούς.",
-    "step2-title": "Επιλογή ICD-10",
-    "step2-text": "Γρήγορος εντοπισμός της σωστής διάγνωσης.",
-    "step3-title": "Εφαρμογή Σχήματος",
-    "step3-text": "Άμεση φόρτωση του κατάλληλου προτύπου συνταγής.",
+    "workflow-title": "Από την ταυτοποίηση έως την τελική υποβολή.",
+    "step1-title": "Ασθενής & Επίσκεψη",
+    "step1-text": "Αναζήτηση ασθενούς, μονάδα συνταγογράφησης και ανάκτηση ενεργής επίσκεψης όπου υποστηρίζεται.",
+    "step2-title": "Διάγνωση ICD-10",
+    "step2-text": "Αναζήτηση και επιλογή διάγνωσης από τον διαθέσιμο κατάλογο ICD-10.",
+    "step3-title": "Φάρμακα & Εργαλεία",
+    "step3-text": "Αναζήτηση φαρμάκων με υποστήριξη από πρότυπα, αγαπημένα και πρόσφατα φάρμακα.",
     "step4-title": "Τελικός Έλεγχος",
-    "step4-text": "Όλα τα στοιχεία σε μία οθόνη, χωρίς περιττές εναλλαγές.",
-    "step5-title": "Υποβολή",
-    "step5-text": "Ολοκλήρωση της συνταγής με μία τελική επιβεβαίωση.",
+    "step4-text": "Συγκεντρωμένος έλεγχος των στοιχείων πριν από οποιαδήποτε τελική ενέργεια.",
+    "step5-title": "Υποβολή μέσω ΗΔΙΚΑ",
+    "step5-text": "Υποστηριζόμενη ολοκλήρωση της συνταγής μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ, μετά από επιβεβαίωση του ιατρού.",
 
-    // Status Section
-    "status-card-title": "Περιορισμένη Πρώιμη Πρόσβαση",
-    "status-main-text": "<p>Το FastRx βρίσκεται στα τελικά στάδια ανάπτυξης.</p><p>Αναζητούμε περιορισμένο αριθμό ιατρών που θέλουν να το δοκιμάσουν πριν από την κυκλοφορία και να συμβάλουν στη διαμόρφωσή του.</p>",
-    "status-disclaimer-text": "Το FastRx δεν αντικαθιστά την ιατρική κρίση. Οι τελικές κλινικές αποφάσεις παραμένουν πάντα στον συνταγογράφοντα ιατρό.",
+    // Status / responsibility Section
+    "status-card-title": "FastRx, ΗΔΙΚΑ και κλινική ευθύνη",
+    "status-main-text": "<p>Το FastRx υποστηρίζει τη ροή εργασίας και χρησιμοποιεί τις επίσημες υπηρεσίες ΗΔΙΚΑ για τις λειτουργίες που υποστηρίζονται.</p><p>Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις και δεν επιλέγει διάγνωση, φάρμακο ή εξέταση αντί του ιατρού.</p>",
+    "status-disclaimer-text": "Η διάγνωση, η επιλογή φαρμάκου ή εξέτασης, η δοσολογία, η διάρκεια, οι εξαιρέσεις ή επιλογές συμμετοχής και η τελική υποβολή παραμένουν ευθύνη του εξουσιοδοτημένου επαγγελματία υγείας.",
 
     // Contact Section
-    "contact-eyebrow": "Πρόσκληση",
-    "contact-title": "Δοκιμάστε το πριν από όλους.",
-    "contact-subtitle": "Υποβάλετε αίτηση πρώιμης πρόσβασης και γνωρίστε το FastRx πριν από την επίσημη κυκλοφορία.",
-    "contact-secondary": "Οι ιατροί που θα επιλεγούν θα έχουν άμεση επικοινωνία με την ομάδα μας και ουσιαστική επιρροή στο τελικό προϊόν.",
-    "contact-benefits-label": "Οφέλη συμμετοχής",
-    "benefit-early": "Πρώιμη πρόσβαση πριν από την κυκλοφορία",
-    "benefit-testing": "Άμεση επικοινωνία με την ομάδα ανάπτυξης",
-    "benefit-feedback": "Δυνατότητα να επηρεάσετε το τελικό προϊόν",
-    "contact-privacy": "Μην αποστείλετε στοιχεία ασθενών ή άλλα προσωπικά δεδομένα υγείας.",
+    "contact-eyebrow": "Επικοινωνία",
+    "contact-title": "Επικοινωνήστε με το FastRx.",
+    "contact-subtitle": "Χρησιμοποιήστε τη φόρμα για ερώτηση, πρόταση, σχόλιο ή θέμα που αφορά τη χρήση του FastRx.",
+    "contact-secondary": "Για σχόλια σχετικά με την εμπειρία χρήσης, επιλέξτε «Έχω πρόταση ή σχόλιο». Η φόρμα αφορά αποκλειστικά επικοινωνία για το FastRx και όχι κλινική διαχείριση ασθενών.",
+    "contact-benefits-label": "Τρόποι επικοινωνίας",
+    "benefit-early": "Ερώτηση για πρόσβαση ή χρήση του FastRx",
+    "benefit-testing": "Αναφορά προβλήματος ή τεχνικού θέματος",
+    "benefit-feedback": "Πρόταση ή σχόλιο για το προϊόν",
+    "contact-privacy": "Μην αποστείλετε ονόματα ασθενών, ΑΜΚΑ ή άλλους αναγνωριστικούς αριθμούς, δεδομένα υγείας, στοιχεία συνταγών ή παραπεμπτικών ή οποιαδήποτε άλλη ευαίσθητη κλινική πληροφορία.",
     "contact-email": "Προτιμάτε email; <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
     "form-name": "Ονοματεπώνυμο", "form-email": "Email", "form-specialty": "Ιατρική ειδικότητα", "form-reason": "Λόγος επικοινωνίας", "form-message": "Μήνυμα",
     "form-select-placeholder": "Επιλέξτε", "specialty-dentistry": "Οδοντιατρική", "specialty-cardiology": "Καρδιολογία", "specialty-orthopaedics": "Ορθοπαιδική", "specialty-ent": "Ωτορινολαρυγγολογία", "specialty-dermatology": "Δερματολογία", "specialty-other": "Άλλη Ειδικότητα",
-    "reason-early": "Ενδιαφέρομαι για πρώιμη πρόσβαση", "reason-testing": "Θα ήθελα να συμμετάσχω σε δοκιμή", "reason-feedback": "Έχω πρόταση ή σχόλιο", "reason-other": "Άλλο",
-    "form-message-help": "20–4.000 χαρακτήρες", "form-consent": "Με την αποστολή της φόρμας αποδέχεστε την επεξεργασία των στοιχείων σας αποκλειστικά για την απάντηση στο αίτημά σας.",
+    "reason-early": "Έχω ερώτηση για πρόσβαση ή χρήση", "reason-testing": "Αναφέρω πρόβλημα ή τεχνικό θέμα", "reason-feedback": "Έχω πρόταση ή σχόλιο", "reason-other": "Άλλο",
+    "form-message-help": "20–4.000 χαρακτήρες", "form-consent": "Με την αποστολή της φόρμας αποδέχεστε την επεξεργασία των στοιχείων που υποβάλλετε αποκλειστικά για τη διαχείριση και την απάντηση στο αίτημά σας.",
     "form-submit": "Αποστολή μηνύματος", "form-sending": "Αποστολή...", "form-success": "Το μήνυμά σας στάλθηκε. Θα επικοινωνήσουμε μαζί σας σύντομα.", "form-error": "Δεν ήταν δυνατή η αποστολή του μηνύματος. Παρακαλούμε δοκιμάστε ξανά.",
     "validation-required": "Το πεδίο είναι υποχρεωτικό.", "validation-email": "Εισαγάγετε μια έγκυρη διεύθυνση email.", "validation-message": "Το μήνυμα πρέπει να έχει από 20 έως 4.000 χαρακτήρες.",
 
     // Footer
     "footer-copyright": "© 2026 FastRx. Με την επιφύλαξη παντός δικαιώματος.",
     "footer-privacy": "Πολιτική Απορρήτου",
-    "trust-statement": "Το FastRx αναπτύσσεται στην Ελλάδα για επαγγελματίες υγείας στην Ελλάδα.",
+    "trust-statement": "Το FastRx είναι εργαλείο κλινικής ροής για εξουσιοδοτημένους επαγγελματίες υγείας στην Ελλάδα.",
 
     // Privacy Modal
     "modal-title": "Πολιτική Απορρήτου",
-    "modal-p1": "Ο ιστότοπος FastRx (fastrx.gr) αποτελεί την επίσημη δημόσια σελίδα ενημέρωσης και επικοινωνίας της υπηρεσίας.",
-    "modal-p2": "Δεν χρησιμοποιούμε cookies παρακολούθησης ή διαφημιστικά scripts. Συλλέγουμε μόνο τα στοιχεία που υποβάλλετε εθελοντικά μέσω της φόρμας.",
-    "modal-p3": "Η διεύθυνση email και το περιεχόμενο του μηνύματός σας χρησιμοποιούνται αποκλειστικά για την απάντηση στο αίτημά σας.",
+    "modal-p1": "Ο ιστότοπος FastRx (fastrx.gr) αποτελεί τη δημόσια σελίδα ενημέρωσης και επικοινωνίας του FastRx. Η φόρμα επικοινωνίας συλλέγει τα στοιχεία που επιλέγετε να υποβάλετε, όπως ονοματεπώνυμο, email, ειδικότητα, λόγο επικοινωνίας και περιεχόμενο μηνύματος.",
+    "modal-p2": "Δεν χρησιμοποιούμε cookies παρακολούθησης ή διαφημιστικά scripts. Τα στοιχεία της φόρμας χρησιμοποιούνται για τη διαχείριση και την απάντηση στο αίτημά σας.",
+    "modal-p3": "Μην υποβάλλετε μέσω της δημόσιας φόρμας στοιχεία ταυτοποίησης ασθενών, δεδομένα υγείας, πληροφορίες συνταγών ή παραπεμπτικών ή άλλο ευαίσθητο κλινικό περιεχόμενο.",
     "modal-close": "Κλείσιμο"
   },
   en: {
     // Meta / SEO
-    "meta-title": "FastRx | Electronic Prescribing Workflow",
-    "meta-description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
-    "og:title": "FastRx | Electronic Prescribing Workflow",
-    "og:description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
-    "twitter:title": "FastRx | Electronic Prescribing Workflow",
-    "twitter:description": "FastRx simplifies prescribing with a faster workflow, fewer repetitive steps, and more time for the patient.",
+    "meta-title": "FastRx | Electronic Prescribing for Healthcare Professionals",
+    "meta-description": "FastRx organizes the electronic prescribing workflow for authorized healthcare professionals and supports selected operations through official IDIKA services.",
+    "og:title": "FastRx | Electronic Prescribing for Healthcare Professionals",
+    "og:description": "A clinical workflow for patient lookup, ICD-10, medicines, review and supported submission through IDIKA.",
+    "twitter:title": "FastRx | Electronic Prescribing for Healthcare Professionals",
+    "twitter:description": "A clinical workflow for patient lookup, ICD-10, medicines, review and supported submission through IDIKA.",
 
     // Hero Section
     "hero-badge": "Official website",
-    "hero-title": "Prescribing, the way it should have been from the start.",
-    "hero-subtitle": "FastRx brings the prescribing process into one clear workflow, so you spend less time on the screen and more time with the patient.",
-    "hero-cta": "Apply for Early Access",
-    "problem-title": "Why was FastRx created?",
-    "problem-text": "Everyday electronic prescribing takes more steps than it should. FastRx was built to simplify that process, keep doctors in control, and reduce the time spent at the screen.",
+    "hero-title": "Electronic prescribing in one clear, continuous workflow.",
+    "hero-subtitle": "FastRx is a clinical workflow tool for authorized healthcare professionals. It connects the core prescribing steps and supports selected operations through official IDIKA services.",
+    "hero-cta": "Open FastRx",
+    "problem-title": "What does FastRx do?",
+    "problem-text": "FastRx organizes everyday electronic prescribing into one continuous workflow: IDIKA authentication, patient lookup, prescribing-unit selection where required, active encounters, ICD-10, medicine search, preparation, final review and supported submission. The clinician remains in full control of clinical choices.",
 
     // Workflow Section
-    "workflow-title": "From patient search to final prescription in five steps.",
-    "step1-title": "Find the Patient",
-    "step1-text": "Retrieve the key patient details immediately.",
-    "step2-title": "Choose ICD-10",
-    "step2-text": "Find the right diagnosis without slowing down.",
-    "step3-title": "Apply the Plan",
-    "step3-text": "Load the appropriate treatment template instantly.",
+    "workflow-title": "From identification to final submission.",
+    "step1-title": "Patient & Encounter",
+    "step1-text": "Patient lookup, prescribing-unit handling and active-encounter recovery where supported.",
+    "step2-title": "ICD-10 Diagnosis",
+    "step2-text": "Search and select a diagnosis from the available ICD-10 catalogue.",
+    "step3-title": "Medicines & Tools",
+    "step3-text": "Medicine search supported by templates, favorites and recent medicines.",
     "step4-title": "Final Review",
-    "step4-text": "Everything stays on one screen, without unnecessary back-and-forth.",
-    "step5-title": "Submit",
-    "step5-text": "Complete the prescription with one final confirmation.",
+    "step4-text": "Review the relevant information together before any final action.",
+    "step5-title": "Submit through IDIKA",
+    "step5-text": "Supported prescription completion through official IDIKA services after clinician confirmation.",
 
-    // Status Section
-    "status-card-title": "Limited Early Access",
-    "status-main-text": "<p>FastRx is in the final stages of development.</p><p>We are inviting a limited number of doctors to try it before launch and help shape the final product.</p>",
-    "status-disclaimer-text": "FastRx does not replace medical judgment. Final clinical decisions always remain with the prescribing doctor.",
+    // Status / responsibility Section
+    "status-card-title": "FastRx, IDIKA and clinical responsibility",
+    "status-main-text": "<p>FastRx supports the workflow and uses official IDIKA services for supported operations.</p><p>It does not make independent clinical decisions or choose a diagnosis, medicine or examination on behalf of the clinician.</p>",
+    "status-disclaimer-text": "Diagnosis, medicine or examination choice, dosage, duration, exceptions or copayment choices, and final submission remain the responsibility of the authorized healthcare professional.",
 
     // Contact Section
-    "contact-eyebrow": "Invitation",
-    "contact-title": "Try it before everyone else.",
-    "contact-subtitle": "Apply for early access and see FastRx before the official launch.",
-    "contact-secondary": "Selected doctors will have direct contact with our team and a real influence on the final product.",
-    "contact-benefits-label": "Participation benefits",
-    "benefit-early": "Early access before public launch",
-    "benefit-testing": "Direct contact with the product team",
-    "benefit-feedback": "A chance to influence the final product",
-    "contact-privacy": "Do not send patient details or other personal health data.",
+    "contact-eyebrow": "Contact",
+    "contact-title": "Contact FastRx.",
+    "contact-subtitle": "Use the form for a question, suggestion, feedback or an issue related to using FastRx.",
+    "contact-secondary": "For product feedback, choose “I have feedback or a suggestion”. This form is for FastRx communication only and is not a channel for patient clinical management.",
+    "contact-benefits-label": "Ways to contact us",
+    "benefit-early": "Questions about FastRx access or use",
+    "benefit-testing": "Report a problem or technical issue",
+    "benefit-feedback": "Product feedback or suggestions",
+    "contact-privacy": "Do not submit patient names, AMKA or other identifiers, health data, prescription or referral information, or any other sensitive clinical information.",
     "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
     "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
     "specialty-dentistry": "Dentistry", "specialty-cardiology": "Cardiology", "specialty-orthopaedics": "Orthopaedics", "specialty-ent": "ENT", "specialty-dermatology": "Dermatology", "specialty-other": "Other specialty",
-    "reason-early": "I am interested in early access", "reason-testing": "I would like to take part in testing", "reason-feedback": "I have feedback or a suggestion", "reason-other": "Other",
-    "form-message-help": "20–4,000 characters", "form-consent": "By submitting this form, you agree that your details may be processed solely for the purpose of responding to your enquiry.",
+    "reason-early": "I have a question about access or use", "reason-testing": "I am reporting a problem or technical issue", "reason-feedback": "I have feedback or a suggestion", "reason-other": "Other",
+    "form-message-help": "20–4,000 characters", "form-consent": "By submitting this form, you agree that the details you provide may be processed solely to handle and respond to your enquiry.",
     "form-submit": "Send message", "form-sending": "Sending...", "form-success": "Your message has been sent. We will contact you shortly.", "form-error": "Your message could not be sent. Please try again.",
     "validation-required": "This field is required.", "validation-email": "Enter a valid email address.", "validation-message": "Your message must be between 20 and 4,000 characters.",
 
     // Footer
     "footer-copyright": "© 2026 FastRx. All rights reserved.",
     "footer-privacy": "Privacy Policy",
-    "trust-statement": "FastRx is being built in Greece for healthcare professionals in Greece.",
+    "trust-statement": "FastRx is a clinical workflow tool for authorized healthcare professionals in Greece.",
 
     // Privacy Modal
     "modal-title": "Privacy Policy",
-    "modal-p1": "The FastRx website (fastrx.gr) is the official public page for service information and contact.",
-    "modal-p2": "We do not use tracking cookies or advertising scripts. We collect only the details you voluntarily submit through the contact form.",
-    "modal-p3": "Your email address and message content are used solely for responding to your enquiry.",
+    "modal-p1": "The FastRx website (fastrx.gr) is the public information and contact site for FastRx. The contact form collects the information you choose to submit, such as your name, email address, specialty, contact reason and message content.",
+    "modal-p2": "We do not use tracking cookies or advertising scripts. Contact-form information is used to handle and respond to your enquiry.",
+    "modal-p3": "Do not submit patient identifiers, health data, prescription or referral information, or other sensitive clinical content through the public contact form.",
     "modal-close": "Close"
   }
 };
 
-/* ==========================================================================
+/* ========================================================================== 
    State Management & Translation Logic
    ========================================================================== */
 
@@ -144,12 +144,10 @@ let currentLang = 'gr';
  * Update DOM elements with translations based on current language
  */
 function updateDOM() {
-  // Update document language tag
   document.documentElement.lang = currentLang === 'gr' ? 'el' : 'en';
   const ogLocale = document.querySelector('meta[property="og:locale"]');
   if (ogLocale) ogLocale.content = currentLang === 'gr' ? 'el_GR' : 'en_US';
 
-  // Translate standard text nodes
   const translatableElements = document.querySelectorAll('[data-i18n]');
   translatableElements.forEach(element => {
     const key = element.getAttribute('data-i18n');
@@ -162,10 +160,10 @@ function updateDOM() {
     const key = element.getAttribute('data-i18n-aria');
     if (COPY[currentLang]?.[key]) element.setAttribute('aria-label', COPY[currentLang][key]);
   });
+
   const languageInput = document.getElementById('form-language');
   if (languageInput) languageInput.value = currentLang;
 
-  // Translate document metadata/title tags
   const titleElement = document.querySelector('title');
   if (titleElement && COPY[currentLang]['meta-title']) {
     titleElement.textContent = COPY[currentLang]['meta-title'];
@@ -180,7 +178,13 @@ function updateDOM() {
     }
   });
 
-  // Update header toggle button visual states
+  const heroCta = document.querySelector('[data-i18n="hero-cta"]');
+  if (heroCta) {
+    heroCta.setAttribute('href', 'https://app.fastrx.gr/');
+    heroCta.setAttribute('target', '_blank');
+    heroCta.setAttribute('rel', 'noopener noreferrer');
+  }
+
   const labelGR = document.getElementById('label-gr');
   const labelEN = document.getElementById('label-en');
   if (labelGR && labelEN) {
@@ -201,7 +205,6 @@ function updateDOM() {
     );
   }
 
-  // Handle unique status badge padding tweak based on language if needed
   const badge = document.querySelector('.status-badge');
   if (badge) {
     badge.style.letterSpacing = currentLang === 'gr' ? '0.02em' : '0.05em';
@@ -233,15 +236,13 @@ function initLanguage() {
   updateDOM();
 }
 
-/* ==========================================================================
+/* ========================================================================== 
    Interaction & Event Handlers
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize translations
   initLanguage();
 
-  // 1. Language Toggle Button Event
   const langBtn = document.getElementById('lang-btn');
   if (langBtn) {
     langBtn.addEventListener('click', () => {
@@ -250,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Contact form
   const contactForm = document.getElementById('contact-form');
   const submitButton = document.getElementById('contact-submit');
   const formStatus = document.getElementById('form-status');
@@ -316,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. Privacy Policy Modal Controls
   const privacyTrigger = document.getElementById('privacy-trigger');
   const privacyModal = document.getElementById('privacy-modal');
   const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -326,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (privacyModal) {
       privacyModal.classList.add('open');
       privacyModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden'; // Lock background scrolling
+      document.body.style.overflow = 'hidden';
     }
   }
 
@@ -334,36 +333,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (privacyModal) {
       privacyModal.classList.remove('open');
       privacyModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = ''; // Unlock background scrolling
+      document.body.style.overflow = '';
     }
   }
 
-  if (privacyTrigger) {
-    privacyTrigger.addEventListener('click', openModal);
-  }
+  if (privacyTrigger) privacyTrigger.addEventListener('click', openModal);
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modalConfirmBtn) modalConfirmBtn.addEventListener('click', closeModal);
 
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', closeModal);
-  }
-
-  if (modalConfirmBtn) {
-    modalConfirmBtn.addEventListener('click', closeModal);
-  }
-
-  // Close modal when clicking outside content area
   if (privacyModal) {
     privacyModal.addEventListener('click', (e) => {
-      if (e.target === privacyModal) {
-        closeModal();
-      }
+      if (e.target === privacyModal) closeModal();
     });
 
-    // Close on Escape key press
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && privacyModal.classList.contains('open')) {
-        closeModal();
-      }
+      if (e.key === 'Escape' && privacyModal.classList.contains('open')) closeModal();
     });
   }
-
 });
