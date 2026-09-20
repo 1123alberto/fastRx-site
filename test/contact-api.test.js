@@ -2,16 +2,25 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import handler, { buildEmail, deliverContactEmail, resetRateLimits, validateContactPayload } from '../api/contact.js';
 
-const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'dentistry', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'en', company: '' };
+const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'Cardiology and Sleep Medicine', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'en', company: '' };
 
 function response() {
   return { statusCode: 200, body: null, headers: {}, setHeader(k, v) { this.headers[k] = v; }, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } };
 }
 
 test('validates and trims a complete payload', () => {
-  const result = validateContactPayload({ ...valid, name: '  Dr Test  ' });
+  const result = validateContactPayload({ ...valid, name: '  Dr Test  ', specialty: '  Cardiology and Sleep Medicine  ' });
   assert.equal(result.ok, true);
   assert.equal(result.data.name, 'Dr Test');
+  assert.equal(result.data.specialty, 'Cardiology and Sleep Medicine');
+});
+
+test('accepts optional and free-text specialty values and rejects overlong or non-string values', () => {
+  assert.equal(validateContactPayload({ ...valid, specialty: '' }).ok, true);
+  assert.equal(validateContactPayload({ ...valid, specialty: undefined }).ok, true);
+  assert.equal(validateContactPayload({ ...valid, specialty: 'A very specific medical specialty' }).ok, true);
+  assert.equal(validateContactPayload({ ...valid, specialty: 'x'.repeat(121) }).ok, false);
+  assert.equal(validateContactPayload({ ...valid, specialty: 123 }).ok, false);
 });
 
 test('accepts only current contact reasons', () => {
@@ -31,8 +40,16 @@ test('contact email is general-purpose, includes reason, and escapes visitor con
   assert.equal(email.subject, 'Νέο μήνυμα επικοινωνίας - FastRx');
   assert.match(email.html, /Reason:<\/strong> Feedback or suggestion/);
   assert.match(email.text, /Reason: Feedback or suggestion/);
+  assert.match(email.html, /Specialty:<\/strong> Cardiology and Sleep Medicine/);
+  assert.match(email.text, /Specialty: Cardiology and Sleep Medicine/);
   assert.doesNotMatch(email.html, /<script>/);
   assert.match(email.html, /&lt;script&gt;/);
+});
+
+test('omits the specialty line when specialty is blank', () => {
+  const email = buildEmail({ ...valid, specialty: '' }, '2026-01-01T00:00:00.000Z');
+  assert.doesNotMatch(email.html, /Specialty:/);
+  assert.doesNotMatch(email.text, /Specialty:/);
 });
 
 test('delivery uses reply-to and surfaces provider failures', async () => {

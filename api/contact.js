@@ -1,4 +1,3 @@
-const SPECIALTIES = new Set(['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']);
 const REASONS = new Set(['access', 'issue', 'feedback', 'other']);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const rateLimits = new Map();
@@ -11,6 +10,7 @@ const escapeHtml = value => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '
 export function validateContactPayload(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { ok: false, error: 'Malformed request.' };
   if (clean(body.company)) return { ok: false, bot: true, error: 'Request rejected.' };
+  if (body.specialty !== undefined && typeof body.specialty !== 'string') return { ok: false, error: 'Invalid specialty.' };
 
   const data = {
     name: clean(body.name), email: clean(body.email).toLowerCase(), specialty: clean(body.specialty),
@@ -18,7 +18,7 @@ export function validateContactPayload(body) {
   };
   if (!data.name || data.name.length > 120) return { ok: false, error: 'Invalid name.' };
   if (!EMAIL_PATTERN.test(data.email) || data.email.length > 254) return { ok: false, error: 'Invalid email.' };
-  if (!SPECIALTIES.has(data.specialty)) return { ok: false, error: 'Invalid specialty.' };
+  if (data.specialty.length > 120) return { ok: false, error: 'Invalid specialty.' };
   if (!REASONS.has(data.reason)) return { ok: false, error: 'Invalid reason.' };
   if (data.message.length < 20 || data.message.length > 4000) return { ok: false, error: 'Invalid message.' };
   if (!['gr', 'en'].includes(data.language)) return { ok: false, error: 'Invalid language.' };
@@ -26,26 +26,23 @@ export function validateContactPayload(body) {
 }
 
 export function buildEmail(data, timestamp = new Date().toISOString()) {
-  const specialtyLabels = {
-    dentistry: 'Dentistry', cardiology: 'Cardiology', orthopaedics: 'Orthopaedics', ent: 'ENT', dermatology: 'Dermatology', other: 'Other'
-  };
   const reasonLabels = {
     access: 'Access or usage question', issue: 'Problem or technical issue', feedback: 'Feedback or suggestion', other: 'Other'
   };
-  const specialty = specialtyLabels[data.specialty] || data.specialty;
   const reason = reasonLabels[data.reason] || data.reason;
 
   const html = `
 <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
 <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-<p><strong>Specialty:</strong> ${escapeHtml(specialty)}</p>
+${data.specialty ? `<p><strong>Specialty:</strong> ${escapeHtml(data.specialty)}</p>` : ''}
 <p><strong>Reason:</strong> ${escapeHtml(reason)}</p>
 <p><strong>Submitted:</strong> ${escapeHtml(timestamp)}</p>
 <p><strong>Message:</strong></p>
 <p>${escapeHtml(data.message).replace(/\n/g, '<br>')}</p>
   `.trim();
 
-  const text = `Name: ${data.name}\nEmail: ${data.email}\nSpecialty: ${specialty}\nReason: ${reason}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
+  const specialtyLine = data.specialty ? `Specialty: ${data.specialty}\n` : '';
+  const text = `Name: ${data.name}\nEmail: ${data.email}\n${specialtyLine}Reason: ${reason}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
   return { subject: 'Νέο μήνυμα επικοινωνίας - FastRx', html, text };
 }
 

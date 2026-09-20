@@ -21,9 +21,11 @@ test('homepage presents the current FastRx product and controlled access paths',
   assert.doesNotMatch(html, /τελικά στάδια ανάπτυξης/);
 });
 
-test('required fields, email type, message limits and honeypot are present', () => {
-  for (const name of ['name', 'email', 'specialty', 'reason', 'message']) assert.match(html, new RegExp(`name="${name}"[^>]*required`));
+test('required fields, optional specialty, email type, message limits and honeypot are present', () => {
+  for (const name of ['name', 'email', 'reason', 'message']) assert.match(html, new RegExp(`name="${name}"[^>]*required`));
   assert.match(html, /name="email" type="email"/);
+  assert.match(html, /id="specialty" name="specialty" type="text" autocomplete="organization-title" maxlength="120"/);
+  assert.doesNotMatch(html, /id="specialty"[^>]*required/);
   assert.match(html, /minlength="20" maxlength="4000"/);
   assert.match(html, /class="honeypot"/);
 });
@@ -59,8 +61,10 @@ test('clinical responsibility and IDIKA relationship are stated', () => {
   assert.match(js, /does not make independent clinical decisions/);
 });
 
-test('specialty selector contains the approved options', () => {
-  for (const value of ['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+test('specialty is optional free text without the old fixed options', () => {
+  assert.doesNotMatch(html, /<select[^>]*id="specialty"/);
+  for (const value of ['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology']) assert.doesNotMatch(html, new RegExp(`value="${value}"`));
+  for (const key of ['specialty-dentistry', 'specialty-cardiology', 'specialty-orthopaedics', 'specialty-ent', 'specialty-dermatology', 'specialty-other']) assert.doesNotMatch(js, new RegExp(key));
 });
 
 test('client prevents duplicate submissions and handles success and failure', () => {

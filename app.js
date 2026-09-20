@@ -50,8 +50,8 @@ const COPY = {
     "benefit-feedback": "Πρόταση ή σχόλιο για το προϊόν",
     "contact-privacy": "Μην αποστείλετε ονόματα ασθενών, ΑΜΚΑ ή άλλους αναγνωριστικούς αριθμούς, δεδομένα υγείας, στοιχεία συνταγών ή παραπεμπτικών ή οποιαδήποτε άλλη ευαίσθητη κλινική πληροφορία.",
     "contact-email": "Προτιμάτε email; <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
-    "form-name": "Ονοματεπώνυμο", "form-email": "Email", "form-specialty": "Ιατρική ειδικότητα", "form-reason": "Λόγος επικοινωνίας", "form-message": "Μήνυμα",
-    "form-select-placeholder": "Επιλέξτε", "specialty-dentistry": "Οδοντιατρική", "specialty-cardiology": "Καρδιολογία", "specialty-orthopaedics": "Ορθοπαιδική", "specialty-ent": "Ωτορινολαρυγγολογία", "specialty-dermatology": "Δερματολογία", "specialty-other": "Άλλη Ειδικότητα",
+    "form-name": "Ονοματεπώνυμο", "form-email": "Email", "form-specialty": "Ιατρική ειδικότητα (προαιρετικό)", "form-reason": "Λόγος επικοινωνίας", "form-message": "Μήνυμα",
+    "form-select-placeholder": "Επιλέξτε",
     "reason-access": "Θέλω να ζητήσω πρόσβαση στο FastRx", "reason-issue": "Αναφέρω πρόβλημα ή τεχνικό θέμα", "reason-feedback": "Έχω πρόταση ή σχόλιο", "reason-other": "Άλλο",
     "form-message-help": "20–4.000 χαρακτήρες", "form-consent": "Με την αποστολή της φόρμας αποδέχεστε την επεξεργασία των στοιχείων που υποβάλλετε αποκλειστικά για τη διαχείριση και την απάντηση στο αίτημά σας.",
     "form-submit": "Αποστολή μηνύματος", "form-sending": "Αποστολή...", "form-success": "Το μήνυμά σας στάλθηκε. Θα επικοινωνήσουμε μαζί σας σύντομα.", "form-error": "Δεν ήταν δυνατή η αποστολή του μηνύματος. Παρακαλούμε δοκιμάστε ξανά.",
@@ -113,8 +113,7 @@ const COPY = {
     "benefit-feedback": "Product feedback or suggestions",
     "contact-privacy": "Do not submit patient names, AMKA or other identifiers, health data, prescription or referral information, or any other sensitive clinical information.",
     "contact-email": "Prefer email? <a href=\"mailto:info@fastrx.gr\">info@fastrx.gr</a>",
-    "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
-    "specialty-dentistry": "Dentistry", "specialty-cardiology": "Cardiology", "specialty-orthopaedics": "Orthopaedics", "specialty-ent": "ENT", "specialty-dermatology": "Dermatology", "specialty-other": "Other specialty",
+    "form-name": "Full name", "form-email": "Email", "form-specialty": "Medical specialty (optional)", "form-reason": "Reason for contacting", "form-message": "Message", "form-select-placeholder": "Select an option",
     "reason-access": "I would like to request FastRx access", "reason-issue": "I am reporting a problem or technical issue", "reason-feedback": "I have feedback or a suggestion", "reason-other": "Other",
     "form-message-help": "20–4,000 characters", "form-consent": "By submitting this form, you agree that the details you provide may be processed solely to handle and respond to your enquiry.",
     "form-submit": "Send message", "form-sending": "Sending...", "form-success": "Your message has been sent. We will contact you shortly.", "form-error": "Your message could not be sent. Please try again.",
@@ -205,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearErrors();
     const data = new FormData(contactForm);
     const errors = {};
-    for (const field of ['name', 'email', 'specialty', 'reason', 'message']) {
+    for (const field of ['name', 'email', 'reason', 'message']) {
       if (!String(data.get(field) || '').trim()) errors[field] = COPY[currentLang]['validation-required'];
     }
     const email = String(data.get('email') || '').trim();

@@ -167,16 +167,8 @@
           <div class="form-field"><label for="full-name" data-i18n="form-name">Ονοματεπώνυμο</label><input id="full-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="name-error"><p id="name-error" class="field-error" data-error-for="name" aria-live="polite"></p></div>
           <div class="form-field"><label for="email" data-i18n="form-email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="email-error"><p id="email-error" class="field-error" data-error-for="email" aria-live="polite"></p></div>
           <div class="form-field">
-            <label for="specialty" data-i18n="form-specialty">Ιατρική ειδικότητα</label>
-            <select id="specialty" name="specialty" required aria-describedby="specialty-error">
-              <option value="" data-i18n="form-select-placeholder">Επιλέξτε</option>
-              <option value="dentistry" data-i18n="specialty-dentistry">Οδοντιατρική</option>
-              <option value="cardiology" data-i18n="specialty-cardiology">Καρδιολογία</option>
-              <option value="orthopaedics" data-i18n="specialty-orthopaedics">Ορθοπαιδική</option>
-              <option value="ent" data-i18n="specialty-ent">Ωτορινολαρυγγολογία</option>
-              <option value="dermatology" data-i18n="specialty-dermatology">Δερματολογία</option>
-              <option value="other" data-i18n="specialty-other">Άλλη Ειδικότητα</option>
-            </select>
+            <label for="specialty" data-i18n="form-specialty">Ιατρική ειδικότητα (προαιρετικό)</label>
+            <input id="specialty" name="specialty" type="text" autocomplete="organization-title" maxlength="120" aria-describedby="specialty-error">
             <p id="specialty-error" class="field-error" data-error-for="specialty" aria-live="polite"></p>
           </div>
           <div class="form-field">
