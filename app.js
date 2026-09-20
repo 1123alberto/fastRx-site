@@ -32,7 +32,20 @@ const COPY = {
     "step5-title": "Υποβολή μέσω ΗΔΙΚΑ",
     "step5-text": "Υποστηριζόμενη ολοκλήρωση της συνταγής μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ, μετά από επιβεβαίωση του ιατρού.",
 
-    // Status / responsibility Section
+    // Current capabilities
+    "capabilities-title": "Εργαλεία για την καθημερινή χρήση",
+    "capabilities-label": "Τρέχουσες δυνατότητες FastRx",
+    "capability-referrals": "Ροή παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται.",
+    "capability-productivity": "Δομημένα πρότυπα, αγαπημένα και πρόσφατα φάρμακα για ταχύτερη επανάληψη συνηθισμένων ενεργειών.",
+    "capability-appearance": "Εμφάνιση φωτεινού, σκοτεινού ή συστήματος, ανάλογα με την προτίμηση του χρήστη.",
+    "capability-pwa": "Εγκατάσταση ως PWA σε υποστηριζόμενες συσκευές, με συμπεριφορά ενημέρωσης της εφαρμογής.",
+
+    // Sync
+    "sync-card-title": "Προαιρετικό FastRx Sync",
+    "sync-main-text": "<p>Το FastRx Sync είναι προαιρετικό και ξεχωριστό από την κλινική υποβολή μέσω ΗΔΙΚΑ.</p><p>Μπορεί να συγχρονίζει υποστηριζόμενα δεδομένα επιπέδου λογαριασμού, όπως αγαπημένα, προτιμήσεις και δομημένα πρότυπα, μεταξύ υποστηριζόμενων εγκαταστάσεων.</p>",
+    "sync-disclaimer-text": "Το FastRx Sync δεν χρησιμοποιείται για αποθήκευση ή συγχρονισμό δεδομένων ασθενών, συνταγών ή άλλων κλινικών στοιχείων ασθενών.",
+
+    // Responsibility Section
     "status-card-title": "FastRx, ΗΔΙΚΑ και κλινική ευθύνη",
     "status-main-text": "<p>Το FastRx υποστηρίζει τη ροή εργασίας και χρησιμοποιεί τις επίσημες υπηρεσίες ΗΔΙΚΑ για τις λειτουργίες που υποστηρίζονται.</p><p>Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις και δεν επιλέγει διάγνωση, φάρμακο ή εξέταση αντί του ιατρού.</p>",
     "status-disclaimer-text": "Η διάγνωση, η επιλογή φαρμάκου ή εξέτασης, η δοσολογία, η διάρκεια, οι εξαιρέσεις ή επιλογές συμμετοχής και η τελική υποβολή παραμένουν ευθύνη του εξουσιοδοτημένου επαγγελματία υγείας.",
@@ -97,7 +110,20 @@ const COPY = {
     "step5-title": "Submit through IDIKA",
     "step5-text": "Supported prescription completion through official IDIKA services after clinician confirmation.",
 
-    // Status / responsibility Section
+    // Current capabilities
+    "capabilities-title": "Tools for everyday use",
+    "capabilities-label": "Current FastRx capabilities",
+    "capability-referrals": "Referral workflow where applicable and supported.",
+    "capability-productivity": "Structured templates, favorites and recent medicines for faster repetition of common actions.",
+    "capability-appearance": "Light, dark or system appearance according to user preference.",
+    "capability-pwa": "Installable as a PWA on supported devices, with application update behavior.",
+
+    // Sync
+    "sync-card-title": "Optional FastRx Sync",
+    "sync-main-text": "<p>FastRx Sync is optional and separate from clinical submission through IDIKA.</p><p>It can synchronize supported account-level data such as favorites, preferences and structured templates between supported installations.</p>",
+    "sync-disclaimer-text": "FastRx Sync is not used to store or synchronize patient data, prescriptions, or other patient clinical information.",
+
+    // Responsibility Section
     "status-card-title": "FastRx, IDIKA and clinical responsibility",
     "status-main-text": "<p>FastRx supports the workflow and uses official IDIKA services for supported operations.</p><p>It does not make independent clinical decisions or choose a diagnosis, medicine or examination on behalf of the clinician.</p>",
     "status-disclaimer-text": "Diagnosis, medicine or examination choice, dosage, duration, exceptions or copayment choices, and final submission remain the responsibility of the authorized healthcare professional.",
@@ -140,9 +166,6 @@ const COPY = {
 
 let currentLang = 'gr';
 
-/**
- * Update DOM elements with translations based on current language
- */
 function updateDOM() {
   document.documentElement.lang = currentLang === 'gr' ? 'el' : 'en';
   const ogLocale = document.querySelector('meta[property="og:locale"]');
@@ -151,9 +174,7 @@ function updateDOM() {
   const translatableElements = document.querySelectorAll('[data-i18n]');
   translatableElements.forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (COPY[currentLang] && COPY[currentLang][key]) {
-      element.innerHTML = COPY[currentLang][key];
-    }
+    if (COPY[currentLang] && COPY[currentLang][key]) element.innerHTML = COPY[currentLang][key];
   });
 
   document.querySelectorAll('[data-i18n-aria]').forEach(element => {
@@ -165,17 +186,13 @@ function updateDOM() {
   if (languageInput) languageInput.value = currentLang;
 
   const titleElement = document.querySelector('title');
-  if (titleElement && COPY[currentLang]['meta-title']) {
-    titleElement.textContent = COPY[currentLang]['meta-title'];
-  }
+  if (titleElement && COPY[currentLang]['meta-title']) titleElement.textContent = COPY[currentLang]['meta-title'];
 
   const metaElements = document.querySelectorAll('[data-i18n-meta]');
   metaElements.forEach(element => {
     const attrName = element.getAttribute('data-i18n-meta');
     const key = attrName === 'description' ? 'meta-description' : attrName;
-    if (COPY[currentLang] && COPY[currentLang][key]) {
-      element.setAttribute('content', COPY[currentLang][key]);
-    }
+    if (COPY[currentLang] && COPY[currentLang][key]) element.setAttribute('content', COPY[currentLang][key]);
   });
 
   const heroCta = document.querySelector('[data-i18n="hero-cta"]');
@@ -199,22 +216,13 @@ function updateDOM() {
 
   const languageButton = document.getElementById('lang-btn');
   if (languageButton) {
-    languageButton.setAttribute(
-      'aria-label',
-      currentLang === 'gr' ? 'Switch language to English' : 'Αλλαγή γλώσσας στα Ελληνικά'
-    );
+    languageButton.setAttribute('aria-label', currentLang === 'gr' ? 'Switch language to English' : 'Αλλαγή γλώσσας στα Ελληνικά');
   }
 
   const badge = document.querySelector('.status-badge');
-  if (badge) {
-    badge.style.letterSpacing = currentLang === 'gr' ? '0.02em' : '0.05em';
-  }
+  if (badge) badge.style.letterSpacing = currentLang === 'gr' ? '0.02em' : '0.05em';
 }
 
-/**
- * Change the active language state
- * @param {string} lang - 'gr' or 'en'
- */
 function setLanguage(lang) {
   if (lang === 'gr' || lang === 'en') {
     currentLang = lang;
@@ -223,16 +231,10 @@ function setLanguage(lang) {
   }
 }
 
-/**
- * Restore an explicit saved preference; otherwise default to Greek.
- */
 function initLanguage() {
   const savedLang = localStorage.getItem('fastrx_lang');
-  if (savedLang && (savedLang === 'gr' || savedLang === 'en')) {
-    currentLang = savedLang;
-  } else {
-    currentLang = 'gr';
-  }
+  if (savedLang && (savedLang === 'gr' || savedLang === 'en')) currentLang = savedLang;
+  else currentLang = 'gr';
   updateDOM();
 }
 
