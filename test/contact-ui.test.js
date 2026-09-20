@@ -5,10 +5,18 @@ import { readFile } from 'node:fs/promises';
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const js = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 
-test('homepage presents the current FastRx product and production app link', () => {
+test('homepage presents the current FastRx product and controlled access paths', () => {
   assert.match(html, /id="contact-form"/);
   assert.match(html, /https:\/\/app\.fastrx\.gr\//);
-  assert.match(html, /Άνοιγμα FastRx/);
+  assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
+  assert.match(html, /Είσοδος στο FastRx/);
+  assert.match(js, /Sign in to FastRx/);
+  assert.match(html, /href="#contact"[^>]*data-i18n="hero-secondary-cta"/);
+  assert.match(html, /Ζητήστε πρόσβαση/);
+  assert.match(js, /Request access/);
+  assert.match(js, /Η αυθεντικοποίηση μέσω ΗΔΙΚΑ είναι απαραίτητη, αλλά δεν παρέχει από μόνη της πρόσβαση/);
+  assert.match(js, /IDIKA authentication is required, but does not by itself grant access/);
+  assert.match(html, /data-i18n="hero-access-note"/);
   assert.doesNotMatch(html, /Δοκιμάστε το πριν από όλους/);
   assert.doesNotMatch(html, /τελικά στάδια ανάπτυξης/);
 });
@@ -27,6 +35,8 @@ test('reason options use current semantics and bilingual contact content is avai
   assert.match(js, /Επικοινωνήστε με το FastRx/);
   assert.match(js, /I have feedback or a suggestion/);
   assert.match(js, /Έχω πρόταση ή σχόλιο/);
+  assert.match(html, /Θέλω να ζητήσω πρόσβαση στο FastRx/);
+  assert.match(js, /I would like to request FastRx access/);
 });
 
 test('privacy copy accurately acknowledges contact-form data processing', () => {
