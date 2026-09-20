@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import handler, { buildEmail, deliverContactEmail, resetRateLimits, validateContactPayload } from '../api/contact.js';
 
-const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'dentistry', reason: 'early-access', message: 'A useful message from clinical practice.', language: 'en', company: '' };
+const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'dentistry', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'en', company: '' };
 
 function response() {
   return { statusCode: 200, body: null, headers: {}, setHeader(k, v) { this.headers[k] = v; }, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } };
@@ -14,15 +14,19 @@ test('validates and trims a complete payload', () => {
   assert.equal(result.data.name, 'Dr Test');
 });
 
-test('rejects malformed, incomplete, invalid email, and honeypot payloads', () => {
+test('rejects malformed, incomplete, invalid email, invalid reason, and honeypot payloads', () => {
   assert.equal(validateContactPayload(null).ok, false);
   assert.equal(validateContactPayload({ ...valid, name: '' }).ok, false);
   assert.equal(validateContactPayload({ ...valid, email: 'invalid' }).ok, false);
+  assert.equal(validateContactPayload({ ...valid, reason: 'unknown' }).ok, false);
   assert.equal(validateContactPayload({ ...valid, company: 'spam' }).bot, true);
 });
 
-test('escapes visitor content in HTML email', () => {
+test('contact email is general-purpose, includes reason, and escapes visitor content', () => {
   const email = buildEmail({ ...valid, message: '<script>alert(1)</script>' }, '2026-01-01T00:00:00.000Z');
+  assert.equal(email.subject, 'Νέο μήνυμα επικοινωνίας - FastRx');
+  assert.match(email.html, /Reason:<\/strong> Feedback or suggestion/);
+  assert.match(email.text, /Reason: Feedback or suggestion/);
   assert.doesNotMatch(email.html, /<script>/);
   assert.match(email.html, /&lt;script&gt;/);
   assert.match(email.text, /Submitted: 2026/);
@@ -32,6 +36,7 @@ test('delivery uses reply-to and surfaces provider failures', async () => {
   let sent;
   await deliverContactEmail(valid, { RESEND_API_KEY: 'secret', CONTACT_EMAIL_FROM: 'FastRx <sender@example.com>', CONTACT_EMAIL_TO: 'info@fastrx.gr' }, async (_url, options) => { sent = JSON.parse(options.body); return { ok: true }; });
   assert.equal(sent.reply_to, valid.email);
+  assert.equal(sent.subject, 'Νέο μήνυμα επικοινωνίας - FastRx');
   await assert.rejects(() => deliverContactEmail(valid, { RESEND_API_KEY: 'secret', CONTACT_EMAIL_FROM: 'sender@example.com' }, async () => ({ ok: false })));
   await assert.rejects(() => deliverContactEmail(valid, {}));
 });
