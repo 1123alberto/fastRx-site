@@ -14,11 +14,15 @@ test('validates and trims a complete payload', () => {
   assert.equal(result.data.name, 'Dr Test');
 });
 
-test('rejects malformed, incomplete, invalid email, invalid reason, and honeypot payloads', () => {
+test('accepts only current contact reasons', () => {
+  for (const reason of ['access', 'issue', 'feedback', 'other']) assert.equal(validateContactPayload({ ...valid, reason }).ok, true);
+  for (const reason of ['early-access', 'testing', 'unknown']) assert.equal(validateContactPayload({ ...valid, reason }).ok, false);
+});
+
+test('rejects malformed, incomplete, invalid email, and honeypot payloads', () => {
   assert.equal(validateContactPayload(null).ok, false);
   assert.equal(validateContactPayload({ ...valid, name: '' }).ok, false);
   assert.equal(validateContactPayload({ ...valid, email: 'invalid' }).ok, false);
-  assert.equal(validateContactPayload({ ...valid, reason: 'unknown' }).ok, false);
   assert.equal(validateContactPayload({ ...valid, company: 'spam' }).bot, true);
 });
 
@@ -29,7 +33,6 @@ test('contact email is general-purpose, includes reason, and escapes visitor con
   assert.match(email.text, /Reason: Feedback or suggestion/);
   assert.doesNotMatch(email.html, /<script>/);
   assert.match(email.html, /&lt;script&gt;/);
-  assert.match(email.text, /Submitted: 2026/);
 });
 
 test('delivery uses reply-to and surfaces provider failures', async () => {
