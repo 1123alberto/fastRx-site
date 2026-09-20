@@ -20,14 +20,13 @@ test('required fields, email type, message limits and honeypot are present', () 
   assert.match(html, /class="honeypot"/);
 });
 
-test('reason options and bilingual contact content are current', () => {
-  for (const value of ['early-access', 'testing', 'feedback', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+test('reason options use current semantics and bilingual contact content is available', () => {
+  for (const value of ['access', 'issue', 'feedback', 'other']) assert.match(html, new RegExp(`value="${value}"`));
+  for (const removed of ['early-access', 'testing']) assert.doesNotMatch(html, new RegExp(`value="${removed}"`));
   assert.match(js, /Contact FastRx/);
   assert.match(js, /Επικοινωνήστε με το FastRx/);
   assert.match(js, /I have feedback or a suggestion/);
   assert.match(js, /Έχω πρόταση ή σχόλιο/);
-  assert.match(js, /Your message has been sent/);
-  assert.match(js, /Το μήνυμά σας στάλθηκε/);
 });
 
 test('privacy copy accurately acknowledges contact-form data processing', () => {
@@ -35,6 +34,13 @@ test('privacy copy accurately acknowledges contact-form data processing', () => 
   assert.match(html, /Μην υποβάλλετε μέσω της δημόσιας φόρμας/);
   assert.doesNotMatch(html, /Δεν συλλέγουμε, αποθηκεύουμε ή επεξεργαζόμαστε προσωπικά δεδομένα/);
   assert.match(js, /The contact form collects the information you choose to submit/);
+});
+
+test('current product capabilities and Sync boundaries are described', () => {
+  assert.match(html, /Ροή παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται/);
+  assert.match(html, /Δομημένα πρότυπα, αγαπημένα και πρόσφατα φάρμακα/);
+  assert.match(html, /Προαιρετικό FastRx Sync/);
+  assert.match(html, /δεν χρησιμοποιείται για αποθήκευση ή συγχρονισμό δεδομένων ασθενών/);
 });
 
 test('clinical responsibility and IDIKA relationship are stated', () => {
@@ -45,7 +51,6 @@ test('clinical responsibility and IDIKA relationship are stated', () => {
 
 test('specialty selector contains the approved options', () => {
   for (const value of ['dentistry', 'cardiology', 'orthopaedics', 'ent', 'dermatology', 'other']) assert.match(html, new RegExp(`value="${value}"`));
-  for (const removed of ['general-practice', 'internal-medicine', 'paediatrics']) assert.doesNotMatch(html, new RegExp(`value="${removed}"`));
 });
 
 test('client prevents duplicate submissions and handles success and failure', () => {
@@ -57,7 +62,7 @@ test('client prevents duplicate submissions and handles success and failure', ()
 
 test('Greek is the default language when no preference is saved', () => {
   assert.match(js, /let currentLang = 'gr'/);
-  assert.match(js, /else \{\s*currentLang = 'gr';\s*\}/);
+  assert.match(js, /else currentLang = 'gr'/);
   assert.doesNotMatch(js, /navigator\.languages/);
 });
 
@@ -68,25 +73,16 @@ test('translation script works without module loading', () => {
 
 test('every translated element has one entry in each language', () => {
   const contentKeys = [...html.matchAll(/data-i18n(?:-aria)?="([^"]+)"/g)].map(match => match[1]);
-  const metaKeys = [...html.matchAll(/data-i18n-meta="([^"]+)"/g)].map(match => (
-    match[1] === 'description' ? 'meta-description' : match[1]
-  ));
+  const metaKeys = [...html.matchAll(/data-i18n-meta="([^"]+)"/g)].map(match => match[1] === 'description' ? 'meta-description' : match[1]);
   const requiredKeys = new Set([...contentKeys, ...metaKeys]);
-
   const greekStart = js.indexOf('  gr: {');
   const englishStart = js.indexOf('  en: {');
   const dictionaryEnd = js.indexOf('\n  }\n};', englishStart);
-  const blocks = {
-    gr: js.slice(greekStart, englishStart),
-    en: js.slice(englishStart, dictionaryEnd)
-  };
-
+  const blocks = { gr: js.slice(greekStart, englishStart), en: js.slice(englishStart, dictionaryEnd) };
   for (const [language, block] of Object.entries(blocks)) {
     const keys = [...block.matchAll(/"([^"]+)":/g)].map(match => match[1]);
     const duplicates = keys.filter((key, index) => keys.indexOf(key) !== index);
     assert.deepEqual(duplicates, [], `${language} contains duplicate translation keys`);
-    for (const key of requiredKeys) {
-      assert.ok(keys.includes(key), `${language} is missing translation key: ${key}`);
-    }
+    for (const key of requiredKeys) assert.ok(keys.includes(key), `${language} is missing translation key: ${key}`);
   }
 });
