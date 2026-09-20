@@ -34,21 +34,29 @@ export function buildEmail(data, timestamp = new Date().toISOString()) {
     dermatology: 'Dermatology',
     other: 'Other'
   };
+  const reasonLabels = {
+    'early-access': 'Access or usage question',
+    testing: 'Problem or technical issue',
+    feedback: 'Feedback or suggestion',
+    other: 'Other'
+  };
   const specialty = specialtyLabels[data.specialty] || data.specialty;
+  const reason = reasonLabels[data.reason] || data.reason;
 
   const html = `
 <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
 <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
 <p><strong>Specialty:</strong> ${escapeHtml(specialty)}</p>
+<p><strong>Reason:</strong> ${escapeHtml(reason)}</p>
 <p><strong>Submitted:</strong> ${escapeHtml(timestamp)}</p>
 <p><strong>Message:</strong></p>
 <p>${escapeHtml(data.message).replace(/\n/g, '<br>')}</p>
   `.trim();
 
-  const text = `Name: ${data.name}\nEmail: ${data.email}\nSpecialty: ${specialty}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
+  const text = `Name: ${data.name}\nEmail: ${data.email}\nSpecialty: ${specialty}\nReason: ${reason}\nSubmitted: ${timestamp}\n\nMessage:\n${data.message}`;
 
   return {
-    subject: 'Νέο Αίτημα Πρώιμης Πρόσβασης - FastRx',
+    subject: 'Νέο μήνυμα επικοινωνίας - FastRx',
     html,
     text
   };
