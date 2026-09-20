@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title data-i18n="meta-title">FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας</title>
-  <meta name="description" content="Το FastRx οργανώνει τη ροή ηλεκτρονικής συνταγογράφησης για εξουσιοδοτημένους επαγγελματίες υγείας και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ." data-i18n-meta="description">
+  <title data-i18n="meta-title">FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς</title>
+  <meta name="description" content="FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ, με αναζήτηση ασθενούς, ICD-10 και αναζήτηση φαρμάκων." data-i18n-meta="description">
   <link rel="canonical" href="https://fastrx.gr/">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -15,21 +15,21 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FastRx">
   <meta property="og:url" content="https://fastrx.gr/">
-  <meta property="og:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας" data-i18n-meta="og:title">
-  <meta property="og:description" content="Κλινική ροή εργασίας για αναζήτηση ασθενούς, ICD-10, φάρμακα, έλεγχο και υποστηριζόμενη υποβολή μέσω ΗΔΙΚΑ." data-i18n-meta="og:description">
+  <meta property="og:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς" data-i18n-meta="og:title">
+  <meta property="og:description" content="Ηλεκτρονική συνταγογράφηση για ιατρούς: αναζήτηση ασθενούς, ICD-10, φάρμακα και υποστηριζόμενη ροή μέσω ΗΔΙΚΑ." data-i18n-meta="og:description">
   <meta property="og:image" content="https://fastrx.gr/og-image.png">
   <meta property="og:image:secure_url" content="https://fastrx.gr/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για επαγγελματίες υγείας">
+  <meta property="og:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για ιατρούς">
   <meta property="og:locale" content="el_GR">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση για Επαγγελματίες Υγείας" data-i18n-meta="twitter:title">
-  <meta name="twitter:description" content="Κλινική ροή εργασίας για αναζήτηση ασθενούς, ICD-10, φάρμακα, έλεγχο και υποστηριζόμενη υποβολή μέσω ΗΔΙΚΑ." data-i18n-meta="twitter:description">
+  <meta name="twitter:title" content="FastRx | Ηλεκτρονική Συνταγογράφηση για Ιατρούς" data-i18n-meta="twitter:title">
+  <meta name="twitter:description" content="Ηλεκτρονική συνταγογράφηση για ιατρούς: αναζήτηση ασθενούς, ICD-10, φάρμακα και υποστηριζόμενη ροή μέσω ΗΔΙΚΑ." data-i18n-meta="twitter:description">
   <meta name="twitter:image" content="https://fastrx.gr/og-image.png">
-  <meta name="twitter:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για επαγγελματίες υγείας">
+  <meta name="twitter:image:alt" content="FastRx — ηλεκτρονική συνταγογράφηση για ιατρούς">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,6 +56,16 @@
           "name": "FastRx",
           "inLanguage": ["el", "en"],
           "publisher": { "@id": "https://fastrx.gr/#organization" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://fastrx.gr/#webapplication",
+          "name": "FastRx",
+          "url": "https://fastrx.gr/",
+          "applicationCategory": "HealthApplication",
+          "operatingSystem": "Web",
+          "description": "FastRx is a clinical workflow tool for physicians supporting electronic prescribing through official IDIKA services.",
+          "publisher": { "@id": "https://fastrx.gr/#organization" }
         }
       ]
     }
@@ -67,7 +77,7 @@
 
   <header class="site-header">
     <div class="header-container container">
-      <a href="#" class="brand-link" aria-label="FastRx Home">
+      <a href="/" class="brand-link" aria-label="FastRx Home">
         <div class="logo-wrapper"><img class="brand-logo" src="/favicon.svg" alt="FastRx"></div>
         <span class="brand-name">FastRx</span>
       </a>
@@ -86,7 +96,7 @@
       <div class="hero-content">
         <span class="status-badge" data-i18n="hero-badge">ΕΠΙΣΗΜΗ ΙΣΤΟΣΕΛΙΔΑ</span>
         <h1 class="hero-title" data-i18n="hero-title">Η ηλεκτρονική συνταγογράφηση σε μία καθαρή, συνεχή ροή.</h1>
-        <p class="hero-subtitle" data-i18n="hero-subtitle">Το FastRx είναι εργαλείο κλινικής ροής για εξουσιοδοτημένους επαγγελματίες υγείας. Συνδέει τα βασικά βήματα της συνταγογράφησης και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ.</p>
+        <p class="hero-subtitle" data-i18n="hero-subtitle">Το FastRx είναι εργαλείο κλινικής ροής για ιατρούς. Συνδέει τα βασικά βήματα της ηλεκτρονικής συνταγογράφησης και υποστηρίζει επιλεγμένες λειτουργίες μέσω των επίσημων υπηρεσιών ΗΔΙΚΑ.</p>
         <div class="hero-actions">
           <a href="https://app.fastrx.gr/" class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="hero-cta">Είσοδος στο FastRx</a>
           <a href="#contact" class="btn btn-secondary" data-i18n="hero-secondary-cta">Ζητήστε πρόσβαση</a>
@@ -115,7 +125,7 @@
 
     <section class="problem-section container">
       <div class="problem-card">
-        <h2 class="problem-title" data-i18n="capabilities-title">Εργαλεία για την καθημερινή χρήση</h2>
+        <h2 class="problem-title" data-i18n="capabilities-title">Εργαλεία ηλεκτρονικής συνταγογράφησης για ιατρούς</h2>
         <ul class="contact-benefits" aria-label="Τρέχουσες δυνατότητες FastRx" data-i18n-aria="capabilities-label">
           <li data-i18n="capability-referrals">Ροή παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται.</li>
           <li data-i18n="capability-productivity">Δομημένα πρότυπα, αγαπημένα και πρόσφατα φάρμακα για ταχύτερη επανάληψη συνηθισμένων ενεργειών.</li>
