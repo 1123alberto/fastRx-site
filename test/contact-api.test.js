@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import handler, { buildEmail, deliverContactEmail, resetRateLimits, validateContactPayload } from '../api/contact.js';
+import handler, { buildEmail, deliverContactEmail, forwardBetaAccessRequest, resetRateLimits, validateContactPayload } from '../api/contact.js';
 
 const valid = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'Cardiology and Sleep Medicine', reason: 'feedback', message: 'A useful message from clinical practice.', language: 'gr', company: '' };
 
@@ -81,3 +81,191 @@ test('endpoint does not return false success when delivery is unavailable', asyn
   assert.equal(res.statusCode, 503);
   Object.assign(process.env, original);
 });
+
+const betaEnv = {
+  RESEND_API_KEY: 'test-resend-key',
+  CONTACT_EMAIL_FROM: 'FastRx <contact@example.com>',
+  CONTACT_EMAIL_TO: 'info@fastrx.gr',
+  FASTRX_BETA_REQUEST_INGEST_URL: 'https://admin.fastrx.gr/api/internal/beta-requests',
+  FASTRX_BETA_REQUEST_INGEST_SECRET: 'super-internal-secret',
+};
+
+test('reason=access forwards beta request to Admin-FastRx with 4-field payload and auth header', async () => {
+  resetRateLimits();
+  let emailSent = false;
+  let ingestSent = false;
+  let capturedIngestHeaders = null;
+  let capturedIngestBody = null;
+
+  const mockFetch = async (url, options) => {
+    if (url === 'https://api.resend.com/emails') {
+      emailSent = true;
+      return { ok: true };
+    }
+    if (url === betaEnv.FASTRX_BETA_REQUEST_INGEST_URL) {
+      ingestSent = true;
+      capturedIngestHeaders = options.headers;
+      capturedIngestBody = JSON.parse(options.body);
+      return { ok: true, status: 201 };
+    }
+    throw new Error(`Unexpected URL: ${url}`);
+  };
+
+  const res = response();
+  const body = { ...valid, reason: 'access', specialty: 'Neurology' };
+  await handler(
+    { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': 'beta-test-1' }, body },
+    res,
+    { env: betaEnv, fetchImpl: mockFetch }
+  );
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(res.body, { ok: true });
+  assert.equal(emailSent, true, 'Resend email must be sent');
+  assert.equal(ingestSent, true, 'Admin-FastRx ingestion must be called');
+  assert.equal(capturedIngestHeaders['Authorization'], `Bearer ${betaEnv.FASTRX_BETA_REQUEST_INGEST_SECRET}`);
+  assert.equal(capturedIngestHeaders['Content-Type'], 'application/json');
+  assert.deepEqual(capturedIngestBody, {
+    name: 'Dr Test',
+    email: 'doctor@example.com',
+    specialty: 'Neurology',
+    message: 'A useful message from clinical practice.',
+  });
+  assert.deepEqual(Object.keys(capturedIngestBody).sort(), ['email', 'message', 'name', 'specialty']);
+});
+
+test('non-access reasons (issue, feedback, other) do not trigger beta ingestion', async () => {
+  for (const reason of ['issue', 'feedback', 'other']) {
+    resetRateLimits();
+    let emailSent = false;
+    let ingestSent = false;
+
+    const mockFetch = async (url) => {
+      if (url === 'https://api.resend.com/emails') {
+        emailSent = true;
+        return { ok: true };
+      }
+      if (url === betaEnv.FASTRX_BETA_REQUEST_INGEST_URL) {
+        ingestSent = true;
+        return { ok: true, status: 201 };
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    };
+
+    const res = response();
+    await handler(
+      { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': `non-access-${reason}` }, body: { ...valid, reason } },
+      res,
+      { env: betaEnv, fetchImpl: mockFetch }
+    );
+
+    assert.equal(res.statusCode, 200);
+    assert.equal(emailSent, true, `Email should be sent for reason=${reason}`);
+    assert.equal(ingestSent, false, `Beta ingestion must NOT be called for reason=${reason}`);
+  }
+});
+
+test('beta ingestion returning 500 does not fail public contact submission after email succeeds', async () => {
+  resetRateLimits();
+  let emailSent = false;
+  let ingestSent = false;
+
+  const mockFetch = async (url) => {
+    if (url === 'https://api.resend.com/emails') {
+      emailSent = true;
+      return { ok: true };
+    }
+    if (url === betaEnv.FASTRX_BETA_REQUEST_INGEST_URL) {
+      ingestSent = true;
+      return { ok: false, status: 500 };
+    }
+    throw new Error(`Unexpected URL: ${url}`);
+  };
+
+  const res = response();
+  await handler(
+    { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': 'ingest-500-test' }, body: { ...valid, reason: 'access' } },
+    res,
+    { env: betaEnv, fetchImpl: mockFetch }
+  );
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(res.body, { ok: true });
+  assert.equal(emailSent, true);
+  assert.equal(ingestSent, true);
+});
+
+test('beta ingestion throwing network error does not fail public contact submission after email succeeds', async () => {
+  resetRateLimits();
+  let emailSent = false;
+
+  const mockFetch = async (url) => {
+    if (url === 'https://api.resend.com/emails') {
+      emailSent = true;
+      return { ok: true };
+    }
+    if (url === betaEnv.FASTRX_BETA_REQUEST_INGEST_URL) {
+      throw new Error('Connection refused by remote host');
+    }
+    throw new Error(`Unexpected URL: ${url}`);
+  };
+
+  const res = response();
+  await handler(
+    { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': 'ingest-neterr-test' }, body: { ...valid, reason: 'access' } },
+    res,
+    { env: betaEnv, fetchImpl: mockFetch }
+  );
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(res.body, { ok: true });
+  assert.equal(emailSent, true);
+});
+
+test('missing beta ingestion configuration still allows access requests to succeed via email', async () => {
+  resetRateLimits();
+  let emailSent = false;
+  let ingestSent = false;
+
+  const envWithoutIngest = {
+    RESEND_API_KEY: 'test-resend-key',
+    CONTACT_EMAIL_FROM: 'FastRx <contact@example.com>',
+    CONTACT_EMAIL_TO: 'info@fastrx.gr',
+  };
+
+  const mockFetch = async (url) => {
+    if (url === 'https://api.resend.com/emails') {
+      emailSent = true;
+      return { ok: true };
+    }
+    ingestSent = true;
+    return { ok: true };
+  };
+
+  const res = response();
+  await handler(
+    { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': 'missing-config-test' }, body: { ...valid, reason: 'access' } },
+    res,
+    { env: envWithoutIngest, fetchImpl: mockFetch }
+  );
+
+  assert.equal(res.statusCode, 200);
+  assert.deepEqual(res.body, { ok: true });
+  assert.equal(emailSent, true);
+  assert.equal(ingestSent, false);
+});
+
+test('forwardBetaAccessRequest helper validates configuration and surfaces provider errors', async () => {
+  const sampleData = { name: 'Dr Test', email: 'doctor@example.com', specialty: 'General', message: 'Valid message for testing.' };
+
+  await assert.rejects(
+    () => forwardBetaAccessRequest(sampleData, {}),
+    /Beta request ingestion is not configured/
+  );
+
+  await assert.rejects(
+    () => forwardBetaAccessRequest(sampleData, betaEnv, async () => ({ ok: false, status: 401 })),
+    /Beta request ingestion rejected with status 401/
+  );
+});
+

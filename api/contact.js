@@ -58,6 +58,39 @@ export async function deliverContactEmail(data, env = process.env, fetchImpl = f
   if (!response.ok) throw new Error('Email provider rejected the request.');
 }
 
+export async function forwardBetaAccessRequest(data, env = process.env, fetchImpl = fetch) {
+  const url = env.FASTRX_BETA_REQUEST_INGEST_URL;
+  const secret = env.FASTRX_BETA_REQUEST_INGEST_SECRET;
+  if (!url || !secret) {
+    throw new Error('Beta request ingestion is not configured.');
+  }
+
+  const payload = {
+    name: data.name,
+    email: data.email,
+    specialty: data.specialty,
+    message: data.message
+  };
+
+  const response = await fetchImpl(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${secret}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload),
+    signal: typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function'
+      ? AbortSignal.timeout(5000)
+      : undefined
+  });
+
+  if (!response.ok) {
+    throw new Error(`Beta request ingestion rejected with status ${response.status}`);
+  }
+
+  return response;
+}
+
 function isRateLimited(ip, now = Date.now()) {
   const recent = (rateLimits.get(ip) || []).filter(time => now - time < WINDOW_MS);
   recent.push(now);
@@ -67,7 +100,7 @@ function isRateLimited(ip, now = Date.now()) {
 
 export function resetRateLimits() { rateLimits.clear(); }
 
-export default async function handler(req, res) {
+export default async function handler(req, res, { env = process.env, fetchImpl = fetch } = {}) {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -80,9 +113,18 @@ export default async function handler(req, res) {
   const result = validateContactPayload(req.body);
   if (!result.ok) return res.status(400).json({ error: result.error });
   try {
-    await deliverContactEmail(result.data);
-    return res.status(200).json({ ok: true });
+    await deliverContactEmail(result.data, env, fetchImpl);
   } catch {
     return res.status(503).json({ error: 'Message delivery is currently unavailable.' });
   }
+
+  if (result.data.reason === 'access') {
+    try {
+      await forwardBetaAccessRequest(result.data, env, fetchImpl);
+    } catch (err) {
+      console.warn('[contact-api] Beta request ingestion failed:', err?.message || 'Unknown error');
+    }
+  }
+
+  return res.status(200).json({ ok: true });
 }
