@@ -315,6 +315,176 @@ p {
 
 .access-note { max-width: 680px; margin: 1.25rem auto 0; font-size: .9rem; line-height: 1.55; color: var(--slate-600); }
 
+/* FastRx Office Coming Soon */
+.office-section {
+  padding: 0 1.5rem 2rem;
+}
+
+.office-card {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--theme-200);
+  border-radius: 22px;
+  background: linear-gradient(120deg, rgba(255, 255, 255, .96), rgba(234, 246, 250, .85));
+  box-shadow: var(--shadow-lg);
+}
+
+.office-copy { min-width: 0; }
+
+.office-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .35rem .75rem;
+  border-radius: 9999px;
+  background: var(--theme-800);
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.office-kicker {
+  margin-top: .85rem;
+  color: var(--theme-700);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.office-title {
+  margin-top: .35rem;
+  font-size: 2.25rem;
+  letter-spacing: -.04em;
+}
+
+.office-lead {
+  margin-top: .5rem;
+  color: var(--slate-800);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.office-text {
+  max-width: 650px;
+  margin-top: .85rem;
+  color: var(--slate-700);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.office-note {
+  max-width: 650px;
+  margin-top: .85rem;
+  padding-top: .85rem;
+  border-top: 1px solid var(--theme-200);
+  color: var(--theme-800);
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
+.office-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+  padding: 1rem .5rem 0;
+}
+
+.office-monitor {
+  width: min(100%, 330px);
+  aspect-ratio: 16 / 10;
+  padding: 7px;
+  border: 1px solid var(--theme-700);
+  border-radius: 10px;
+  background: var(--theme-800);
+  box-shadow: 0 14px 24px rgba(18, 66, 84, .18);
+}
+
+.office-monitor-bar {
+  display: flex;
+  gap: 4px;
+  height: 12px;
+  padding: 3px 4px;
+}
+
+.office-monitor-bar span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--theme-300);
+}
+
+.office-monitor-body {
+  display: grid;
+  grid-template-columns: 23% 1fr;
+  height: calc(100% - 12px);
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--white);
+}
+
+.office-sidebar {
+  background: linear-gradient(var(--theme-100) 0 18%, var(--slate-100) 18% 100%);
+}
+
+.office-workspace {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 12px;
+  background: var(--slate-50);
+}
+
+.office-line {
+  display: block;
+  width: 68%;
+  height: 6px;
+  border-radius: 4px;
+  background: var(--theme-300);
+}
+
+.office-line-wide { width: 86%; background: var(--theme-500); }
+.office-line-short { width: 45%; }
+
+.office-workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.office-workspace-grid span {
+  display: block;
+  height: 38px;
+  border: 1px solid var(--theme-200);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.office-stand {
+  width: 28px;
+  height: 22px;
+  border-right: 5px solid var(--theme-800);
+  border-bottom: 5px solid var(--theme-800);
+  border-left: 5px solid var(--theme-800);
+}
+
+.office-base {
+  width: 80px;
+  height: 5px;
+  margin-top: -2px;
+  border-radius: 5px;
+  background: var(--theme-800);
+}
+
 .problem-section {
   padding: 0 1.5rem 1.5rem;
 }
@@ -715,6 +885,13 @@ p {
     gap: 2rem;
   }
 
+  .office-card {
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
+    padding: 2.25rem 2.5rem;
+  }
+
+  .office-title { font-size: 2.75rem; }
+
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
@@ -755,6 +932,8 @@ p {
     grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
   }
+
+  .office-card { padding: 2.5rem 3rem; }
 
   .workflow-card {
     padding: 1.75rem 1.25rem;
