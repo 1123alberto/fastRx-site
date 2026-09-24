@@ -13,9 +13,9 @@ const ogImage = await readFile(new URL('public/og-image.png', root));
 
 test('homepage exposes canonical indexation and social metadata', () => {
   assert.match(html, /<title[^>]*>FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς<\/title>/);
-  assert.match(html, /name="description" content="FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ/);
+  assert.match(html, /name="description" content="FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω του Συστήματος Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
   assert.match(app, /"meta-title": "FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς"/);
-  assert.match(app, /"meta-description": "FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω ΗΔΙΚΑ/);
+  assert.match(app, /"meta-description": "FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω του Συστήματος Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
   assert.match(html, /rel="canonical" href="https:\/\/fastrx\.gr\/"/);
   assert.match(html, /name="robots" content="index, follow/);
   assert.doesNotMatch(html, /noindex|nofollow/i);
@@ -52,7 +52,7 @@ test('robots policy advertises the canonical sitemap', () => {
   assert.match(robots, /Disallow: \/api\//);
   assert.match(robots, /Sitemap: https:\/\/fastrx\.gr\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-09-20<\/lastmod>/);
+  assert.match(sitemap, /<lastmod>2026-09-25<\/lastmod>/);
   assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
 });
 

@@ -12,7 +12,7 @@ test('homepage presents the current FastRx product and controlled access paths',
   assert.match(html, /Είσοδος στο FastRx/);
   assert.match(html, /href="#contact"[^>]*data-i18n="hero-secondary-cta"/);
   assert.match(html, /Ζητήστε πρόσβαση/);
-  assert.match(js, /Η αυθεντικοποίηση μέσω ΗΔΙΚΑ είναι απαραίτητη, αλλά δεν παρέχει από μόνη της πρόσβαση/);
+  assert.match(js, /Η σύνδεση στο ΣΗΣ είναι απαραίτητη για τις λειτουργίες συνταγογράφησης, αλλά δεν παρέχει από μόνη της πρόσβαση στο FastRx/);
   assert.match(html, /data-i18n="hero-access-note"/);
   assert.doesNotMatch(html, /id="lang-btn"|class="lang-selector"/);
   assert.doesNotMatch(js, /currentLang|setLanguage|localStorage|Sign in to FastRx|Request access|Electronic Prescribing/);
@@ -54,7 +54,7 @@ test('current product capabilities and Sync boundaries are described', () => {
 });
 
 test('clinical responsibility and IDIKA relationship are stated', () => {
-  assert.match(html, /επίσημες υπηρεσίες ΗΔΙΚΑ/);
+  assert.match(html, /επίσημες υπηρεσίες του ΣΗΣ/);
   assert.match(html, /Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις/);
   assert.match(js, /Δεν λαμβάνει ανεξάρτητες κλινικές αποφάσεις/);
 });
