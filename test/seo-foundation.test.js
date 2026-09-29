@@ -7,7 +7,6 @@ const html = await readFile(new URL('index.html', root), 'utf8');
 const app = await readFile(new URL('app.js', root), 'utf8');
 const robots = await readFile(new URL('public/robots.txt', root), 'utf8');
 const sitemap = await readFile(new URL('public/sitemap.xml', root), 'utf8');
-const manifest = await readFile(new URL('public/site.webmanifest', root), 'utf8');
 const vercelConfig = await readFile(new URL('vercel.json', root), 'utf8');
 const ogImage = await readFile(new URL('public/og-image.png', root));
 
@@ -67,7 +66,23 @@ test('homepage has a single meaningful H1 and logical section headings', () => {
   assert.doesNotMatch(html, /early.access|pre-launch|prelaunch|beta application|before launch/i);
 });
 
-test('manifest and deployment configuration parse as JSON', () => {
-  assert.doesNotThrow(() => JSON.parse(manifest));
+test('deployment configuration parses as JSON and excludes web manifest', () => {
   assert.doesNotThrow(() => JSON.parse(vercelConfig));
+  assert.doesNotMatch(vercelConfig, /site\.webmanifest/);
 });
+
+test('canonical fastrx logo is referenced across head, header, and json-ld, and web manifest is removed', async () => {
+  const iconSvg = await readFile(new URL('public/fastrx-icon.svg', root));
+  const faviconSvg = await readFile(new URL('public/favicon.svg', root));
+  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  const data = JSON.parse(match[1]);
+  const organization = data['@graph'].find(item => item['@type'] === 'Organization');
+
+  assert.ok(iconSvg.length > 20000, 'canonical SVG logo should exist and contain full vector data');
+  assert.equal(iconSvg.length, faviconSvg.length, 'favicon.svg should be synchronized with canonical fastrx-icon.svg');
+  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/fastrx-icon\.svg">/);
+  assert.match(html, /<img class="brand-logo" src="\/fastrx-icon\.svg" alt="FastRx"/);
+  assert.equal(organization.logo, 'https://fastrx.gr/fastrx-icon.svg');
+  assert.doesNotMatch(html, /rel="manifest"/i);
+});
+

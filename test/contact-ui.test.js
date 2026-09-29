@@ -88,3 +88,23 @@ test('every translated element has one Greek copy entry', () => {
   for (const key of requiredKeys) assert.ok(keys.includes(key), `Greek copy is missing translation key: ${key}`);
   assert.doesNotMatch(js, /Electronic Prescribing|Contact FastRx|Request access|Privacy Policy/);
 });
+
+test('FastRx Office is presented as available with entry link and synchronized copy', () => {
+  assert.match(html, /data-i18n="office-badge"[^>]*>ΔΙΑΘΕΣΙΜΟ</);
+  assert.match(js, /"office-badge": "ΔΙΑΘΕΣΙΜΟ"/);
+  assert.doesNotMatch(html, /ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ/);
+  assert.doesNotMatch(js, /ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ/);
+  assert.doesNotMatch(html, /επερχόμενη έκδοση/i);
+  assert.doesNotMatch(js, /επερχόμενη έκδοση/i);
+  assert.match(html, /data-i18n="office-title"[^>]*>FastRx Office</);
+  assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό, tablet και υπολογιστή/);
+  assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
+  assert.match(html, /Είσοδος στο FastRx/);
+  assert.match(js, /"hero-cta": "Είσοδος στο FastRx"/);
+  assert.match(html, /href="https:\/\/office\.fastrx\.gr\/"[^>]*data-i18n="office-cta"/);
+  assert.match(html, /Είσοδος στο FastRx Office/);
+  assert.match(js, /"office-cta": "Είσοδος στο FastRx Office"/);
+  assert.match(js, /https:\/\/office\.fastrx\.gr\//);
+  assert.match(html, /data-i18n="office-note"[^>]*>Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
+  assert.match(js, /"office-note": "Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
+});
