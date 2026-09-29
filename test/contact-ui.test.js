@@ -97,7 +97,7 @@ test('FastRx Office is presented as available with entry link and synchronized c
   assert.doesNotMatch(html, /επερχόμενη έκδοση/i);
   assert.doesNotMatch(js, /επερχόμενη έκδοση/i);
   assert.match(html, /data-i18n="office-title"[^>]*>FastRx Office</);
-  assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό, tablet και υπολογιστή/);
+  assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή/);
   assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
   assert.match(html, /Είσοδος στο FastRx/);
   assert.match(js, /"hero-cta": "Είσοδος στο FastRx"/);
@@ -107,4 +107,24 @@ test('FastRx Office is presented as available with entry link and synchronized c
   assert.match(js, /https:\/\/office\.fastrx\.gr\//);
   assert.match(html, /data-i18n="office-note"[^>]*>Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
   assert.match(js, /"office-note": "Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
+});
+
+test('hero title, office lead, and access note wording match updated copy and remain synchronized', () => {
+  assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\.</);
+  assert.match(js, /"hero-title": "Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\."/);
+  assert.match(html, /data-i18n="office-lead"[^>]*>Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\.</);
+  assert.match(js, /"office-lead": "Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\."/);
+  assert.match(html, /data-i18n="hero-access-note"[^>]*>Το FastRx βρίσκεται σε beta και η πρόσβαση παρέχεται μόνο κατόπιν πρόσκλησης σε ιατρούς\. Η σύνδεση στο ΣΗΣ είναι απαραίτητη για τις λειτουργίες συνταγογράφησης, αλλά δεν παρέχει από μόνη της πρόσβαση στο FastRx\. Αν θέλετε να συμμετάσχετε, μπορείτε να ζητήσετε πρόσβαση μέσω της φόρμας επικοινωνίας\.</);
+  assert.match(js, /"hero-access-note": "Το FastRx βρίσκεται σε beta και η πρόσβαση παρέχεται μόνο κατόπιν πρόσκλησης σε ιατρούς\. Η σύνδεση στο ΣΗΣ είναι απαραίτητη για τις λειτουργίες συνταγογράφησης, αλλά δεν παρέχει από μόνη της πρόσβαση στο FastRx\. Αν θέλετε να συμμετάσχετε, μπορείτε να ζητήσετε πρόσβαση μέσω της φόρμας επικοινωνίας\."/);
+});
+
+test('FastRx Office visual includes decorative secondary tablet illustration alongside dominant monitor', () => {
+  assert.match(html, /<div class="office-visual" aria-hidden="true">/);
+  assert.match(html, /<div class="office-scene">/);
+  assert.match(html, /<div class="office-monitor">/);
+  assert.match(html, /<div class="office-tablet" aria-hidden="true">/);
+  assert.match(html, /class="office-tablet-screen"/);
+  assert.match(html, /class="office-tablet-camera"/);
+  assert.match(html, /class="office-tablet-workspace"/);
+  assert.match(html, /class="office-tablet-home"/);
 });
