@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const js = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
 
 test('homepage presents the current FastRx product and controlled access paths', () => {
   assert.match(html, /id="contact-form"/);
@@ -118,13 +119,13 @@ test('hero title, office lead, and access note wording match updated copy and re
   assert.match(js, /"hero-access-note": "Το FastRx βρίσκεται σε beta και η πρόσβαση παρέχεται μόνο κατόπιν πρόσκλησης σε ιατρούς\. Η σύνδεση στο ΣΗΣ είναι απαραίτητη για τις λειτουργίες συνταγογράφησης, αλλά δεν παρέχει από μόνη της πρόσβαση στο FastRx\. Αν θέλετε να συμμετάσχετε, μπορείτε να ζητήσετε πρόσβαση μέσω της φόρμας επικοινωνίας\."/);
 });
 
-test('FastRx Office visual includes decorative secondary tablet illustration alongside dominant monitor', () => {
+test('FastRx Office visual uses the transparent Office and mobile product preview', async () => {
   assert.match(html, /<div class="office-visual" aria-hidden="true">/);
-  assert.match(html, /<div class="office-scene">/);
-  assert.match(html, /<div class="office-monitor">/);
-  assert.match(html, /<div class="office-tablet" aria-hidden="true">/);
-  assert.match(html, /class="office-tablet-screen"/);
-  assert.match(html, /class="office-tablet-camera"/);
-  assert.match(html, /class="office-tablet-workspace"/);
-  assert.match(html, /class="office-tablet-home"/);
+  assert.match(html, /<img\s+class="office-product-preview"\s+src="\/fastrx-office-mobile-preview\.png"\s+alt=""\s+width="1614"\s+height="975"\s+loading="lazy"\s*>/s);
+  assert.match(styles, /\.office-product-preview\s*\{[^}]*width:\s*100%[^}]*max-width:\s*480px[^}]*height:\s*auto/s);
+  assert.doesNotMatch(html + styles, /office-scene|office-monitor|office-tablet/);
+
+  const image = await readFile(new URL('../public/fastrx-office-mobile-preview.png', import.meta.url));
+  assert.deepEqual(image.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  assert.equal(image[25], 6, 'preview PNG should retain its RGBA transparency');
 });

@@ -406,195 +406,16 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 190px;
-  padding: 1rem .5rem 0;
+  min-width: 0;
+  padding: .5rem 0;
 }
 
-.office-scene {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: min(100%, 330px);
-}
-
-.office-monitor {
+.office-product-preview {
+  display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  padding: 7px;
-  border: 1px solid var(--theme-700);
-  border-radius: 10px;
-  background: var(--theme-800);
-  box-shadow: 0 14px 24px rgba(18, 66, 84, .18);
-  position: relative;
-  z-index: 1;
-}
-
-.office-monitor-bar {
-  display: flex;
-  gap: 4px;
-  height: 12px;
-  padding: 3px 4px;
-}
-
-.office-monitor-bar span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--theme-300);
-}
-
-.office-monitor-body {
-  display: grid;
-  grid-template-columns: 23% 1fr;
-  height: calc(100% - 12px);
-  overflow: hidden;
-  border-radius: 5px;
-  background: var(--white);
-}
-
-.office-sidebar {
-  background: linear-gradient(var(--theme-100) 0 18%, var(--slate-100) 18% 100%);
-}
-
-.office-workspace {
-  display: grid;
-  align-content: start;
-  gap: 8px;
-  padding: 12px;
-  background: var(--slate-50);
-}
-
-.office-line {
-  display: block;
-  width: 68%;
-  height: 6px;
-  border-radius: 4px;
-  background: var(--theme-300);
-}
-
-.office-line-wide { width: 86%; background: var(--theme-500); }
-.office-line-short { width: 45%; }
-
-.office-workspace-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  margin: 5px 0;
-}
-
-.office-workspace-grid span {
-  display: block;
-  height: 38px;
-  border: 1px solid var(--theme-200);
-  border-radius: 4px;
-  background: var(--white);
-}
-
-.office-stand {
-  width: 28px;
-  height: 22px;
-  border-right: 5px solid var(--theme-800);
-  border-bottom: 5px solid var(--theme-800);
-  border-left: 5px solid var(--theme-800);
-}
-
-.office-base {
-  width: 80px;
-  height: 5px;
-  margin-top: -2px;
-  border-radius: 5px;
-  background: var(--theme-800);
-}
-
-.office-tablet {
-  position: absolute;
-  right: -10px;
-  bottom: 6px;
-  width: 86px;
-  height: 122px;
-  padding: 5px;
-  border: 1px solid var(--theme-700);
-  border-radius: 8px;
-  background: var(--theme-800);
-  box-shadow: 0 12px 22px rgba(18, 66, 84, .24);
-  z-index: 2;
-}
-
-.office-tablet-screen {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
-  background: var(--slate-50);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.office-tablet-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 8px;
-  background: var(--theme-100);
-  border-bottom: 1px solid var(--theme-200);
-}
-
-.office-tablet-camera {
-  display: block;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--theme-400);
-}
-
-.office-tablet-workspace {
-  padding: 6px 5px;
-  display: grid;
-  align-content: start;
-  gap: 4px;
-  flex: 1;
-}
-
-.office-tablet-line {
-  display: block;
-  width: 70%;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--theme-300);
-}
-
-.office-tablet-line-wide {
-  width: 88%;
-  background: var(--theme-500);
-}
-
-.office-tablet-line-short {
-  width: 48%;
-}
-
-.office-tablet-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px;
-  margin: 2px 0;
-}
-
-.office-tablet-grid span {
-  display: block;
-  height: 20px;
-  border: 1px solid var(--theme-200);
-  border-radius: 3px;
-  background: var(--white);
-}
-
-.office-tablet-home {
-  display: block;
-  width: 20px;
-  height: 2px;
-  margin: 2px auto 3px;
-  border-radius: 2px;
-  background: var(--slate-300);
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
 }
 
 .problem-section {
@@ -983,21 +804,6 @@ p {
     text-align: center;
   }
 
-  .office-scene {
-    width: min(100%, 280px);
-  }
-
-  .office-tablet {
-    width: 70px;
-    height: 100px;
-    right: -4px;
-    bottom: 4px;
-    padding: 4px;
-  }
-
-  .office-tablet-grid span {
-    height: 16px;
-  }
 }
 
 /* Media Queries (Tablet and Desktop) */
