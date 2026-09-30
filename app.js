@@ -108,6 +108,17 @@ function updateDOM() {
 document.addEventListener('DOMContentLoaded', () => {
   updateDOM();
 
+  const officePreviewTrigger = document.querySelector('.office-preview-trigger');
+  const officePreviewDialog = document.getElementById('office-preview-dialog');
+  const officePreviewClose = officePreviewDialog?.querySelector('.office-preview-close');
+  if (officePreviewTrigger && officePreviewDialog?.showModal) {
+    officePreviewTrigger.addEventListener('click', () => officePreviewDialog.showModal());
+    officePreviewClose?.addEventListener('click', () => officePreviewDialog.close());
+    officePreviewDialog.addEventListener('click', event => {
+      if (event.target === officePreviewDialog) officePreviewDialog.close();
+    });
+  }
+
   const contactForm = document.getElementById('contact-form');
   const submitButton = document.getElementById('contact-submit');
   const formStatus = document.getElementById('form-status');

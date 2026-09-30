@@ -418,6 +418,70 @@ p {
   object-fit: contain;
 }
 
+.office-preview-trigger {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.office-preview-trigger:focus-visible,
+.office-preview-close:focus-visible {
+  outline: 3px solid var(--theme-500);
+  outline-offset: 4px;
+}
+
+.office-preview-dialog {
+  position: fixed;
+  width: min(94vw, 1100px);
+  max-width: none;
+  max-height: 92vh;
+  padding: clamp(.5rem, 2vw, 1.25rem);
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 16px;
+  background: #102832;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+}
+
+.office-preview-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.office-preview-dialog::backdrop {
+  background: rgba(5, 18, 24, .82);
+  backdrop-filter: blur(4px);
+}
+
+.office-preview-dialog img {
+  display: block;
+  width: 100%;
+  max-height: calc(92vh - 2.5rem);
+  object-fit: contain;
+}
+
+.office-preview-close {
+  position: absolute;
+  z-index: 1;
+  top: .5rem;
+  right: .5rem;
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(16, 40, 50, .85);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .problem-section {
   padding: 0 1.5rem 1.5rem;
 }

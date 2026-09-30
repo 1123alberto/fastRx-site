@@ -111,15 +111,17 @@
             <a href="https://office.fastrx.gr/" class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="office-cta">Είσοδος στο FastRx Office</a>
           </div>
         </div>
-        <div class="office-visual" aria-hidden="true">
-          <img
-            class="office-product-preview"
-            src="/fastrx-office-mobile-preview.png"
-            alt=""
-            width="1614"
-            height="975"
-            loading="lazy"
-          >
+        <div class="office-visual">
+          <button class="office-preview-trigger" type="button" aria-label="Μεγέθυνση εικόνας FastRx Office και κινητού">
+            <img
+              class="office-product-preview"
+              src="/fastrx-office-mobile-preview.png"
+              alt="FastRx Office σε υπολογιστή και FastRx σε κινητό"
+              width="1614"
+              height="975"
+              loading="lazy"
+            >
+          </button>
         </div>
       </div>
     </section>
@@ -238,6 +240,11 @@
       <div class="modal-footer"><button id="modal-confirm-btn" class="btn btn-primary" data-i18n="modal-close">Κλείσιμο</button></div>
     </div>
   </div>
+
+  <dialog id="office-preview-dialog" class="office-preview-dialog" aria-label="Προεπισκόπηση FastRx Office και κινητού">
+    <button class="office-preview-close" type="button" aria-label="Κλείσιμο μεγενθυμένης εικόνας">&times;</button>
+    <img src="/fastrx-office-mobile-preview.png" alt="FastRx Office σε υπολογιστή και FastRx σε κινητό" width="1614" height="975">
+  </dialog>
 
   <script defer src="./app.js"></script>
 </body>
