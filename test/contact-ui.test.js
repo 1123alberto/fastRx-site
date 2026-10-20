@@ -123,7 +123,7 @@ test('hero title, office lead, and access note wording match updated copy and re
 
 test('FastRx Office visual uses the transparent Office and mobile product preview', async () => {
   assert.match(html, /<div class="office-visual">/);
-  assert.match(html, /<button class="office-preview-trigger" type="button" aria-label="Μεγέθυνση εικόνας FastRx Office και κινητού">\s*<img\s+class="office-product-preview"\s+src="\/fastrx-office-mobile-preview\.png"\s+alt="FastRx Office σε υπολογιστή και FastRx σε κινητό"\s+width="1614"\s+height="975"\s+loading="lazy"\s*>\s*<\/button>/s);
+  assert.match(html, /<button class="office-preview-trigger" type="button" aria-label="Μεγέθυνση εικόνας FastRx Office και κινητού">\s*<img\s+class="office-product-preview"\s+src="\/fastrx-office-mobile-preview-safe\.png"\s+alt="FastRx Office σε υπολογιστή και FastRx σε κινητό"\s+width="1614"\s+height="975"\s+loading="lazy"\s*>\s*<\/button>/s);
   assert.match(html, /<dialog id="office-preview-dialog" class="office-preview-dialog"[^>]*>/);
   assert.match(html, /class="office-preview-close" type="button" aria-label="Κλείσιμο μεγενθυμένης εικόνας"/);
   assert.match(js, /officePreviewDialog\.showModal\(\)/);
@@ -133,7 +133,7 @@ test('FastRx Office visual uses the transparent Office and mobile product previe
   assert.match(styles, /\.office-product-preview\s*\{[^}]*width:\s*100%[^}]*max-width:\s*480px[^}]*height:\s*auto/s);
   assert.doesNotMatch(html + styles, /office-scene|office-monitor|office-tablet/);
 
-  const image = await readFile(new URL('../public/fastrx-office-mobile-preview.png', import.meta.url));
+  const image = await readFile(new URL('../public/fastrx-office-mobile-preview-safe.png', import.meta.url));
   assert.deepEqual(image.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
   assert.equal(image[25], 6, 'preview PNG should retain its RGBA transparency');
 });

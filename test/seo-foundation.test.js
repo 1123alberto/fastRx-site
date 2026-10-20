@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const html = await readFile(new URL('index.html', root), 'utf8');
 const mobile = await readFile(new URL('mobile/index.html', root), 'utf8');
+const office = await readFile(new URL('office/index.html', root), 'utf8');
 const app = await readFile(new URL('app.js', root), 'utf8');
 const robots = await readFile(new URL('public/robots.txt', root), 'utf8');
 const sitemap = await readFile(new URL('public/sitemap.xml', root), 'utf8');
@@ -54,7 +55,53 @@ test('robots policy advertises the canonical sitemap', () => {
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>\s*<lastmod>2026-09-29<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/mobile\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/office\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 3);
+});
+
+test('Office exposes static page-specific metadata and indexable content', () => {
+  const title = 'FastRx Office | Ηλεκτρονική Συνταγογράφηση σε Υπολογιστή και Tablet';
+  const description = 'FastRx Office για ιατρούς: ηλεκτρονική συνταγογράφηση σε υπολογιστή και tablet μέσω του ΣΗΣ. Δείτε τη ροή εργασίας και ζητήστε πρόσβαση.';
+  assert.ok(office.includes(`<title>${title}</title>`));
+  assert.ok(office.includes(`name="description" content="${description}"`));
+  for (const key of ['og:title', 'twitter:title']) assert.ok(office.includes(`="${key}" content="${title}"`));
+  for (const key of ['og:description', 'twitter:description']) assert.ok(office.includes(`="${key}" content="${description}"`));
+  assert.match(office, /rel="canonical" href="https:\/\/fastrx\.gr\/office\/"/);
+  assert.match(office, /property="og:url" content="https:\/\/fastrx\.gr\/office\/"/);
+  assert.match(office, /property="og:locale" content="el_GR"/);
+  for (const key of ['robots', 'googlebot']) assert.ok(office.includes(`name="${key}" content="index, follow`));
+  for (const key of ['og:image', 'twitter:image']) assert.ok(office.includes(`="${key}" content="https://fastrx.gr/og-image.png"`));
+  assert.match(office, /<html lang="el">/);
+  assert.match(office, /name="viewport"/);
+  assert.doesNotMatch(office, /<script\b|data-i18n|noindex|nofollow/i);
+  assert.equal((office.match(/<h1\b/g) || []).length, 1);
+  assert.match(office, /<h1[^>]*>FastRx Office — Ηλεκτρονική συνταγογράφηση σε υπολογιστή και tablet<\/h1>/);
+  let previousLevel = 0;
+  for (const [, level] of office.matchAll(/<h([1-6])\b/g)) {
+    assert.ok(Number(level) <= previousLevel + 1, 'heading levels must not skip');
+    previousLevel = Number(level);
+  }
+  for (const [, target] of office.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(office.includes(`id="${target}"`));
+});
+
+test('Office preserves supported scope, access boundaries, clinical disclaimers, and navigation', () => {
+  assert.match(office, /Αναζήτηση ασθενούς και καταχώριση και διαχείριση επισκέψεων στο ΣΗΣ, όπου υποστηρίζεται/);
+  assert.match(office, /ICD-10/);
+  assert.match(office, /μετά από επιβεβαίωση του ιατρού/);
+  assert.match(office, /δημιουργία παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ/);
+  assert.match(office, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
+  assert.match(office, /μόνο κατόπιν πρόσκλησης σε ιατρούς/);
+  assert.match(office, /κανονική αυθεντικοποίηση στο ΣΗΣ/);
+  assert.match(office, /Τα διαπιστευτήρια του ΣΗΣ από μόνα τους δεν παρέχουν πρόσβαση στο FastRx/);
+  for (const className of ['status-main-text', 'status-disclaimer-text']) {
+    const tag = className === 'status-main-text' ? 'div' : 'p';
+    const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
+    assert.ok(office.includes(content), `${className} must preserve homepage wording`);
+  }
+  for (const href of ['/', '/mobile/', 'https://office.fastrx.gr/', 'https://fastrx.gr/#contact']) assert.ok(office.includes(`href="${href}"`));
+  assert.match(html, /<a href="\/office\/">FastRx Office<\/a>/);
+  assert.ok(app.includes('<a href=\\"/office/\\">FastRx Office</a>'), 'homepage script must preserve the Office link');
+  assert.match(office, /<img[^>]*class="office-product-preview"[^>]*src="\/fastrx-office-mobile-preview-safe\.png"[^>]*width="1614"[^>]*height="975"[^>]*loading="lazy"/);
 });
 
 test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {

@@ -14,7 +14,8 @@ export default defineConfig({
     rolldownOptions: {
       input: {
         main: resolve('index.html'),
-        mobile: resolve('mobile/index.html')
+        mobile: resolve('mobile/index.html'),
+        office: resolve('office/index.html')
       }
     },
     outDir: 'dist',
