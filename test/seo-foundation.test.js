@@ -51,7 +51,7 @@ test('robots policy advertises the canonical sitemap', () => {
   assert.match(robots, /Disallow: \/api\//);
   assert.match(robots, /Sitemap: https:\/\/fastrx\.gr\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-09-25<\/lastmod>/);
+  assert.match(sitemap, /<lastmod>2026-09-29<\/lastmod>/);
   assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
 });
 
