@@ -318,6 +318,11 @@ p {
   flex-wrap: wrap;
 }
 
+.hero-subtitle a {
+  color: var(--theme-700);
+  text-underline-offset: .15em;
+}
+
 .access-note { max-width: 680px; margin: 1.25rem auto 0; font-size: .9rem; line-height: 1.55; color: var(--slate-600); }
 
 /* FastRx Office */

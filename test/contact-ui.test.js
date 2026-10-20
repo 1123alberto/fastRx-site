@@ -47,11 +47,13 @@ test('privacy copy accurately acknowledges contact-form data processing', () => 
   assert.match(js, /Η φόρμα επικοινωνίας συλλέγει τα στοιχεία/);
 });
 
-test('current product capabilities and Sync boundaries are described', () => {
-  assert.match(html, /Ροή παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται/);
-  assert.match(html, /Δομημένα πρότυπα, αγαπημένα και πρόσφατα φάρμακα/);
-  assert.match(html, /Προαιρετικό FastRx Sync/);
-  assert.match(html, /δεν χρησιμοποιείται για αποθήκευση ή συγχρονισμό δεδομένων ασθενών/);
+test('current product capabilities are described without unfinished Sync claims', () => {
+  for (const source of [html, js]) {
+    assert.match(source, /Δημιουργία και υποβολή παραπεμπτικών, όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ\./);
+    assert.match(source, /Αγαπημένα φάρμακα, πρόσφατες επιλογές και επαναχρησιμοποιούμενα πρότυπα για τις καθημερινές εργασίες συνταγογράφησης\./);
+    assert.doesNotMatch(source, /FastRx Sync/);
+    assert.doesNotMatch(source, /sync-card-title|sync-main-text|sync-disclaimer-text/);
+  }
 });
 
 test('clinical responsibility and IDIKA relationship are stated', () => {
@@ -106,8 +108,8 @@ test('FastRx Office is presented as available with entry link and synchronized c
   assert.match(html, /Είσοδος στο FastRx Office/);
   assert.match(js, /"office-cta": "Είσοδος στο FastRx Office"/);
   assert.match(js, /https:\/\/office\.fastrx\.gr\//);
-  assert.match(html, /data-i18n="office-note"[^>]*>Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
-  assert.match(js, /"office-note": "Προσφέρει ταχύτερη ροή με λιγότερη πλοήγηση/);
+  assert.match(html, /data-i18n="office-note"[^>]*>Σχεδιασμένο ειδικά για χρήση σε υπολογιστή και tablet, με έμφαση στην επισκόπηση των στοιχείων και στη λιγότερη πλοήγηση\. Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\.</);
+  assert.match(js, /"office-note": "Σχεδιασμένο ειδικά για χρήση σε υπολογιστή και tablet, με έμφαση στην επισκόπηση των στοιχείων και στη λιγότερη πλοήγηση\. Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\."/);
 });
 
 test('hero title, office lead, and access note wording match updated copy and remain synchronized', () => {

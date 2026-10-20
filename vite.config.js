@@ -11,6 +11,12 @@ export default defineConfig({
     }
   }],
   build: {
+    rolldownOptions: {
+      input: {
+        main: resolve('index.html'),
+        mobile: resolve('mobile/index.html')
+      }
+    },
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false

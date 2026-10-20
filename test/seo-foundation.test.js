@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const html = await readFile(new URL('index.html', root), 'utf8');
+const mobile = await readFile(new URL('mobile/index.html', root), 'utf8');
 const app = await readFile(new URL('app.js', root), 'utf8');
 const robots = await readFile(new URL('public/robots.txt', root), 'utf8');
 const sitemap = await readFile(new URL('public/sitemap.xml', root), 'utf8');
@@ -51,8 +52,47 @@ test('robots policy advertises the canonical sitemap', () => {
   assert.match(robots, /Disallow: \/api\//);
   assert.match(robots, /Sitemap: https:\/\/fastrx\.gr\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-09-29<\/lastmod>/);
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 1);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>\s*<lastmod>2026-09-29<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/mobile\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
+});
+
+test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {
+  const title = 'FastRx Mobile | Ηλεκτρονική Συνταγογράφηση στο Κινητό';
+  const description = 'FastRx Mobile για ιατρούς: ηλεκτρονική συνταγογράφηση στο κινητό μέσω του ΣΗΣ. Δείτε τη ροή εργασίας και πώς να ζητήσετε πρόσβαση.';
+  assert.ok(mobile.includes(`<title>${title}</title>`));
+  assert.ok(mobile.includes(`name="description" content="${description}"`));
+  for (const key of ['og:title', 'twitter:title']) assert.ok(mobile.includes(`="${key}" content="${title}"`));
+  for (const key of ['og:description', 'twitter:description']) assert.ok(mobile.includes(`="${key}" content="${description}"`));
+  assert.match(mobile, /rel="canonical" href="https:\/\/fastrx\.gr\/mobile\/"/);
+  assert.match(mobile, /property="og:url" content="https:\/\/fastrx\.gr\/mobile\/"/);
+  assert.match(mobile, /property="og:locale" content="el_GR"/);
+  assert.match(mobile, /name="robots" content="index, follow/);
+  assert.match(mobile, /<html lang="el">/);
+  assert.match(mobile, /name="viewport"/);
+  assert.doesNotMatch(mobile, /<script\b|data-i18n|noindex|nofollow/i);
+  for (const key of ['og:image', 'twitter:image']) assert.ok(mobile.includes(`="${key}" content="https://fastrx.gr/og-image.png"`));
+});
+
+test('Mobile has an accessible workflow, correct access links, and unchanged clinical disclaimers', () => {
+  assert.equal((mobile.match(/<h1\b/g) || []).length, 1);
+  assert.match(mobile, /<h1[^>]*>FastRx Mobile — Ηλεκτρονική συνταγογράφηση στο κινητό<\/h1>/);
+  assert.equal((mobile.match(/<h2\b/g) || []).length, 4);
+  assert.equal((mobile.match(/<h3\b/g) || []).length, 5);
+  for (const [, target] of mobile.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(mobile.includes(`id="${target}"`));
+  assert.match(mobile, /href="https:\/\/app\.fastrx\.gr\/"/);
+  assert.match(mobile, /href="https:\/\/fastrx\.gr\/#contact"/);
+  assert.match(mobile, /href="\/"/);
+  assert.match(mobile, /μόνο κατόπιν πρόσκλησης σε ιατρούς/);
+  assert.match(mobile, /κανονική αυθεντικοποίηση στο ΣΗΣ/);
+  assert.match(mobile, /Τα διαπιστευτήρια του ΣΗΣ από μόνα τους δεν παρέχουν πρόσβαση στο FastRx/);
+  for (const className of ['status-main-text', 'status-disclaimer-text']) {
+    const tag = className === 'status-main-text' ? 'div' : 'p';
+    const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
+    assert.ok(mobile.includes(content), `${className} must preserve homepage wording`);
+  }
+  assert.match(html, /<a href="\/mobile\/">FastRx Mobile<\/a>/);
+  assert.ok(app.includes('<a href=\\"/mobile/\\">FastRx Mobile</a>'), 'homepage script must preserve the link');
 });
 
 test('homepage has a single meaningful H1 and logical section headings', () => {
