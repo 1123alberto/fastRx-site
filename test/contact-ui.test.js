@@ -6,14 +6,14 @@ const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const js = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
 
-test('homepage presents public availability and direct product launch links', () => {
+test('homepage presents product positioning and direct application links', () => {
   assert.match(html, /id="contact-form"/);
   assert.match(html, /https:\/\/app\.fastrx\.gr\//);
   assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
   assert.match(html, /Είσοδος στο FastRx/);
   assert.match(html, /href="https:\/\/office\.fastrx\.gr\/"[^>]*data-i18n="hero-secondary-cta"/);
-  assert.match(html, /χωρίς πρόσκληση ή ξεχωριστή εγγραφή FastRx/);
-  assert.match(js, /Η σύνδεση μέσω IDIKA\/ΣΗΣ είναι απαραίτητη/);
+  assert.match(html, /Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
+  assert.match(js, /προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
   assert.doesNotMatch(html + js, /beta|ζητήστε πρόσβαση|ζητήσω πρόσβαση/i);
   assert.match(html, /data-i18n="hero-access-note"/);
   assert.doesNotMatch(html, /id="lang-btn"|class="lang-selector"/);
@@ -114,13 +114,13 @@ test('FastRx Office is presented as available with entry link and synchronized c
   assert.match(js, /"office-note": "Σχεδιασμένο ειδικά για χρήση σε υπολογιστή και tablet, με έμφαση στην επισκόπηση των στοιχείων και στη λιγότερη πλοήγηση\. Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\."/);
 });
 
-test('hero title, office lead, and public access note wording match updated copy', () => {
+test('hero title, office lead, and access note match updated copy', () => {
   assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\.</);
   assert.match(js, /"hero-title": "Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\."/);
   assert.match(html, /data-i18n="office-lead"[^>]*>Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\.</);
   assert.match(js, /"office-lead": "Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\."/);
-  assert.match(html, /data-i18n="hero-access-note"[^>]*>Το FastRx είναι διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή FastRx\. Η σύνδεση μέσω IDIKA\/ΣΗΣ είναι απαραίτητη\. Δεν υπάρχει συνδρομή FastRx κατά την αρχική δημόσια διάθεση\./);
-  assert.match(js, /"hero-access-note": "Το FastRx είναι διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή FastRx\. Η σύνδεση μέσω IDIKA\/ΣΗΣ είναι απαραίτητη\. Δεν υπάρχει συνδρομή FastRx κατά την αρχική δημόσια διάθεση\."/);
+  assert.match(html, /data-i18n="hero-access-note"[^>]*>Η πρόσβαση στις λειτουργίες συνταγογράφησης γίνεται με τα προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)\. Η χρήση του FastRx παρέχεται χωρίς συνδρομή\./);
+  assert.match(js, /"hero-access-note": "Η πρόσβαση στις λειτουργίες συνταγογράφησης γίνεται με τα προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)\. Η χρήση του FastRx παρέχεται χωρίς συνδρομή\."/);
 });
 
 test('FastRx Office visual uses the transparent Office and mobile product preview', async () => {

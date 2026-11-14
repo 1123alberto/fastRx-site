@@ -14,9 +14,9 @@ const ogImage = await readFile(new URL('public/og-image.png', root));
 
 test('homepage exposes canonical indexation and social metadata', () => {
   assert.match(html, /<title[^>]*>FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς<\/title>/);
-  assert.match(html, /name="description" content="Το FastRx είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή/);
+  assert.match(html, /name="description" content="Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
   assert.match(app, /"meta-title": "FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς"/);
-  assert.match(app, /"meta-description": "Το FastRx είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή/);
+  assert.match(app, /"meta-description": "Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
   assert.match(html, /rel="canonical" href="https:\/\/fastrx\.gr\/"/);
   assert.match(html, /name="robots" content="index, follow/);
   assert.doesNotMatch(html, /noindex|nofollow/i);
@@ -61,7 +61,7 @@ test('robots policy advertises the canonical sitemap', () => {
 
 test('Office exposes static page-specific metadata and indexable content', () => {
   const title = 'FastRx Office | Ηλεκτρονική Συνταγογράφηση σε Υπολογιστή και Tablet';
-  const description = 'Το FastRx Office είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή και χωρίς συνδρομή κατά την αρχική διάθεση. Απαιτείται σύνδεση μέσω IDIKA/ΣΗΣ.';
+  const description = 'Το FastRx Office είναι εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς σε υπολογιστή και tablet, με πρόσβαση μέσω των προσωπικών τους διαπιστευτηρίων στο Σύστημα Ηλεκτρονικής Συνταγογράφησης (ΣΗΣ).';
   assert.ok(office.includes(`<title>${title}</title>`));
   assert.ok(office.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(office.includes(`="${key}" content="${title}"`));
@@ -90,10 +90,9 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
   assert.match(office, /μετά από επιβεβαίωση του ιατρού/);
   assert.match(office, /δημιουργία παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ/);
   assert.match(office, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
-  assert.match(office, /διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση/);
-  assert.match(office, /χωρίς συνδρομή κατά την αρχική διάθεση/);
-  assert.match(office, /σύνδεση μέσω IDIKA\/ΣΗΣ/);
-  assert.doesNotMatch(office, /beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
+  assert.match(office, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
+  assert.match(office, /προσωπικά διαπιστευτήρια του ιατρού/);
+  assert.doesNotMatch(office, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
   for (const className of ['status-main-text', 'status-disclaimer-text']) {
     const tag = className === 'status-main-text' ? 'div' : 'p';
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
@@ -107,7 +106,7 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
 
 test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {
   const title = 'FastRx Mobile | Ηλεκτρονική Συνταγογράφηση στο Κινητό';
-  const description = 'Το FastRx Mobile είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή και χωρίς συνδρομή κατά την αρχική διάθεση. Απαιτείται σύνδεση μέσω IDIKA/ΣΗΣ.';
+  const description = 'Το FastRx Mobile είναι εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς, με πρόσβαση μέσω των προσωπικών τους διαπιστευτηρίων στο Σύστημα Ηλεκτρονικής Συνταγογράφησης (ΣΗΣ).';
   assert.ok(mobile.includes(`<title>${title}</title>`));
   assert.ok(mobile.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(mobile.includes(`="${key}" content="${title}"`));
@@ -132,10 +131,9 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
   assert.match(mobile, /href="https:\/\/office\.fastrx\.gr\/"/);
   assert.match(mobile, /href="https:\/\/fastrx\.gr\/#contact"/);
   assert.match(mobile, /href="\/"/);
-  assert.match(mobile, /διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση/);
-  assert.match(mobile, /χωρίς συνδρομή κατά την αρχική διάθεση/);
-  assert.match(mobile, /σύνδεση μέσω IDIKA\/ΣΗΣ/);
-  assert.doesNotMatch(mobile, /beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
+  assert.match(mobile, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
+  assert.match(mobile, /προσωπικά διαπιστευτήρια του ιατρού/);
+  assert.doesNotMatch(mobile, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
   for (const className of ['status-main-text', 'status-disclaimer-text']) {
     const tag = className === 'status-main-text' ? 'div' : 'p';
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
@@ -154,6 +152,10 @@ test('homepage has a single meaningful H1 and logical section headings', () => {
   assert.doesNotMatch(html, /hreflang/i);
   assert.doesNotMatch(html, /og:locale:alternate|en_US/);
   assert.doesNotMatch(html, /early.access|pre-launch|prelaunch|beta application|before launch/i);
+  for (const source of [html, app, mobile, office]) {
+    assert.doesNotMatch(source, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|αρχική δημόσια διάθεση|κατά την αρχική διάθεση/i);
+    assert.match(source, /προσωπικά διαπιστευτήρια/);
+  }
 });
 
 test('deployment configuration parses as JSON and excludes web manifest', () => {
