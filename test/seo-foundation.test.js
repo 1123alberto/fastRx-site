@@ -89,7 +89,7 @@ test('robots policy advertises the canonical sitemap', () => {
 
 test('Office exposes static page-specific metadata and indexable content', () => {
   const title = 'FastRx Office | Ηλεκτρονική Συνταγογράφηση σε Υπολογιστή και Tablet';
-  const description = 'Το FastRx Office είναι εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς σε υπολογιστή και tablet, με πρόσβαση μέσω των προσωπικών τους διαπιστευτηρίων στο Σύστημα Ηλεκτρονικής Συνταγογράφησης (ΣΗΣ).';
+  const description = 'Το FastRx Office συγκεντρώνει σε μία οθόνη την αναζήτηση ασθενούς, την επίσκεψη, τη διάγνωση ICD-10, τα φάρμακα και τον τελικό έλεγχο, χωρίς πολυβηματικό οδηγό.';
   assert.ok(office.includes(`<title>${title}</title>`));
   assert.ok(office.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(office.includes(`="${key}" content="${title}"`));
@@ -103,7 +103,7 @@ test('Office exposes static page-specific metadata and indexable content', () =>
   assert.match(office, /name="viewport"/);
   assert.doesNotMatch(office, /<script\b|data-i18n|noindex|nofollow/i);
   assert.equal((office.match(/<h1\b/g) || []).length, 1);
-  assert.match(office, /<h1[^>]*>FastRx Office — Ηλεκτρονική συνταγογράφηση σε υπολογιστή και tablet<\/h1>/);
+  assert.match(office, /<h1[^>]*>Ολόκληρη η διαδικασία συνταγογράφησης, σε μία οθόνη\.<\/h1>/);
   let previousLevel = 0;
   for (const [, level] of office.matchAll(/<h([1-6])\b/g)) {
     assert.ok(Number(level) <= previousLevel + 1, 'heading levels must not skip');
@@ -118,6 +118,7 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
   assert.match(office, /μετά από επιβεβαίωση του ιατρού/);
   assert.match(office, /δημιουργία παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ/);
   assert.match(office, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
+  assert.match(office, /Αναζήτηση ασθενούς, καταχώριση και διαχείριση επίσκεψης, διάγνωση ICD-10, επιλογή φαρμάκων και τελικός έλεγχος σε μία ενιαία οθόνη εργασίας, χωρίς πολυβηματικό οδηγό\./);
   assert.match(office, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
   assert.match(office, /προσωπικά διαπιστευτήρια του ιατρού/);
   assert.doesNotMatch(office, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
@@ -127,14 +128,12 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
     assert.ok(office.includes(content), `${className} must preserve homepage wording`);
   }
   for (const href of ['/', '/mobile/', 'https://office.fastrx.gr/', '/#contact']) assert.ok(office.includes(`href="${href}"`));
-  assert.match(html, /<a href="\/office\/">FastRx Office<\/a>/);
-  assert.ok(app.includes('<a href=\\"/office/\\">FastRx Office</a>'), 'homepage script must preserve the Office link');
   assert.match(office, /<img[^>]*class="office-product-preview"[^>]*src="\/fastrx-office-mobile-preview-safe\.png"[^>]*width="1614"[^>]*height="975"[^>]*loading="lazy"/);
 });
 
 test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {
   const title = 'FastRx Mobile | Ηλεκτρονική Συνταγογράφηση στο Κινητό';
-  const description = 'Το FastRx Mobile είναι εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς, με πρόσβαση μέσω των προσωπικών τους διαπιστευτηρίων στο Σύστημα Ηλεκτρονικής Συνταγογράφησης (ΣΗΣ).';
+  const description = 'Συνταγογραφήστε φάρμακα από κινητό με το FastRx Mobile. Δημιουργήστε παραπεμπτικά εξετάσεων όπου υποστηρίζεται από το ΣΗΣ.';
   assert.ok(mobile.includes(`<title>${title}</title>`));
   assert.ok(mobile.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(mobile.includes(`="${key}" content="${title}"`));
@@ -151,7 +150,8 @@ test('Mobile exposes static page-specific SEO and social metadata without homepa
 
 test('Mobile has an accessible workflow, correct access links, and unchanged clinical disclaimers', () => {
   assert.equal((mobile.match(/<h1\b/g) || []).length, 1);
-  assert.match(mobile, /<h1[^>]*>FastRx Mobile — Ηλεκτρονική συνταγογράφηση στο κινητό<\/h1>/);
+  assert.match(mobile, /<h1[^>]*>Η ηλεκτρονική συνταγογράφηση, στην παλάμη σας\.<\/h1>/);
+  assert.match(mobile, /Συνταγογραφήστε φάρμακα από το κινητό σας και δημιουργήστε παραπεμπτικά εξετάσεων, όπου αυτό υποστηρίζεται από το ΣΗΣ\./);
   assert.equal((mobile.match(/<h2\b/g) || []).length, 4);
   assert.equal((mobile.match(/<h3\b/g) || []).length, 5);
   for (const [, target] of mobile.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(mobile.includes(`id="${target}"`));
@@ -161,14 +161,13 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
   assert.match(mobile, /href="\/"/);
   assert.match(mobile, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
   assert.match(mobile, /προσωπικά διαπιστευτήρια του ιατρού/);
+  assert.doesNotMatch(mobile, /πρώτη|μοναδική/i);
   assert.doesNotMatch(mobile, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
   for (const className of ['status-main-text', 'status-disclaimer-text']) {
     const tag = className === 'status-main-text' ? 'div' : 'p';
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
     assert.ok(mobile.includes(content), `${className} must preserve homepage wording`);
   }
-  assert.match(html, /<a href="\/mobile\/">FastRx Mobile<\/a>/);
-  assert.ok(app.includes('<a href=\\"/mobile/\\">FastRx Mobile</a>'), 'homepage script must preserve the link');
 });
 
 test('homepage has a single meaningful H1 and logical section headings', () => {

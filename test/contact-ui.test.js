@@ -15,7 +15,8 @@ test('homepage presents product positioning and direct application links', () =>
   assert.match(html, /Είσοδος στο FastRx Mobile/);
   assert.match(html, /href="https:\/\/office\.fastrx\.gr\/"[^>]*data-i18n="hero-secondary-cta"/);
   assert.match(html, /Είσοδος στο FastRx Office/);
-  assert.match(html, /Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
+  assert.match(html, /Το FastRx απλοποιεί την ηλεκτρονική συνταγογράφηση, προσφέροντας ένα σύγχρονο και εύχρηστο περιβάλλον εργασίας για ιατρούς\./);
+  assert.match(js, /"hero-subtitle": "Το FastRx απλοποιεί την ηλεκτρονική συνταγογράφηση, προσφέροντας ένα σύγχρονο και εύχρηστο περιβάλλον εργασίας για ιατρούς\."/);
   assert.match(js, /προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
   assert.doesNotMatch(html + js, /beta|ζητήστε πρόσβαση|ζητήσω πρόσβαση/i);
   assert.match(html, /data-i18n="hero-access-note"/);
@@ -97,9 +98,12 @@ test('every translated element has one Greek copy entry', () => {
   assert.doesNotMatch(js, /Electronic Prescribing|Contact FastRx|Request access|Privacy Policy/);
 });
 
-test('FastRx Office is presented as available with entry link and synchronized copy', () => {
-  assert.match(html, /data-i18n="office-badge"[^>]*>ΔΙΑΘΕΣΙΜΟ</);
-  assert.match(js, /"office-badge": "ΔΙΑΘΕΣΙΜΟ"/);
+test('FastRx Office keeps its descriptive eyebrow and entry link without availability badges', () => {
+  assert.doesNotMatch(html + js + mobile + office, /ΔΙΑΘΕΣΙΜΟ|office-badge/);
+  assert.doesNotMatch(mobile + office, /class="status-badge"/);
+  assert.match(html, /class="office-kicker"[^>]*data-i18n="office-kicker"[^>]*>Περιβάλλον εργασίας για υπολογιστή</);
+  assert.match(mobile, /class="office-kicker">FastRx Mobile · Συνταγογράφηση και παραπεμπτικά από κινητό</);
+  assert.match(office, /class="office-kicker">FastRx Office · Ηλεκτρονική συνταγογράφηση σε υπολογιστή και tablet</);
   assert.doesNotMatch(html, /ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ/);
   assert.doesNotMatch(js, /ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ/);
   assert.doesNotMatch(html, /επερχόμενη έκδοση/i);
@@ -143,11 +147,10 @@ test('product page entry actions have shared top spacing and responsive sizing',
   assert.match(styles, /\.footer-links\s*\{[^}]*flex-wrap:\s*wrap/s);
 });
 
-test('hero title, office lead, and access note match updated copy', () => {
+test('homepage positioning and access note match updated copy', () => {
   assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\.</);
   assert.match(js, /"hero-title": "Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή\."/);
-  assert.match(html, /data-i18n="office-lead"[^>]*>Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\.</);
-  assert.match(js, /"office-lead": "Η εξειδικευμένη έκδοση του FastRx για υπολογιστή και tablet\."/);
+  assert.match(html, /Το FastRx απλοποιεί την ηλεκτρονική συνταγογράφηση, προσφέροντας ένα σύγχρονο και εύχρηστο περιβάλλον εργασίας για ιατρούς\./);
   assert.match(html, /data-i18n="hero-access-note"[^>]*>Η πρόσβαση στις λειτουργίες συνταγογράφησης γίνεται με τα προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)\. Η χρήση του FastRx παρέχεται χωρίς συνδρομή\./);
   assert.match(js, /"hero-access-note": "Η πρόσβαση στις λειτουργίες συνταγογράφησης γίνεται με τα προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)\. Η χρήση του FastRx παρέχεται χωρίς συνδρομή\."/);
 });

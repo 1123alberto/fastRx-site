@@ -379,18 +379,6 @@ p {
 
 .office-copy { min-width: 0; }
 
-.office-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: .35rem .75rem;
-  border-radius: 9999px;
-  background: var(--theme-800);
-  color: var(--white);
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .05em;
-}
-
 .office-kicker {
   margin-top: .85rem;
   color: var(--theme-700);
