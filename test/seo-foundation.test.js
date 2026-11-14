@@ -12,6 +12,34 @@ const sitemap = await readFile(new URL('public/sitemap.xml', root), 'utf8');
 const vercelConfig = await readFile(new URL('vercel.json', root), 'utf8');
 const ogImage = await readFile(new URL('public/og-image.png', root));
 
+const navigationLinks = source => {
+  const nav = source.match(/<nav class="primary-nav"[\s\S]*?<\/nav>/)?.[0];
+  assert.ok(nav, 'primary navigation should be present');
+  return [...nav.matchAll(/<a class="primary-nav-link" href="([^"]+)">([^<]+)<\/a>/g)]
+    .map(([, href, label]) => [label, href]);
+};
+
+const footerLinks = source => {
+  const nav = source.match(/<nav class="footer-links"[\s\S]*?<\/nav>/)?.[0];
+  assert.ok(nav, 'footer navigation should be present');
+  return [...nav.matchAll(/<a href="([^"]+)" class="footer-link-btn">([^<]+)<\/a>/g)]
+    .map(([, href, label]) => [label, href]);
+};
+
+test('all pages use the same primary and footer navigation', () => {
+  const expected = [
+    ['Αρχική', '/'],
+    ['FastRx Mobile', '/mobile/'],
+    ['FastRx Office', '/office/'],
+    ['Επικοινωνία', '/#contact'],
+  ];
+  for (const page of [html, mobile, office]) {
+    assert.deepEqual(navigationLinks(page), expected);
+    assert.deepEqual(footerLinks(page), expected);
+  }
+  assert.match(html, /id="privacy-trigger"[^>]*>Πολιτική Απορρήτου</);
+});
+
 test('homepage exposes canonical indexation and social metadata', () => {
   assert.match(html, /<title[^>]*>FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς<\/title>/);
   assert.match(html, /name="description" content="Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
@@ -98,7 +126,7 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
     assert.ok(office.includes(content), `${className} must preserve homepage wording`);
   }
-  for (const href of ['/', '/mobile/', 'https://office.fastrx.gr/', 'https://fastrx.gr/#contact']) assert.ok(office.includes(`href="${href}"`));
+  for (const href of ['/', '/mobile/', 'https://office.fastrx.gr/', '/#contact']) assert.ok(office.includes(`href="${href}"`));
   assert.match(html, /<a href="\/office\/">FastRx Office<\/a>/);
   assert.ok(app.includes('<a href=\\"/office/\\">FastRx Office</a>'), 'homepage script must preserve the Office link');
   assert.match(office, /<img[^>]*class="office-product-preview"[^>]*src="\/fastrx-office-mobile-preview-safe\.png"[^>]*width="1614"[^>]*height="975"[^>]*loading="lazy"/);
@@ -129,7 +157,7 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
   for (const [, target] of mobile.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(mobile.includes(`id="${target}"`));
   assert.match(mobile, /href="https:\/\/app\.fastrx\.gr\/"/);
   assert.match(mobile, /href="https:\/\/office\.fastrx\.gr\/"/);
-  assert.match(mobile, /href="https:\/\/fastrx\.gr\/#contact"/);
+  assert.match(mobile, /href="\/#contact"/);
   assert.match(mobile, /href="\/"/);
   assert.match(mobile, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
   assert.match(mobile, /προσωπικά διαπιστευτήρια του ιατρού/);

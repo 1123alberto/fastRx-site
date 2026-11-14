@@ -81,6 +81,12 @@
         <div class="logo-wrapper"><img class="brand-logo" src="/fastrx-icon.svg" alt="FastRx" width="38" height="38"></div>
         <span class="brand-name">FastRx</span>
       </a>
+      <nav class="primary-nav" aria-label="Κύρια πλοήγηση FastRx">
+        <a class="primary-nav-link" href="/">Αρχική</a>
+        <a class="primary-nav-link" href="/mobile/">FastRx Mobile</a>
+        <a class="primary-nav-link" href="/office/">FastRx Office</a>
+        <a class="primary-nav-link" href="/#contact">Επικοινωνία</a>
+      </nav>
     </div>
   </header>
 
@@ -91,8 +97,8 @@
         <h1 class="hero-title" data-i18n="hero-title">Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή, σε μια καθαρή και γρήγορη ροή.</h1>
         <p class="hero-subtitle" data-i18n="hero-subtitle">Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς. Επιλέξτε <a href="/mobile/">FastRx Mobile</a> για κινητό ή <a href="/office/">FastRx Office</a> για υπολογιστή και tablet.</p>
         <div class="hero-actions">
-          <a href="https://app.fastrx.gr/" class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="hero-cta">Είσοδος στο FastRx</a>
-          <a href="https://office.fastrx.gr/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" data-i18n="hero-secondary-cta">Άνοιγμα FastRx Office</a>
+          <a href="https://app.fastrx.gr/" class="btn btn-primary" target="_blank" rel="noopener noreferrer" data-i18n="hero-cta">Είσοδος στο FastRx Mobile</a>
+          <a href="https://office.fastrx.gr/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" data-i18n="hero-secondary-cta">Είσοδος στο FastRx Office</a>
         </div>
         <p class="access-note" data-i18n="hero-access-note">Η πρόσβαση στις λειτουργίες συνταγογράφησης γίνεται με τα προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης (ΣΗΣ). Η χρήση του FastRx παρέχεται χωρίς συνδρομή.</p>
       </div>
@@ -214,7 +220,18 @@
 
   <footer class="site-footer">
     <p class="footer-trust" data-i18n="trust-statement">Το FastRx είναι εργαλείο κλινικής ροής για εξουσιοδοτημένους επαγγελματίες υγείας στην Ελλάδα.</p>
-    <div class="footer-container container"><p class="copyright" data-i18n="footer-copyright">&copy; 2026 FastRx. Με την επιφύλαξη παντός δικαιώματος.</p><div class="footer-links"><button id="privacy-trigger" class="footer-link-btn" data-i18n="footer-privacy">Πολιτική Απορρήτου</button></div></div>
+    <div class="footer-container container">
+      <p class="copyright" data-i18n="footer-copyright">&copy; 2026 FastRx. Με την επιφύλαξη παντός δικαιώματος.</p>
+      <div class="footer-actions">
+        <nav class="footer-links" aria-label="Πλοήγηση FastRx">
+          <a href="/" class="footer-link-btn">Αρχική</a>
+          <a href="/mobile/" class="footer-link-btn">FastRx Mobile</a>
+          <a href="/office/" class="footer-link-btn">FastRx Office</a>
+          <a href="/#contact" class="footer-link-btn">Επικοινωνία</a>
+        </nav>
+        <button id="privacy-trigger" class="footer-link-btn" data-i18n="footer-privacy">Πολιτική Απορρήτου</button>
+      </div>
+    </div>
   </footer>
 
   <div id="privacy-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="privacy-title">

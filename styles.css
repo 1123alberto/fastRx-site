@@ -124,6 +124,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .brand-link {
@@ -133,6 +134,7 @@ p {
   text-decoration: none;
   color: var(--slate-900);
   transition: opacity 0.2s ease;
+  flex: 0 0 auto;
 }
 
 .brand-link:hover {
@@ -141,6 +143,33 @@ p {
 
 .brand-link:active {
   transform: scale(0.98);
+}
+
+.primary-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(.65rem, 1.5vw, 1.25rem);
+  min-width: 0;
+  margin-left: auto;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  white-space: nowrap;
+}
+
+.primary-nav-link {
+  flex: 0 0 auto;
+  color: var(--slate-600);
+  font-size: .9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.primary-nav-link:hover,
+.primary-nav-link:focus-visible {
+  color: var(--theme-700);
 }
 
 .logo-wrapper {
@@ -316,6 +345,10 @@ p {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.product-entry-actions {
+  margin-top: 1.5rem;
 }
 
 .hero-subtitle a {
@@ -757,7 +790,17 @@ p {
 
 .footer-links {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem 1.5rem;
+}
+
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem 1.5rem;
 }
 
 .footer-link-btn {
@@ -873,6 +916,25 @@ p {
     text-align: center;
   }
 
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    height: auto;
+    min-height: 70px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .55rem;
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+  }
+
+  .primary-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-left: 0;
+  }
 }
 
 /* Media Queries (Tablet and Desktop) */

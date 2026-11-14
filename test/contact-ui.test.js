@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const mobile = await readFile(new URL('../mobile/index.html', import.meta.url), 'utf8');
+const office = await readFile(new URL('../office/index.html', import.meta.url), 'utf8');
 const js = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
 
@@ -10,8 +12,9 @@ test('homepage presents product positioning and direct application links', () =>
   assert.match(html, /id="contact-form"/);
   assert.match(html, /https:\/\/app\.fastrx\.gr\//);
   assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
-  assert.match(html, /Είσοδος στο FastRx/);
+  assert.match(html, /Είσοδος στο FastRx Mobile/);
   assert.match(html, /href="https:\/\/office\.fastrx\.gr\/"[^>]*data-i18n="hero-secondary-cta"/);
+  assert.match(html, /Είσοδος στο FastRx Office/);
   assert.match(html, /Το FastRx είναι μια σύγχρονη εφαρμογή ηλεκτρονικής συνταγογράφησης για ιατρούς/);
   assert.match(js, /προσωπικά διαπιστευτήρια του ιατρού στο Σύστημα Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
   assert.doesNotMatch(html + js, /beta|ζητήστε πρόσβαση|ζητήσω πρόσβαση/i);
@@ -104,14 +107,40 @@ test('FastRx Office is presented as available with entry link and synchronized c
   assert.match(html, /data-i18n="office-title"[^>]*>FastRx Office</);
   assert.match(html, /data-i18n="hero-title"[^>]*>Η ηλεκτρονική συνταγογράφηση σε κινητό και υπολογιστή/);
   assert.match(html, /href="https:\/\/app\.fastrx\.gr\/"[^>]*data-i18n="hero-cta"/);
-  assert.match(html, /Είσοδος στο FastRx/);
-  assert.match(js, /"hero-cta": "Είσοδος στο FastRx"/);
+  assert.match(html, /Είσοδος στο FastRx Mobile/);
+  assert.match(js, /"hero-cta": "Είσοδος στο FastRx Mobile"/);
   assert.match(html, /href="https:\/\/office\.fastrx\.gr\/"[^>]*data-i18n="office-cta"/);
   assert.match(html, /Είσοδος στο FastRx Office/);
   assert.match(js, /"office-cta": "Είσοδος στο FastRx Office"/);
   assert.match(js, /https:\/\/office\.fastrx\.gr\//);
   assert.match(html, /data-i18n="office-note"[^>]*>Σχεδιασμένο ειδικά για χρήση σε υπολογιστή και tablet, με έμφαση στην επισκόπηση των στοιχείων και στη λιγότερη πλοήγηση\. Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\.</);
   assert.match(js, /"office-note": "Σχεδιασμένο ειδικά για χρήση σε υπολογιστή και tablet, με έμφαση στην επισκόπηση των στοιχείων και στη λιγότερη πλοήγηση\. Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\."/);
+});
+
+test('all application-entry buttons use the approved labels and destinations', () => {
+  const pages = [html, mobile, office];
+  const expectedEntries = [
+    ['https://app.fastrx.gr/', 'Είσοδος στο FastRx Mobile'],
+    ['https://office.fastrx.gr/', 'Είσοδος στο FastRx Office'],
+  ];
+  for (const page of pages) {
+    for (const [href, label] of expectedEntries) {
+      assert.ok(page.includes(`href="${href}"`), `missing application destination ${href}`);
+      assert.ok(page.includes(`>${label}</a>`), `missing application label ${label}`);
+    }
+  }
+  assert.match(js, /"hero-cta": "Είσοδος στο FastRx Mobile"/);
+  assert.match(js, /"hero-secondary-cta": "Είσοδος στο FastRx Office"/);
+  assert.match(js, /"office-cta": "Είσοδος στο FastRx Office"/);
+});
+
+test('product page entry actions have shared top spacing and responsive sizing', () => {
+  for (const page of [mobile, office]) assert.match(page, /class="hero-actions product-entry-actions"/);
+  assert.match(styles, /\.product-entry-actions\s*\{\s*margin-top:\s*1\.5rem;/);
+  assert.match(styles, /\.hero-actions \.btn,\s*\.office-actions \.btn\s*\{\s*width:\s*100%;/);
+  assert.match(styles, /\.primary-nav\s*\{[^}]*overflow-x:\s*auto/s);
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.primary-nav\s*\{[^}]*width:\s*100%/s);
+  assert.match(styles, /\.footer-links\s*\{[^}]*flex-wrap:\s*wrap/s);
 });
 
 test('hero title, office lead, and access note match updated copy', () => {
