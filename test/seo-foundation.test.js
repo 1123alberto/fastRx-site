@@ -14,9 +14,9 @@ const ogImage = await readFile(new URL('public/og-image.png', root));
 
 test('homepage exposes canonical indexation and social metadata', () => {
   assert.match(html, /<title[^>]*>FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς<\/title>/);
-  assert.match(html, /name="description" content="FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω του Συστήματος Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
+  assert.match(html, /name="description" content="Το FastRx είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή/);
   assert.match(app, /"meta-title": "FastRx \| Ηλεκτρονική Συνταγογράφηση για Ιατρούς"/);
-  assert.match(app, /"meta-description": "FastRx για ιατρούς: ηλεκτρονική συνταγογράφηση μέσω του Συστήματος Ηλεκτρονικής Συνταγογράφησης \(ΣΗΣ\)/);
+  assert.match(app, /"meta-description": "Το FastRx είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή/);
   assert.match(html, /rel="canonical" href="https:\/\/fastrx\.gr\/"/);
   assert.match(html, /name="robots" content="index, follow/);
   assert.doesNotMatch(html, /noindex|nofollow/i);
@@ -53,15 +53,15 @@ test('robots policy advertises the canonical sitemap', () => {
   assert.match(robots, /Disallow: \/api\//);
   assert.match(robots, /Sitemap: https:\/\/fastrx\.gr\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>\s*<lastmod>2026-09-29<\/lastmod>/);
-  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/mobile\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
-  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/office\/<\/loc>\s*<lastmod>2026-10-20<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/<\/loc>\s*<lastmod>2026-11-14<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/mobile\/<\/loc>\s*<lastmod>2026-11-14<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/fastrx\.gr\/office\/<\/loc>\s*<lastmod>2026-11-14<\/lastmod>/);
   assert.equal((sitemap.match(/<loc>/g) || []).length, 3);
 });
 
 test('Office exposes static page-specific metadata and indexable content', () => {
   const title = 'FastRx Office | Ηλεκτρονική Συνταγογράφηση σε Υπολογιστή και Tablet';
-  const description = 'FastRx Office για ιατρούς: ηλεκτρονική συνταγογράφηση σε υπολογιστή και tablet μέσω του ΣΗΣ. Δείτε τη ροή εργασίας και ζητήστε πρόσβαση.';
+  const description = 'Το FastRx Office είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή και χωρίς συνδρομή κατά την αρχική διάθεση. Απαιτείται σύνδεση μέσω IDIKA/ΣΗΣ.';
   assert.ok(office.includes(`<title>${title}</title>`));
   assert.ok(office.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(office.includes(`="${key}" content="${title}"`));
@@ -90,9 +90,10 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
   assert.match(office, /μετά από επιβεβαίωση του ιατρού/);
   assert.match(office, /δημιουργία παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ/);
   assert.match(office, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
-  assert.match(office, /μόνο κατόπιν πρόσκλησης σε ιατρούς/);
-  assert.match(office, /κανονική αυθεντικοποίηση στο ΣΗΣ/);
-  assert.match(office, /Τα διαπιστευτήρια του ΣΗΣ από μόνα τους δεν παρέχουν πρόσβαση στο FastRx/);
+  assert.match(office, /διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση/);
+  assert.match(office, /χωρίς συνδρομή κατά την αρχική διάθεση/);
+  assert.match(office, /σύνδεση μέσω IDIKA\/ΣΗΣ/);
+  assert.doesNotMatch(office, /beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
   for (const className of ['status-main-text', 'status-disclaimer-text']) {
     const tag = className === 'status-main-text' ? 'div' : 'p';
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
@@ -106,7 +107,7 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
 
 test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {
   const title = 'FastRx Mobile | Ηλεκτρονική Συνταγογράφηση στο Κινητό';
-  const description = 'FastRx Mobile για ιατρούς: ηλεκτρονική συνταγογράφηση στο κινητό μέσω του ΣΗΣ. Δείτε τη ροή εργασίας και πώς να ζητήσετε πρόσβαση.';
+  const description = 'Το FastRx Mobile είναι δημόσια διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση ή ξεχωριστή εγγραφή και χωρίς συνδρομή κατά την αρχική διάθεση. Απαιτείται σύνδεση μέσω IDIKA/ΣΗΣ.';
   assert.ok(mobile.includes(`<title>${title}</title>`));
   assert.ok(mobile.includes(`name="description" content="${description}"`));
   for (const key of ['og:title', 'twitter:title']) assert.ok(mobile.includes(`="${key}" content="${title}"`));
@@ -128,11 +129,13 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
   assert.equal((mobile.match(/<h3\b/g) || []).length, 5);
   for (const [, target] of mobile.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(mobile.includes(`id="${target}"`));
   assert.match(mobile, /href="https:\/\/app\.fastrx\.gr\/"/);
+  assert.match(mobile, /href="https:\/\/office\.fastrx\.gr\/"/);
   assert.match(mobile, /href="https:\/\/fastrx\.gr\/#contact"/);
   assert.match(mobile, /href="\/"/);
-  assert.match(mobile, /μόνο κατόπιν πρόσκλησης σε ιατρούς/);
-  assert.match(mobile, /κανονική αυθεντικοποίηση στο ΣΗΣ/);
-  assert.match(mobile, /Τα διαπιστευτήρια του ΣΗΣ από μόνα τους δεν παρέχουν πρόσβαση στο FastRx/);
+  assert.match(mobile, /διαθέσιμο σε όλους τους ιατρούς χωρίς πρόσκληση/);
+  assert.match(mobile, /χωρίς συνδρομή κατά την αρχική διάθεση/);
+  assert.match(mobile, /σύνδεση μέσω IDIKA\/ΣΗΣ/);
+  assert.doesNotMatch(mobile, /beta|μόνο κατόπιν πρόσκλησης|Ζητήστε πρόσβαση/i);
   for (const className of ['status-main-text', 'status-disclaimer-text']) {
     const tag = className === 'status-main-text' ? 'div' : 'p';
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];

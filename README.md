@@ -2,17 +2,17 @@
 
 Bilingual public landing page for FastRx hosted at [fastrx.gr](https://fastrx.gr).
 
-FastRx is a clinical workflow application for doctors, currently in development to streamline the electronic prescribing process (patient lookup, ICD-10 diagnosis selection, medication template selection, doctor review, approval, and submission). This repository powers the live public website and contact entry point for the service.
+FastRx is a clinical workflow application for doctors, publicly available at [app.fastrx.gr](https://app.fastrx.gr) and [office.fastrx.gr](https://office.fastrx.gr). No invitation or separate FastRx registration is required; physicians sign in through IDIKA/ΣΗΣ. There is no FastRx subscription fee during the initial public release. This repository powers the public website and general contact entry point.
 
 ## Features
 
 - **Bilingual Content Support**: Seamless localization for Greek (GR) and English (EN), defaulting to Greek while remembering an explicit language selection in `localStorage`.
 - **Premium Aesthetics**: Styled with a minimal, modern medical SaaS theme leveraging the FastRx cerulean/teal color tokens (`--theme-50` to `--theme-900`) and custom vector-based illustrations.
 - **Zero Heavy Runtime Dependencies**: Vanilla HTML, CSS, and JS ensuring near-instantaneous page loads, optimal 100/100 Lighthouse performance scores, and excellent mobile-first responsiveness.
-- **Bilingual SEO/Open Graph Setup**: Pre-configured meta tags for Search Engine Optimization and rich snippet preview support.
+- **SEO/Open Graph Setup**: Greek-language meta tags for Search Engine Optimization and rich snippet preview support.
 - **Technical SEO Foundation**: Canonical URL, crawl directives, XML sitemap, structured data, canonical favicon/icon assets, and 1200×630 social preview assets ready for production indexing.
-- **Direct Contact Form**: Bilingual early-access, testing, feedback, and professional-enquiry form with accessible validation and server-side email delivery.
-- **Compliant Disclaimers**: Clear indicators showing application development status and necessary institutional API approval restrictions.
+- **Direct Contact Form**: Greek-language general enquiries, issue reports, and feedback with accessible validation and server-side email delivery.
+- **Usage Disclaimers**: Clear IDIKA/ΣΗΣ sign-in requirements and physician clinical responsibility.
 
 ---
 
