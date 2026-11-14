@@ -122,16 +122,20 @@ test('FastRx Office keeps its descriptive eyebrow and entry link without availab
 });
 
 test('all application-entry buttons use the approved labels and destinations', () => {
-  const pages = [html, mobile, office];
-  const expectedEntries = [
-    ['https://app.fastrx.gr/', 'Είσοδος στο FastRx Mobile'],
-    ['https://office.fastrx.gr/', 'Είσοδος στο FastRx Office'],
+  const expectedHeroEntries = [
+    [html, [
+      ['https://app.fastrx.gr/', 'Είσοδος στο FastRx Mobile'],
+      ['https://office.fastrx.gr/', 'Είσοδος στο FastRx Office'],
+    ]],
+    [mobile, [['https://app.fastrx.gr/', 'Είσοδος στο FastRx Mobile']]],
+    [office, [['https://office.fastrx.gr/', 'Είσοδος στο FastRx Office']]],
   ];
-  for (const page of pages) {
-    for (const [href, label] of expectedEntries) {
-      assert.ok(page.includes(`href="${href}"`), `missing application destination ${href}`);
-      assert.ok(page.includes(`>${label}</a>`), `missing application label ${label}`);
-    }
+  for (const [page, entries] of expectedHeroEntries) {
+    const hero = page.match(/<section class="hero-section[\s\S]*?<\/section>/)?.[0];
+    assert.ok(hero, 'hero section should be present');
+    const actualEntries = [...hero.matchAll(/<a href="([^"]+)"[^>]*class="btn btn-(?:primary|secondary)"[^>]*>([^<]+)<\/a>/g)]
+      .map(([, href, label]) => [href, label]);
+    assert.deepEqual(actualEntries, entries);
   }
   assert.match(js, /"hero-cta": "Είσοδος στο FastRx Mobile"/);
   assert.match(js, /"hero-secondary-cta": "Είσοδος στο FastRx Office"/);
@@ -145,6 +149,12 @@ test('product page entry actions have shared top spacing and responsive sizing',
   assert.match(styles, /\.primary-nav\s*\{[^}]*overflow-x:\s*auto/s);
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.primary-nav\s*\{[^}]*width:\s*100%/s);
   assert.match(styles, /\.footer-links\s*\{[^}]*flex-wrap:\s*wrap/s);
+});
+
+test('Office referral card is removed while clinical disclaimers remain', () => {
+  assert.doesNotMatch(office, /Παραπεμπτικά όπου υποστηρίζονται|referrals-title|eΔΑΠΥ/);
+  assert.match(office, /οι κλινικές επιλογές και η τελική υποβολή παραμένουν ευθύνη του ιατρού/);
+  assert.match(office, /Η διάγνωση, η επιλογή φαρμάκου ή εξέτασης[\s\S]*?παραμένουν ευθύνη του εξουσιοδοτημένου επαγγελματία υγείας/);
 });
 
 test('homepage positioning and access note match updated copy', () => {

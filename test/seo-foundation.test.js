@@ -15,8 +15,8 @@ const ogImage = await readFile(new URL('public/og-image.png', root));
 const navigationLinks = source => {
   const nav = source.match(/<nav class="primary-nav"[\s\S]*?<\/nav>/)?.[0];
   assert.ok(nav, 'primary navigation should be present');
-  return [...nav.matchAll(/<a class="primary-nav-link" href="([^"]+)">([^<]+)<\/a>/g)]
-    .map(([, href, label]) => [label, href]);
+  return [...nav.matchAll(/<a class="primary-nav-link" href="([^"]+)"( aria-current="page")?>([^<]+)<\/a>/g)]
+    .map(([, href, current, label]) => [label, href, current === ' aria-current="page"']);
 };
 
 const footerLinks = source => {
@@ -33,8 +33,11 @@ test('all pages use the same primary and footer navigation', () => {
     ['FastRx Office', '/office/'],
     ['Επικοινωνία', '/#contact'],
   ];
-  for (const page of [html, mobile, office]) {
-    assert.deepEqual(navigationLinks(page), expected);
+  for (const [page, activeHref] of [[html, '/'], [mobile, '/mobile/'], [office, '/office/']]) {
+    const links = navigationLinks(page);
+    assert.deepEqual(links.map(([label, href]) => [label, href]), expected);
+    assert.deepEqual(links.map(([, href, isCurrent]) => isCurrent), expected.map(([, href]) => href === activeHref));
+    assert.equal(links.filter(([, , isCurrent]) => isCurrent).length, 1, 'exactly one top navigation item should be current');
     assert.deepEqual(footerLinks(page), expected);
   }
   assert.match(html, /id="privacy-trigger"[^>]*>Πολιτική Απορρήτου</);
@@ -116,8 +119,9 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
   assert.match(office, /Αναζήτηση ασθενούς και καταχώριση και διαχείριση επισκέψεων στο ΣΗΣ, όπου υποστηρίζεται/);
   assert.match(office, /ICD-10/);
   assert.match(office, /μετά από επιβεβαίωση του ιατρού/);
-  assert.match(office, /δημιουργία παραπεμπτικών όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ/);
-  assert.match(office, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
+  assert.doesNotMatch(office, /Παραπεμπτικά όπου υποστηρίζονται|referrals-title|eΔΑΠΥ/);
+  assert.match(html, /Η διαχείριση επισκέψεων στο ΣΗΣ δεν αποτελεί υποβολή δαπανών ή αιτημάτων αποζημίωσης μέσω eΔΑΠΥ\./);
+  assert.match(html, /Δημιουργία και υποβολή παραπεμπτικών, όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ\./);
   assert.match(office, /Αναζήτηση ασθενούς, καταχώριση και διαχείριση επίσκεψης, διάγνωση ICD-10, επιλογή φαρμάκων και τελικός έλεγχος σε μία ενιαία οθόνη εργασίας, χωρίς πολυβηματικό οδηγό\./);
   assert.match(office, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
   assert.match(office, /προσωπικά διαπιστευτήρια του ιατρού/);
@@ -129,6 +133,7 @@ test('Office preserves supported scope, access boundaries, clinical disclaimers,
   }
   for (const href of ['/', '/mobile/', 'https://office.fastrx.gr/', '/#contact']) assert.ok(office.includes(`href="${href}"`));
   assert.match(office, /<img[^>]*class="office-product-preview"[^>]*src="\/fastrx-office-mobile-preview-safe\.png"[^>]*width="1614"[^>]*height="975"[^>]*loading="lazy"/);
+  assert.match(office, /Η διάγνωση, η επιλογή φαρμάκου ή εξέτασης, η δοσολογία, η διάρκεια, οι εξαιρέσεις ή επιλογές συμμετοχής και η τελική υποβολή παραμένουν ευθύνη του εξουσιοδοτημένου επαγγελματία υγείας\./);
 });
 
 test('Mobile exposes static page-specific SEO and social metadata without homepage scripts', () => {
@@ -156,7 +161,7 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
   assert.equal((mobile.match(/<h3\b/g) || []).length, 5);
   for (const [, target] of mobile.matchAll(/aria-labelledby="([^"]+)"/g)) assert.ok(mobile.includes(`id="${target}"`));
   assert.match(mobile, /href="https:\/\/app\.fastrx\.gr\/"/);
-  assert.match(mobile, /href="https:\/\/office\.fastrx\.gr\/"/);
+  assert.doesNotMatch(mobile, /href="https:\/\/office\.fastrx\.gr\/"/);
   assert.match(mobile, /href="\/#contact"/);
   assert.match(mobile, /href="\/"/);
   assert.match(mobile, /Η χρήση του FastRx παρέχεται χωρίς συνδρομή/);
@@ -168,6 +173,12 @@ test('Mobile has an accessible workflow, correct access links, and unchanged cli
     const content = html.match(new RegExp(`<${tag} class="${className}"[^>]*>([\\s\\S]*?)<\\/${tag}>`))[1];
     assert.ok(mobile.includes(content), `${className} must preserve homepage wording`);
   }
+});
+
+test('referral capability remains described with supported-scope qualification', () => {
+  assert.match(html, /Δημιουργία και υποβολή παραπεμπτικών, όπου εφαρμόζεται και υποστηρίζεται από το ΣΗΣ\./);
+  assert.match(mobile, /παραπεμπτικά εξετάσεων, όπου αυτό υποστηρίζεται από το ΣΗΣ/);
+  assert.doesNotMatch(office, /Παραπεμπτικά όπου υποστηρίζονται|referrals-title|eΔΑΠΥ/);
 });
 
 test('homepage has a single meaningful H1 and logical section headings', () => {
@@ -183,6 +194,12 @@ test('homepage has a single meaningful H1 and logical section headings', () => {
     assert.doesNotMatch(source, /δημόσια διαθέσιμο|χωρίς πρόσκληση|χωρίς ξεχωριστή εγγραφή|αρχική δημόσια διάθεση|κατά την αρχική διάθεση/i);
     assert.match(source, /προσωπικά διαπιστευτήρια/);
   }
+});
+
+test('active top navigation is visibly styled and keeps hover and keyboard focus', async () => {
+  const styles = await readFile(new URL('styles.css', root), 'utf8');
+  assert.match(styles, /\.primary-nav-link\[aria-current="page"\]\s*\{[^}]*color:\s*var\(--theme-700\)[^}]*text-decoration:\s*underline/s);
+  assert.match(styles, /\.primary-nav-link:hover,\s*\.primary-nav-link:focus-visible/);
 });
 
 test('deployment configuration parses as JSON and excludes web manifest', () => {
